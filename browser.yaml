@@ -1,0 +1,10 @@
+---
+extends:
+  - ./configs/basic.yaml
+  - ./configs/babel.yaml
+  - ./configs/async-await.yaml
+  - ./configs/import.yaml
+  - ./configs/no-null.yaml
+  - ./configs/max-len-2.yaml
+  - ./configs/browser.yaml
+  - ./no-ide.yaml # REMOVE after https://github.com/eslint/eslint/issues/7549
