@@ -3,6 +3,7 @@ extends:
   - ./configs/basic.yaml
   - ./configs/babel.yaml
   - ./configs/async-await.yaml
+  - ./configs/dependencies.yaml
   - ./configs/import.yaml
   - ./configs/no-null.yaml
   - ./configs/max-len-2.yaml
