@@ -5,6 +5,7 @@ module.exports = {
     './configs/async-await.js',
     './configs/dependencies.js',
     './configs/import.js',
+    './configs/lodash.js',
     './configs/no-null.js',
     './configs/max-len-2.js',
     './configs/browser.js',
