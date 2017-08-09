@@ -33,7 +33,7 @@ module.exports = {
     'import/no-mutable-exports': 'off',
     'import/no-named-as-default-member': 'off',
     'import/no-named-as-default': 'off',
-    'import/no-namespace': 'error',
+    'import/no-namespace': 'off',
     'import/no-nodejs-modules': 'off',
     'import/no-restricted-paths': 'off',
     'import/no-unresolved': 'error',
