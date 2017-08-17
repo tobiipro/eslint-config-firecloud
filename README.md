@@ -1,4 +1,4 @@
-# eslint-config-firecloud
+# eslint-config-firecloud [![Build Status][2]][1]
 
 In your project's `.eslintrc.js`
 
@@ -40,3 +40,7 @@ When it is fixed, remove this note and remove the no-ide extension from `browser
 ## License
 
 [UNLICENSE](UNLICENSE)
+
+
+  [1]: https://travis-ci.org/tobiipro/eslint-config-firecloud
+  [2]: https://travis-ci.org/tobiipro/eslint-config-firecloud.svg?branch=master
