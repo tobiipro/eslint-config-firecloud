@@ -11,6 +11,7 @@
     "eslint": "4.1.0",
     "eslint-plugin-async-await": "0.0.0",
     "eslint-plugin-babel": "4.1.1",
+    "eslint-plugin-better": "0.1.5",
     "eslint-plugin-dependencies": "2.4.0",
     "eslint-plugin-import": "2.6.0",
     "eslint-plugin-lodash": "2.4.4",

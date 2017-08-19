@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     './configs/basic.js',
     './configs/babel.js',
+    './configs/better.js',
     './configs/async-await.js',
     './configs/dependencies.js',
     './configs/import.js',
