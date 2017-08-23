@@ -25,6 +25,8 @@ Common bundles are provided as following:
 - Browser: `firecloud/browser.js`
 - no IDE: `firecloud/no-ide.js`
 
+- Node.js test with Mocha&Chai: `test-mocha-chai.js`
+
 
 ## No IDE checks
 
