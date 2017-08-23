@@ -26,6 +26,7 @@ Common bundles are provided as following:
 - no IDE: `firecloud/no-ide.js`
 
 - Node.js test with Mocha&Chai: `test-mocha-chai.js`
+- Node.js test with Jest: `test-jest.js`
 
 
 ## No IDE checks
