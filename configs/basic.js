@@ -60,7 +60,9 @@ module.exports = {
     'func-style': ['error', 'expression', {
       allowArrowFunctions: true
     }],
+    'function-paren-newline': 'off',
     'generator-star-spacing': 'error',
+    'getter-return': 'error',
     'global-require': 'error',
     'guard-for-in': 'error',
     'handle-callback-err': 'error',
