@@ -25,7 +25,9 @@ module.exports = {
     'accessor-pairs': 'error',
     'array-bracket-newline': 'off',
     'array-bracket-spacing': 'error',
-    'array-callback-return': 'error',
+    'array-callback-return': ['error', {
+      allowImplicit: true
+    }],
     'array-element-newline': 'off',
     'arrow-body-style': ['error', 'always'],
     'arrow-parens': 'error',
@@ -69,6 +71,7 @@ module.exports = {
     'id-blacklist': 'off',
     'id-length': 'off',
     'id-match': 'off',
+    'implicit-arrow-linebreak': 'off',
     'indent-legacy': ['error', 2, {
       SwitchCase: 0,
       VariableDeclarator: {
@@ -86,6 +89,7 @@ module.exports = {
     'line-comment-position': 'off',
     'linebreak-style': 'error',
     'lines-around-comment': 'error',
+    'lines-between-class-members': ['error', 'always'],
     'max-depth': 'error',
     'max-len': ['error', {
       code: 120,
@@ -97,6 +101,7 @@ module.exports = {
     'max-params': ['warn', 2],
     'max-statements-per-line': 'error',
     'max-statements': 'off',
+    'multiline-comment-style': 'off',
     'multiline-ternary': 'off',
     'new-cap': 'error',
     'new-parens': 'error',
