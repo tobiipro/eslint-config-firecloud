@@ -15,7 +15,7 @@
     "eslint-plugin-dependencies": "2.4.0",
     "eslint-plugin-fp": "2.3.0",
     "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jest": "21.6.2",
+    "eslint-plugin-jest": "21.7.0",
     "eslint-plugin-lodash": "2.5.0",
     "eslint-plugin-mocha": "4.11.0",
     "eslint-plugin-max-len-2": "0.0.5",
