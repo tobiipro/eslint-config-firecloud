@@ -23,9 +23,13 @@ deps:
 build: deps
 
 
-.PHONY: test
-test:
+.PHONY: check
+check:
 	npm test
+
+
+.PHONY: test
+test: check
 
 
 .PHONY: version
