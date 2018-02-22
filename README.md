@@ -1,5 +1,7 @@
 # eslint-config-firecloud [![Build Status][2]][1]
 
+The ESLint config used within Tobii Cloud Services.
+
 In your project's `.eslintrc.js`
 
 ```js
