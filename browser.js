@@ -5,6 +5,7 @@ module.exports = {
     './configs/better.js',
     './configs/async-await.js',
     './configs/dependencies.js',
+    './configs/firecloud.js',
     './configs/fp.js',
     './configs/import.js',
     './configs/lodash.js',
