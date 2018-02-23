@@ -4,6 +4,9 @@
   "description": "The ESLint config used within Tobii Cloud Services.",
   "version": "0.0.13",
   "license": "Unlicense",
+  "dependencies": {
+    "lodash": "4.17.5"
+  },
   "devDependencies": {
     "eclint": "2.6.0"
   },
@@ -21,8 +24,7 @@
     "eslint-plugin-mocha": "4.11.0",
     "eslint-plugin-max-len-2": "0.0.5",
     "eslint-plugin-no-null": "1.0.2",
-    "eslint-plugin-firecloud": "https://github.com/tobiipro/eslint-plugin-firecloud",
-    "lodash": "^4.0.0"
+    "eslint-plugin-firecloud": "https://github.com/tobiipro/eslint-plugin-firecloud"
   },
   "scripts": {
     "test": "eclint check $(git ls-files | grep -v -e \"^package-lock.json$\" -e \"^LICENSE$\" -e \"^UNLICENSE$\")"
