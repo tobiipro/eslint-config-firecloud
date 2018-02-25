@@ -25,8 +25,5 @@
     "eslint-plugin-max-len-2": "0.0.5",
     "eslint-plugin-no-null": "1.0.2",
     "eslint-plugin-firecloud": "git://github.com/tobiipro/eslint-plugin-firecloud.git#v0.0.1"
-  },
-  "scripts": {
-    "test": "eclint check $(git ls-files | grep -v -e \"^package-lock.json$\" -e \"^LICENSE$\" -e \"^UNLICENSE$\")"
   }
 }
