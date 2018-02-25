@@ -4,12 +4,6 @@
   "description": "The ESLint config used within Tobii Cloud Services.",
   "version": "0.0.16",
   "license": "Unlicense",
-  "dependencies": {
-    "lodash": "4.17.5"
-  },
-  "devDependencies": {
-    "eclint": "2.6.0"
-  },
   "peerDependencies": {
     "babel-eslint": "7.2.3",
     "eslint": "4.16.0",
@@ -25,5 +19,11 @@
     "eslint-plugin-max-len-2": "0.0.5",
     "eslint-plugin-no-null": "1.0.2",
     "eslint-plugin-firecloud": "git://github.com/tobiipro/eslint-plugin-firecloud.git#v0.0.1"
+  },
+  "dependencies": {
+    "lodash": "4.17.5"
+  },
+  "devDependencies": {
+    "eclint": "2.6.0"
   }
 }
