@@ -2,12 +2,14 @@ module.exports = {
   plugins: [
     'lodash'
   ],
+
   settings: {
     lodash: {
       pragma: '_',
       version: 4
     }
   },
+
   rules: {
     // possible errors
     'lodash/callback-binding': 'error',
