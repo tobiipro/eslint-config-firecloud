@@ -269,7 +269,9 @@ module.exports = {
         multiline: true,
         minProperties: 2,
         consistent: true
-      }
+      },
+      ImportDeclaration: 'always',
+      ExportDeclaration: 'always'
     }],
     'object-curly-spacing': 'error',
     'object-property-newline': 'off',

@@ -14,7 +14,9 @@ module.exports = {
         multiline: true,
         minProperties: 0, // aka disable
         consistent: true
-      }
+      },
+      ImportDeclaration: 'always',
+      ExportDeclaration: 'always'
     }]
   }
 }
