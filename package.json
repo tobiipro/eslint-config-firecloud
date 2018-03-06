@@ -4,6 +4,12 @@
   "description": "The ESLint config used within Tobii Cloud Services.",
   "version": "0.1.0",
   "license": "Unlicense",
+  "files": [
+    "/*.js",
+    "/configs/",
+    "/npm-install-peer-dependencies",
+    "/rules/"
+  ],
   "peerDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^4.18.2",
