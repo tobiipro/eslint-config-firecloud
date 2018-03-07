@@ -6,6 +6,7 @@
   "license": "Unlicense",
   "files": [
     "/*.js",
+    "/UNLICENSE",
     "/configs/",
     "/npm-install-peer-dependencies",
     "/rules/"
@@ -30,6 +31,7 @@
     "lodash": "^4.17.5"
   },
   "devDependencies": {
-    "eclint": "^2.6.0"
+    "eclint": "^2.6.0",
+    "npm-publish-git": "git://github.com/andreineculau/npm-publish-git.git#semver:^0.0.7"
   }
 }
