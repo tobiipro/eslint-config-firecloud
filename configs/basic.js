@@ -262,12 +262,12 @@ module.exports = {
     'object-curly-newline': ['warn', {
       ObjectExpression: {
         multiline: true,
-        minProperties: 1,
+        minProperties: 0, // aka disable
         consistent: true
       },
       ObjectPattern: {
         multiline: true,
-        minProperties: 2,
+        minProperties: 0, // aka disable
         consistent: true
       },
       ImportDeclaration: 'always',
