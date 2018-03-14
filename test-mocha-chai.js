@@ -34,4 +34,4 @@ module.exports = {
     'valid-suite-description': 'off',
     'valid-test-description': 'off'
   }
-}
+};
