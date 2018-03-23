@@ -12,7 +12,7 @@ module.exports = {
 
   rules: {
     'import/export': 'error',
-    'import/exports-last': 'warn',
+    'import/exports-last': 'off',
     'import/extensions': ['error', {
       js: 'never',
       json: 'always'
