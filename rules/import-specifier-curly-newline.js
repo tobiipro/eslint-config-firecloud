@@ -58,7 +58,7 @@ module.exports = {
           context.report({
             node,
             loc: openBrace.loc.start,
-            message: 'Expected a line break after this opening brace.',
+            message: 'Expected a line break after the opening brace.',
             fix(fixer) {
               return fixer.insertTextAfter(openBrace, '\n');
             }
@@ -69,7 +69,7 @@ module.exports = {
           context.report({
             node,
             loc: closeBrace.loc.start,
-            message: 'Expected a line break before this closing brace.',
+            message: 'Expected a line break before the closing brace.',
             fix(fixer) {
               return fixer.insertTextBefore(closeBrace, '\n');
             }
