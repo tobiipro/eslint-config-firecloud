@@ -1,3 +1,5 @@
+let _ = require('lodash');
+
 // based on https://github.com/eslint/eslint/blob/master/lib/rules/object-property-newline.js
 module.exports = {
   meta: {
@@ -25,7 +27,7 @@ module.exports = {
   create(context) {
     const allowSameLine = context.options[0] && Boolean(context.options[0].allowMultiplePerLine);
     const errorMessage = allowSameLine ?
-      "Import specifiers must go on a new line if they aren't all on the same line." :
+      'Import specifiers must go on a new line if they are not all on the same line.' :
       'Import specifiers must go on a new line.';
 
     const sourceCode = context.getSourceCode();
