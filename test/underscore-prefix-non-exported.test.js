@@ -1,6 +1,5 @@
-
-const rule = require("../rules/underscore-prefix-non-exported"),
-RuleTester = require("eslint").RuleTester;
+const rule = require("../rules/underscore-prefix-non-exported");
+const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 2015, sourceType: 'module' } });
 

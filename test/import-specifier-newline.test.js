@@ -1,6 +1,5 @@
-
-const rule = require("../rules/import-specifier-newline"),
-RuleTester = require("eslint").RuleTester;
+const rule = require("../rules/import-specifier-newline");
+const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 2015, sourceType: 'module' } });
 const errorMessageAllowMultiple =

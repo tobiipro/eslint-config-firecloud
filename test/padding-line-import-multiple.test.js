@@ -1,5 +1,5 @@
-const rule = require("../rules/padding-line-import-multiple"),
-RuleTester = require("eslint").RuleTester;
+const rule = require("../rules/padding-line-import-multiple");
+const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 2015, sourceType: 'module' } });
 const errorMessage = 'Expected an empty line before multiline import statement.';

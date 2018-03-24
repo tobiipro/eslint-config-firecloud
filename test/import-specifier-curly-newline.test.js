@@ -1,6 +1,5 @@
-
-const rule = require("../rules/import-specifier-curly-newline"),
-RuleTester = require("eslint").RuleTester;
+const rule = require("../rules/import-specifier-curly-newline");
+const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 2015, sourceType: 'module' } });
 const errorMessageOpening = 'Expected a line break after the opening brace.';
