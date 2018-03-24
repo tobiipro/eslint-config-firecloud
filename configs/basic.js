@@ -98,7 +98,7 @@ module.exports = {
     }],
     'max-lines': 'off',
     'max-nested-callbacks': 'error',
-    'max-params': ['warn', 2],
+    'max-params': ['warn', 3],
     'max-statements-per-line': 'error',
     'max-statements': 'off',
     'multiline-comment-style': 'off',
