@@ -32,21 +32,24 @@ ruleTester.run("import-specifier-curly-newline", rule, {
       errors: [
         { message: errorMessageOpening },
         { message: errorMessageClosing }
-      ]
+      ],
+      output: 'import {\na\n} from "b"'
     },
     {
       code: 'import {a, b\n} from "b"',
       options: [{allowOneLineIfSingle: false}],
       errors: [
         { message: errorMessageOpening }
-      ]
+      ],
+      output: 'import {\na, b\n} from "b"'
     },
     {
       code: 'import {\na, b} from "b"',
       options: [{allowOneLineIfSingle: false}],
       errors: [
         { message: errorMessageClosing }
-      ]
+      ],
+      output: 'import {\na, b\n} from "b"'
     },
 
     {
@@ -54,14 +57,16 @@ ruleTester.run("import-specifier-curly-newline", rule, {
       options: [{allowOneLineIfSingle: true}],
       errors: [
         { message: errorMessageOpening }
-      ]
+      ],
+      output: 'import {\na, b\n} from "b"'
     },
     {
       code: 'import {\na, b} from "b"',
       options: [{allowOneLineIfSingle: true}],
       errors: [
         { message: errorMessageClosing }
-      ]
+      ],
+      output: 'import {\na, b\n} from "b"'
     },
     {
       code: 'import {a, b} from "b"',
@@ -69,7 +74,8 @@ ruleTester.run("import-specifier-curly-newline", rule, {
       errors: [
         { message: errorMessageOpening },
         { message: errorMessageClosing }
-      ]
+      ],
+      output: 'import {\na, b\n} from "b"'
     },
     {
       code: 'import \n{a, b}\n from "b"',
@@ -77,7 +83,8 @@ ruleTester.run("import-specifier-curly-newline", rule, {
       errors: [
         { message: errorMessageOpening },
         { message: errorMessageClosing }
-      ]
+      ],
+      output: 'import \n{\na, b\n}\n from "b"'
     }
   ]
 });
