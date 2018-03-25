@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "eclint": "^2.6.0",
-    "npm-publish-git": "git://github.com/andreineculau/npm-publish-git.git#semver:~0.0.8",
-    "eslint": "4.19.1"
+    "eslint": "4.19.1",
+    "npm-publish-git": "git://github.com/andreineculau/npm-publish-git.git#semver:~0.0.8"
   }
 }
