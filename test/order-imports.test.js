@@ -1,3 +1,5 @@
+/* eslint-disable no-null/no-null */
+
 /*
   Based on original tests for sort-imports rule
   https://github.com/eslint/eslint/blob/master/tests/lib/rules/sort-imports.js
@@ -239,7 +241,7 @@ ruleTester.run('order-imports', rule, {
       'import a from "foo.js";',
       'import A from "bar.js";'
     ].join('\n'),
-    output: undefined, // not fixed due to a comment
+    output: null, // not fixed due to a comment
     errors: [
       expectedError
     ]
@@ -249,7 +251,7 @@ ruleTester.run('order-imports', rule, {
       '// this is a comment',
       'import A from "bar.js";'
     ].join('\n'),
-    output: undefined, // not fixed due to a comment
+    output: null, // not fixed due to a comment
     errors: [
       expectedError
     ]
@@ -269,28 +271,28 @@ ruleTester.run('order-imports', rule, {
     }]
   }, {
     code: 'import {zzzzz, /* comment */ aaaaa} from "foo.js";',
-    output: undefined, // not fixed due to comment
+    output: null, // not fixed due to comment
     errors: [{
       message: "Member 'aaaaa' of the import declaration should be sorted alphabetically.",
       type: 'ImportSpecifier'
     }]
   }, {
     code: 'import {zzzzz /* comment */, aaaaa} from "foo.js";',
-    output: undefined, // not fixed due to comment
+    output: null, // not fixed due to comment
     errors: [{
       message: "Member 'aaaaa' of the import declaration should be sorted alphabetically.",
       type: 'ImportSpecifier'
     }]
   }, {
     code: 'import {/* comment */ zzzzz, aaaaa} from "foo.js";',
-    output: undefined, // not fixed due to comment
+    output: null, // not fixed due to comment
     errors: [{
       message: "Member 'aaaaa' of the import declaration should be sorted alphabetically.",
       type: 'ImportSpecifier'
     }]
   }, {
     code: 'import {zzzzz, aaaaa /* comment */} from "foo.js";',
-    output: undefined, // not fixed due to comment
+    output: null, // not fixed due to comment
     errors: [{
       message: "Member 'aaaaa' of the import declaration should be sorted alphabetically.",
       type: 'ImportSpecifier'
