@@ -11,9 +11,6 @@ include support-firecloud/repo/mk/js.publish.npg.mk
 
 # ------------------------------------------------------------------------------
 
-SF_CHECK_TARGETS := \
-	lint-ec \
-
 JS_RULE_TEST_FILES := $(shell $(FIND_Q) test -type f -name "*.test.js" -print)
 
 # ------------------------------------------------------------------------------
