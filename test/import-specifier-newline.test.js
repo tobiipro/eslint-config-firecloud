@@ -1,12 +1,17 @@
-const rule = require("../rules/import-specifier-newline");
-const RuleTester = require("eslint").RuleTester;
+const eslint = require('eslint');
+const rule = require('../rules/import-specifier-newline');
 
-const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 2015, sourceType: 'module' } });
+const ruleTester = new eslint.RuleTester({
+  parserOptions: {
+    ecmaVersion: 2015,
+    sourceType: 'module'
+  }
+});
 const errorMessageAllowMultiple =
   'Import specifiers must go on a new line if they are not all on the same line.';
 const errorMessage = 'Import specifiers must go on a new line.';
 
-ruleTester.run("import-specifier-newline", rule, {
+ruleTester.run('import-specifier-newline', rule, {
   valid: [
     {
       code: 'import {a} from "b"',
@@ -36,14 +41,14 @@ ruleTester.run("import-specifier-newline", rule, {
     {
       code: 'import {a,\nb,\nc} from "b"',
       options: [{allowMultiplePerLine: true}]
-    },
+    }
   ],
   invalid: [
     {
       code: 'import {a,b} from "b"',
       options: [{allowMultiplePerLine: false}],
       errors: [
-        { message: errorMessage }
+        {message: errorMessage}
       ],
       output: 'import {a,\nb} from "b"'
     },
@@ -51,7 +56,7 @@ ruleTester.run("import-specifier-newline", rule, {
       code: 'import {a,\nb,c} from "b"',
       options: [{allowMultiplePerLine: false}],
       errors: [
-        { message: errorMessage }
+        {message: errorMessage}
       ],
       output: 'import {a,\nb,\nc} from "b"'
     },
@@ -60,7 +65,7 @@ ruleTester.run("import-specifier-newline", rule, {
       code: 'import {a,b,\nc} from "b"',
       options: [{allowMultiplePerLine: true}],
       errors: [
-        { message: errorMessageAllowMultiple }
+        {message: errorMessageAllowMultiple}
       ],
       output: 'import {a,\nb,\nc} from "b"'
     },
@@ -70,7 +75,7 @@ ruleTester.run("import-specifier-newline", rule, {
       code: 'import {a,/*a comment*/b,\nc} from "b"',
       options: [{allowMultiplePerLine: true}],
       errors: [
-        { message: errorMessageAllowMultiple }
+        {message: errorMessageAllowMultiple}
       ],
       output: 'import {a,/*a comment*/b,\nc} from "b"'
     }

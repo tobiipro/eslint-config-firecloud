@@ -1,5 +1,5 @@
 module.exports = {
   extends: [
-    './configs/jest.js',
+    './configs/jest.js'
   ]
 };
