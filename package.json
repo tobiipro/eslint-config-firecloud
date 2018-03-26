@@ -32,5 +32,8 @@
     "eclint": "^2.6.0",
     "eslint": "4.19.1",
     "npm-publish-git": "git://github.com/andreineculau/npm-publish-git.git#semver:~0.0.8"
+  },
+  "scripts": {
+    "postinstall": "echo '___ WARN Maybe you want to run node_modules/eslint-config-firecloud/npm-install-peer-dependencies.'"
   }
 }
