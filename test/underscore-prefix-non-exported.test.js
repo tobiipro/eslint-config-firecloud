@@ -1,3 +1,4 @@
+/* eslint-disable firecloud/underscore-prefix-non-exported */
 const eslint = require('eslint');
 const rule = require('../rules/underscore-prefix-non-exported');
 

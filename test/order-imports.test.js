@@ -1,4 +1,4 @@
-/* eslint-disable no-null/no-null */
+/* eslint-disable no-null/no-null, firecloud/underscore-prefix-non-exported */
 
 /*
   Based on original tests for sort-imports rule
