@@ -17,8 +17,6 @@ module.exports = {
   },
 
   create(context) {
-    const sourceCode = context.getSourceCode();
-
     let checkVariable = function(variable) {
       let scope = variable.scope.type;
       if (scope !== 'module' && scope !== 'global') {
@@ -34,7 +32,7 @@ module.exports = {
         node: variable.defs[0].name,
         message: 'Top-level not exported variables should be prefixed with "_"'
       });
-    }
+    };
 
     let checkDeclaration = function(node) {
       if (node.parent.type === 'ExportNamedDeclaration') {
@@ -44,7 +42,7 @@ module.exports = {
 
       let vars = context.getDeclaredVariables(node);
       _.forEach(vars, checkVariable);
-    }
+    };
 
     return {
       VariableDeclaration: checkDeclaration,

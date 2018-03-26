@@ -4,4 +4,4 @@ module.exports.rules = {
   'order-imports': require('./order-imports'),
   'padding-line-import-multiple': require('./padding-line-import-multiple'),
   'underscore-prefix-non-exported': require('./underscore-prefix-non-exported')
-}
+};

@@ -1,78 +1,129 @@
-const rule = require("../rules/import-specifier-newline");
-const RuleTester = require("eslint").RuleTester;
+const eslint = require('eslint');
+const rule = require('../rules/import-specifier-newline');
 
-const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 2015, sourceType: 'module' } });
+const ruleTester = new eslint.RuleTester({
+  parserOptions: {
+    ecmaVersion: 2015,
+    sourceType: 'module'
+  }
+});
 const errorMessageAllowMultiple =
   'Import specifiers must go on a new line if they are not all on the same line.';
 const errorMessage = 'Import specifiers must go on a new line.';
 
-ruleTester.run("import-specifier-newline", rule, {
-  valid: [
-    {
-      code: 'import {a} from "b"',
-      options: [{allowMultiplePerLine: false}]
-    },
-    {
-      code: 'import {\na\n} from "b"',
-      options: [{allowMultiplePerLine: false}]
-    },
-    {
-      code: 'import {\na,\nb\n} from "b"',
-      options: [{allowMultiplePerLine: false}]
-    },
-    {
-      code: 'import {a,\nb} from "b"',
-      options: [{allowMultiplePerLine: false}]
-    },
+ruleTester.run('import-specifier-newline', rule, {
+  valid: [{
+    code: 'import {a} from "b"',
+    options: [{
+      allowMultiplePerLine: false
+    }]
+  }, {
+    code: [
+      'import {',
+      'a',
+      '} from "b"'
+    ].join('\n'),
+    options: [{
+      allowMultiplePerLine: false
+    }]
+  }, {
+    code: [
+      'import {',
+      'a,',
+      'b',
+      '} from "b"'
+    ].join('\n'),
+    options: [{
+      allowMultiplePerLine: false
+    }]
+  }, {
+    code: [
+      'import {a,',
+      'b} from "b"'
+    ].join('\n'),
+    options: [{
+      allowMultiplePerLine: false
+    }]
+  }, {
+    code: 'import {a} from "b"',
+    options: [{
+      allowMultiplePerLine: true
+    }]
+  }, {
+    code: 'import {a,b,c} from "b"',
+    options: [{
+      allowMultiplePerLine: true
+    }]
+  }, {
+    code: [
+      'import {a,',
+      'b,',
+      'c} from "b"'
+    ].join('\n'),
+    options: [{
+      allowMultiplePerLine: true
+    }]
+  }],
 
-    {
-      code: 'import {a} from "b"',
-      options: [{allowMultiplePerLine: true}]
-    },
-    {
-      code: 'import {a,b,c} from "b"',
-      options: [{allowMultiplePerLine: true}]
-    },
-    {
-      code: 'import {a,\nb,\nc} from "b"',
-      options: [{allowMultiplePerLine: true}]
-    },
-  ],
-  invalid: [
-    {
-      code: 'import {a,b} from "b"',
-      options: [{allowMultiplePerLine: false}],
-      errors: [
-        { message: errorMessage }
-      ],
-      output: 'import {a,\nb} from "b"'
-    },
-    {
-      code: 'import {a,\nb,c} from "b"',
-      options: [{allowMultiplePerLine: false}],
-      errors: [
-        { message: errorMessage }
-      ],
-      output: 'import {a,\nb,\nc} from "b"'
-    },
-
-    {
-      code: 'import {a,b,\nc} from "b"',
-      options: [{allowMultiplePerLine: true}],
-      errors: [
-        { message: errorMessageAllowMultiple }
-      ],
-      output: 'import {a,\nb,\nc} from "b"'
-    },
-
+  invalid: [{
+    code: 'import {a,b} from "b"',
+    options: [{
+      allowMultiplePerLine: false
+    }],
+    errors: [{
+      message: errorMessage
+    }],
+    output: [
+      'import {a,',
+      'b} from "b"'
+    ].join('\n')
+  }, {
+    code: [
+      'import {a,',
+      'b,c} from "b"'
+    ].join('\n'),
+    options: [{
+      allowMultiplePerLine: false
+    }],
+    errors: [{
+      message: errorMessage
+    }],
+    output: [
+      'import {a,',
+      'b,',
+      'c} from "b"'
+    ].join('\n')
+  }, {
+    code: [
+      'import {a,b,',
+      'c} from "b"'
+    ].join('\n'),
+    options: [{
+      allowMultiplePerLine: true
+    }],
+    errors: [{
+      message: errorMessageAllowMultiple
+    }],
+    output: [
+      'import {a,',
+      'b,',
+      'c} from "b"'
+    ].join('\n')
+  }, {
     // no fixes if comments are present
-    {
-      code: 'import {a,/*a comment*/b,\nc} from "b"',
-      options: [{allowMultiplePerLine: true}],
-      errors: [
-        { message: errorMessageAllowMultiple }
-      ],
-      output: 'import {a,/*a comment*/b,\nc} from "b"'
-    }
-  ]
+    code: [
+      'import {a,/*a comment*/b,',
+      'c} from "b"'
+    ].join('\n'),
+    options: [{
+      allowMultiplePerLine: true
+    }],
+    errors: [{
+      message: errorMessageAllowMultiple
+    }],
+    output: [
+      'import {a,/*a comment*/b,',
+      'c} from "b"'
+    ].join('\n')
+  }]
 });
