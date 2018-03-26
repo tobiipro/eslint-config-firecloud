@@ -28,14 +28,6 @@ module.exports = {
         return;
       }
 
-      // making an exception for 'require' call in the right hand side
-      let definition = variable.defs[0].node;
-      if (definition.type === 'VariableDeclarator' &&
-          definition.init.type === 'CallExpression' &&
-          definition.init.callee.name === 'require') {
-        return;
-      }
-
       context.report({
         node: variable.defs[0].name,
         message: 'Top-level not exported variables should be prefixed with "_"'
