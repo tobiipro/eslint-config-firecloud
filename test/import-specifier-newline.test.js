@@ -1,17 +1,17 @@
 const eslint = require('eslint');
 const rule = require('../rules/import-specifier-newline');
 
-const ruleTester = new eslint.RuleTester({
+const _ruleTester = new eslint.RuleTester({
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: 'module'
   }
 });
-const errorMessageAllowMultiple =
+const _errorMessageAllowMultiple =
   'Import specifiers must go on a new line if they are not all on the same line.';
-const errorMessage = 'Import specifiers must go on a new line.';
+const _errorMessage = 'Import specifiers must go on a new line.';
 
-ruleTester.run('import-specifier-newline', rule, {
+_ruleTester.run('import-specifier-newline', rule, {
   valid: [{
     code: 'import {a} from "b"',
     options: [{
@@ -71,7 +71,7 @@ ruleTester.run('import-specifier-newline', rule, {
       allowMultiplePerLine: false
     }],
     errors: [{
-      message: errorMessage
+      message: _errorMessage
     }],
     output: [
       'import {a,',
@@ -86,7 +86,7 @@ ruleTester.run('import-specifier-newline', rule, {
       allowMultiplePerLine: false
     }],
     errors: [{
-      message: errorMessage
+      message: _errorMessage
     }],
     output: [
       'import {a,',
@@ -102,7 +102,7 @@ ruleTester.run('import-specifier-newline', rule, {
       allowMultiplePerLine: true
     }],
     errors: [{
-      message: errorMessageAllowMultiple
+      message: _errorMessageAllowMultiple
     }],
     output: [
       'import {a,',
@@ -119,7 +119,7 @@ ruleTester.run('import-specifier-newline', rule, {
       allowMultiplePerLine: true
     }],
     errors: [{
-      message: errorMessageAllowMultiple
+      message: _errorMessageAllowMultiple
     }],
     output: [
       'import {a,/*a comment*/b,',

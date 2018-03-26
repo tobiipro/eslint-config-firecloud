@@ -8,21 +8,21 @@
 const eslint = require('eslint');
 const rule = require('../rules/order-imports');
 
-const ruleTester = new eslint.RuleTester({
+const _ruleTester = new eslint.RuleTester({
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: 'module'
   }
 });
-const expectedError = {
+const _expectedError = {
   message: 'Imports should be sorted alphabetically.',
   type: 'ImportDeclaration'
 };
-const ignoreCaseArgs = [{
+const _ignoreCaseArgs = [{
   ignoreCase: true
 }];
 
-ruleTester.run('order-imports', rule, {
+_ruleTester.run('order-imports', rule, {
   valid: [{
     code: [
       'import a from "foo.js";',
@@ -90,7 +90,7 @@ ruleTester.run('order-imports', rule, {
       'import a from "foo.js";',
       'import B from "bar.js";'
     ].join('\n'),
-    options: ignoreCaseArgs
+    options: _ignoreCaseArgs
   }, {
     code: 'import {a, b, c, d} from "foo.js";'
   }, {
@@ -105,7 +105,7 @@ ruleTester.run('order-imports', rule, {
     }]
   }, {
     code: 'import {a, B, c, D} from "foo.js";',
-    options: ignoreCaseArgs
+    options: _ignoreCaseArgs
   }, {
     code: 'import a, * as b from "foo.js";'
   }, {
@@ -125,7 +125,7 @@ ruleTester.run('order-imports', rule, {
       'import "foo";',
       'import bar from "bar";'
     ].join('\n'),
-    options: ignoreCaseArgs
+    options: _ignoreCaseArgs
   }, {
     // https://github.com/eslint/eslint/issues/5305
     code: 'import React, {Component} from "react";'
@@ -141,7 +141,7 @@ ruleTester.run('order-imports', rule, {
       'import a from "foo.js";'
     ].join('\n'),
     errors: [
-      expectedError
+      _expectedError
     ]
   }, {
     code: [
@@ -153,7 +153,7 @@ ruleTester.run('order-imports', rule, {
       'import b from "foo.js";'
     ].join('\n'),
     errors: [
-      expectedError
+      _expectedError
     ]
   }, {
     code: [
@@ -165,7 +165,7 @@ ruleTester.run('order-imports', rule, {
       'import {b, c} from "foo.js";'
     ].join('\n'),
     errors: [
-      expectedError
+      _expectedError
     ]
   }, {
     code: [
@@ -177,7 +177,7 @@ ruleTester.run('order-imports', rule, {
       'import * as foo from "foo.js";'
     ].join('\n'),
     errors: [
-      expectedError
+      _expectedError
     ]
   }, {
     code: [
@@ -243,7 +243,7 @@ ruleTester.run('order-imports', rule, {
     ].join('\n'),
     output: null, // not fixed due to a comment
     errors: [
-      expectedError
+      _expectedError
     ]
   }, {
     code: [
@@ -253,7 +253,7 @@ ruleTester.run('order-imports', rule, {
     ].join('\n'),
     output: null, // not fixed due to a comment
     errors: [
-      expectedError
+      _expectedError
     ]
   }, {
     code: 'import {b, a, d, c} from "foo.js";',

@@ -1,15 +1,15 @@
 const eslint = require('eslint');
 const rule = require('../rules/padding-line-import-multiple');
 
-const ruleTester = new eslint.RuleTester({
+const _ruleTester = new eslint.RuleTester({
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: 'module'
   }
 });
-const errorMessage = 'Expected an empty line before multiline import statement.';
+const _errorMessage = 'Expected an empty line before multiline import statement.';
 
-ruleTester.run('padding-line-import-multiple', rule, {
+_ruleTester.run('padding-line-import-multiple', rule, {
   valid: [{
     code: 'import a from "b"'
   }, {
@@ -50,7 +50,7 @@ ruleTester.run('padding-line-import-multiple', rule, {
       'import {b,', 'c} from "b"'
     ].join('\n'),
     errors: [{
-      message: errorMessage
+      message: _errorMessage
     }],
     output: [
       'import a from "b";',
@@ -67,7 +67,7 @@ ruleTester.run('padding-line-import-multiple', rule, {
       'c} from "b"'
     ].join('\n'),
     errors: [{
-      message: errorMessage
+      message: _errorMessage
     }],
     output: [
       'import a from "b";',

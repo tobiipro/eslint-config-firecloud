@@ -1,14 +1,14 @@
 const eslint = require('eslint');
 const rule = require('../rules/no-underscore-prefix-exported');
 
-const ruleTester = new eslint.RuleTester({
+const _ruleTester = new eslint.RuleTester({
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: 'module'
   }
 });
 
-ruleTester.run('no-underscore-prefix-exported', rule, {
+_ruleTester.run('no-underscore-prefix-exported', rule, {
   valid: [{
     code: 'export let a = 4;'
   }, {
