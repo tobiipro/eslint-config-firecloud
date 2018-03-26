@@ -10,6 +10,10 @@ const ruleTester = new eslint.RuleTester({
 
 ruleTester.run('underscore-prefix-non-exported', rule, {
   valid: [{
+    code: 'let a = require("b")'
+  }, {
+    code: 'let {a} = require("b")'
+  }, {
     code: 'let _a = 5;'
   }, {
     code: 'let {_b} = a'
@@ -41,6 +45,9 @@ ruleTester.run('underscore-prefix-non-exported', rule, {
     errors: 1
   }, {
     code: 'let {[b]:c}',
+    errors: 1
+  }, {
+    code: 'let b = require("test").c;',
     errors: 1
   }]
 });
