@@ -19,6 +19,7 @@ JS_RULE_TEST_FILES := $(shell $(FIND_Q) test -type f -name "*.test.js" -print)
 test: ## Test.
 	@$(ECHO_DO) "Testing..."
 	for f in $(JS_RULE_TEST_FILES); do \
+		$(ECHO) Running $${f} ; \
 		$(NODE) $${f} ; \
 	done
 	@$(ECHO_DONE)

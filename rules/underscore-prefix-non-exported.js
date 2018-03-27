@@ -40,6 +40,16 @@ module.exports = {
         return;
       }
 
+      let top = context.getAncestors()[0];
+      if (!_.some(top.body, function(topNode) {
+        return topNode.type === 'ExportNamedDeclaration' ||
+              topNode.type === 'ExportAllDeclaration' ||
+              topNode.type === 'ExportDefaultDeclaration';
+      })) {
+        // not checking files which dont't export anything, i.e. simple scripts
+        return;
+      }
+
       let vars = context.getDeclaredVariables(node);
       _.forEach(vars, checkVariable);
     };

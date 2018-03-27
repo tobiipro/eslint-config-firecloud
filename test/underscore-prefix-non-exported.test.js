@@ -1,4 +1,4 @@
-/* eslint-disable firecloud/underscore-prefix-non-exported */
+const _ = require('lodash');
 const eslint = require('eslint');
 const rule = require('../rules/underscore-prefix-non-exported');
 
@@ -9,7 +9,7 @@ const _ruleTester = new eslint.RuleTester({
   }
 });
 
-_ruleTester.run('underscore-prefix-non-exported', rule, {
+let _whileExporting = {
   valid: [{
     code: 'let _a = 5;'
   }, {
@@ -32,10 +32,10 @@ _ruleTester.run('underscore-prefix-non-exported', rule, {
     code: 'let a = 5',
     errors: 1
   }, {
-    code: 'let {a} = 5',
+    code: 'let {a} = b',
     errors: 1
   }, {
-    code: 'let {a:b} = 5',
+    code: 'let {a:b} = c',
     errors: 1
   }, {
     code: 'function a(b, c){let d = 5}',
@@ -44,4 +44,51 @@ _ruleTester.run('underscore-prefix-non-exported', rule, {
     code: 'let {[b]:c}',
     errors: 1
   }]
+};
+
+_.forEach(['valid', 'invalid'], function(prop) {
+  _.forEach(_whileExporting[prop], function(test) {
+    test.code = `${test.code}\nexport default exports;`;
+  });
 });
+
+_ruleTester.run('underscore-prefix-non-exported', rule, _whileExporting);
+
+
+let _nothingExported = {
+  // allowing to have underscore prefix in the files which do not use 'export' syntax
+  valid: [{
+    code: 'let a = 5;'
+  }, {
+    code: 'let {b} = a'
+  }, {
+    code: 'var {b: d} = a'
+  }, {
+    code: 'var {[yo]: weird} = a;'
+  }, {
+    code: 'function f(b, c){let a = 3}'
+  }],
+
+  // testing with all possible export syntaxes, which activate the rule
+  invalid: [{
+    code: [
+      'let a = 5',
+      'export default exports'
+    ].join('\n'),
+    errors: 1
+  }, {
+    code: [
+      'let {a} = b',
+      'export let c = 1'
+    ].join('\n'),
+    errors: 1
+  }, {
+    code: [
+      'let {a:b} = 5',
+      'export * from "c"'
+    ].join('\n'),
+    errors: 1
+  }]
+};
+
+_ruleTester.run('underscore-prefix-non-exported', rule, _nothingExported);
