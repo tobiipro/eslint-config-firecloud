@@ -240,7 +240,10 @@ module.exports = {
       vars: 'all',
       varsIgnorePattern: '^_'
     }],
-    'no-use-before-define': 'error',
+    'no-use-before-define': ['error', {
+      classes: false,
+      variables: false
+    }],
     'no-useless-call': 'error',
     'no-useless-computed-key': 'error',
     'no-useless-concat': 'error',
