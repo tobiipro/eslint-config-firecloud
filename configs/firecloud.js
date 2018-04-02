@@ -4,11 +4,11 @@ module.exports = {
   ],
 
   rules: {
-    'firecloud/import-specifier-newline': ['warn', {
+    'firecloud/import-specifier-newline': ['error', {
       allowMultiplePerLine: false
     }],
     'firecloud/no-underscore-prefix-exported': 'error',
-    'firecloud/order-imports': 'warn',
+    'firecloud/order-imports': 'error',
     'firecloud/padding-line-import-multiple': 'error',
     'firecloud/underscore-prefix-non-exported': 'error'
   }
