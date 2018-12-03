@@ -35,5 +35,5 @@ Common bundles are provided as following:
 [UNLICENSE](UNLICENSE)
 
 
-  [1]: https://travis-ci.org/tobiipro/eslint-config-firecloud
-  [2]: https://travis-ci.org/tobiipro/eslint-config-firecloud.svg?branch=master
+  [1]: https://travis-ci.com/tobiipro/eslint-config-firecloud
+  [2]: https://travis-ci.com/tobiipro/eslint-config-firecloud.svg?branch=master
