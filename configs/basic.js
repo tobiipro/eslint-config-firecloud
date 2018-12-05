@@ -90,6 +90,7 @@ module.exports = {
     'linebreak-style': 'error',
     'lines-around-comment': 'error',
     'lines-between-class-members': ['error', 'always'],
+    'max-classes-per-file': 'error',
     'max-depth': 'error',
     'max-len': ['error', {
       code: 120,
@@ -97,6 +98,7 @@ module.exports = {
       ignoreUrls: true
     }],
     'max-lines': 'off',
+    'max-lines-per-function': ['error', 500],
     'max-nested-callbacks': 'error',
     'max-params': ['warn', 3],
     'max-statements-per-line': 'error',
@@ -108,6 +110,7 @@ module.exports = {
     'newline-per-chained-call': 'off',
     'no-alert': 'error',
     'no-array-constructor': 'error',
+    'no-async-promise-executor': 'error',
     'no-await-in-loop': 'off',
     'no-bitwise': 'error',
     'no-buffer-constructor': 'error',
@@ -168,6 +171,7 @@ module.exports = {
     'no-lonely-if': 'error',
     'no-loop-func': 'error',
     'no-magic-numbers': 'off',
+    'no-misleading-character-class': 'error',
     'no-mixed-operators': 'off',
     'no-mixed-requires': 'off',
     'no-mixed-spaces-and-tabs': 'error',
@@ -302,6 +306,7 @@ module.exports = {
       enforceForRenamedProperties: false
     }],
     'prefer-numeric-literals': 'error',
+    'prefer-object-spread': 'error',
     'prefer-promise-reject-errors': 'error',
     'prefer-reflect': 'off',
     'prefer-rest-params': 'off',
@@ -313,8 +318,10 @@ module.exports = {
       allowTemplateLiterals: true
     }],
     radix: 'error',
+    'require-atomic-updates': 'error',
     'require-await': 'off',
     'require-jsdoc': 'off',
+    'require-unicode-regexp': 'off',
     'require-yield': 'warn',
     'rest-spread-spacing': 'error',
     'semi-spacing': 'error',

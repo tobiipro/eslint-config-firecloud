@@ -52,6 +52,7 @@ module.exports = {
       'string'
     ],
     'lodash/prefer-compact': 'off',
+    'lodash/prefer-find': 'error',
     'lodash/prefer-filter': 'error',
     'lodash/prefer-flat-map': 'off',
     'lodash/prefer-invoke-map': 'off',
@@ -69,6 +70,7 @@ module.exports = {
       'error',
       {includeNative: true}
     ],
+    'lodash/prefer-immutable-method': 'warn',
     'lodash/prefer-is-nil': 'error',
     'lodash/prefer-lodash-chain': 'error',
     'lodash/prefer-lodash-method': 'error',
