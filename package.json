@@ -20,7 +20,7 @@
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^22.1.0",
-    "eslint-plugin-lodash": "^3.1.0",
+    "eslint-plugin-lodash": "^5.0.1",
     "eslint-plugin-mocha": "^5.2.0",
     "eslint-plugin-no-null": "^1.0.2",
     "eslint-plugin-firecloud": "git://github.com/tobiipro/eslint-plugin-firecloud.git#semver:~0.1.0"
@@ -40,7 +40,7 @@
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^22.1.0",
-    "eslint-plugin-lodash": "^3.1.0",
+    "eslint-plugin-lodash": "^5.0.1",
     "eslint-plugin-mocha": "^5.2.0",
     "eslint-plugin-no-null": "^1.0.2",
     "npm-publish-git": "git://github.com/andreineculau/npm-publish-git.git#semver:~0.0.8"
