@@ -14,24 +14,24 @@ module.exports = {
   },
 
   rules: {
-    'handle-done-callback': 'error',
-    'max-top-level-suites': ['error', {
+    'mocha/handle-done-callback': 'error',
+    'mocha/max-top-level-suites': ['error', {
       limit: 1
     }],
-    'no-exclusive-tests': 'error',
-    'no-global-tests': 'error',
-    'no-hooks': 'off',
-    'no-hooks-for-single-case': 'off',
-    'no-identical-title': 'error',
-    'no-mocha-arrows': 'error',
-    'no-nested-tests': 'error',
-    'no-pending-tests': 'error',
-    'no-return-and-callback': 'error',
-    'no-sibling-hooks': 'error',
-    'no-skipped-tests': 'warn',
-    'no-synchronous-tests': 'off',
-    'no-top-level-hooks': 'error',
-    'valid-suite-description': 'off',
-    'valid-test-description': 'off'
+    'mocha/no-exclusive-tests': 'error',
+    'mocha/no-global-tests': 'error',
+    'mocha/no-hooks': 'off',
+    'mocha/no-hooks-for-single-case': 'off',
+    'mocha/no-identical-title': 'error',
+    'mocha/no-mocha-arrows': 'error',
+    'mocha/no-nested-tests': 'error',
+    'mocha/no-pending-tests': 'error',
+    'mocha/no-return-and-callback': 'error',
+    'mocha/no-sibling-hooks': 'error',
+    'mocha/no-skipped-tests': 'warn',
+    'mocha/no-synchronous-tests': 'off',
+    'mocha/no-top-level-hooks': 'error',
+    'mocha/valid-suite-description': 'off',
+    'mocha/valid-test-description': 'off'
   }
 };
