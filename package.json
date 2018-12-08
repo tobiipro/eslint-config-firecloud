@@ -2,7 +2,7 @@
   "private": true,
   "name": "eslint-config-firecloud",
   "description": "The ESLint config used within Tobii Cloud Services.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "Unlicense",
   "files": [
     "/*.js",
