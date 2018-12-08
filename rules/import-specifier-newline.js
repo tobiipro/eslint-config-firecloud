@@ -25,16 +25,16 @@ module.exports = {
   },
 
   create(context) {
-    const allowSameLine = context.options[0] && Boolean(context.options[0].allowMultiplePerLine);
-    const errorMessage = allowSameLine ?
+    let allowSameLine = context.options[0] && Boolean(context.options[0].allowMultiplePerLine);
+    let errorMessage = allowSameLine ?
       'Import specifiers must go on a new line if they are not all on the same line.' :
       'Import specifiers must go on a new line.';
 
-    const sourceCode = context.getSourceCode();
+    let sourceCode = context.getSourceCode();
 
     return {
       ImportDeclaration(node) {
-        const {specifiers} = node;
+        let {specifiers} = node;
         if (specifiers.length === 0) {
           // something like: import * from 'a';
           return;
@@ -47,8 +47,8 @@ module.exports = {
 
         if (allowSameLine) {
           if (specifiers.length > 1) {
-            const firstTokenOfFirstSpecifier = sourceCode.getFirstToken(specifiers[0]);
-            const lastTokenOfLastSpecifier = sourceCode.getLastToken(specifiers[specifiers.length - 1]);
+            let firstTokenOfFirstSpecifier = sourceCode.getFirstToken(specifiers[0]);
+            let lastTokenOfLastSpecifier = sourceCode.getLastToken(specifiers[specifiers.length - 1]);
 
             if (firstTokenOfFirstSpecifier.loc.end.line === lastTokenOfLastSpecifier.loc.start.line) {
               // All keys and values are on the same line
@@ -58,8 +58,8 @@ module.exports = {
         }
 
         for (let i of _.range(1, specifiers.length)) {
-          const lastTokenOfPreviousSpecifier = sourceCode.getLastToken(specifiers[i - 1]);
-          const firstTokenOfCurrentSpecifier = sourceCode.getFirstToken(specifiers[i]);
+          let lastTokenOfPreviousSpecifier = sourceCode.getLastToken(specifiers[i - 1]);
+          let firstTokenOfCurrentSpecifier = sourceCode.getFirstToken(specifiers[i]);
 
           if (lastTokenOfPreviousSpecifier.loc.end.line === firstTokenOfCurrentSpecifier.loc.start.line) {
             context.report({
@@ -67,8 +67,8 @@ module.exports = {
               loc: firstTokenOfCurrentSpecifier.loc.start,
               message: errorMessage,
               fix(fixer) {
-                const comma = sourceCode.getTokenBefore(firstTokenOfCurrentSpecifier);
-                const rangeAfterComma = [comma.range[1], firstTokenOfCurrentSpecifier.range[0]];
+                let comma = sourceCode.getTokenBefore(firstTokenOfCurrentSpecifier);
+                let rangeAfterComma = [comma.range[1], firstTokenOfCurrentSpecifier.range[0]];
 
                 // Don't perform a fix if there are any comments between the comma and the next property.
                 if (_.trim(sourceCode.text.slice(rangeAfterComma[0], rangeAfterComma[1]))) {

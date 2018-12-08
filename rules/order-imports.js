@@ -37,11 +37,11 @@ module.exports = {
   },
 
   create(context) {
-    const configuration = context.options[0] || {};
-    const ignoreCase = configuration.ignoreCase || false;
-    const ignoreMemberSort = configuration.ignoreMemberSort || false;
-    const memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ['none', 'all', 'single', 'multiple'];
-    const sourceCode = context.getSourceCode();
+    let configuration = context.options[0] || {};
+    let ignoreCase = configuration.ignoreCase || false;
+    let ignoreMemberSort = configuration.ignoreMemberSort || false;
+    let memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ['none', 'all', 'single', 'multiple'];
+    let sourceCode = context.getSourceCode();
 
     let previousDeclaration;
 
@@ -136,8 +136,8 @@ module.exports = {
     return {
       ImportDeclaration(node) {
         if (previousDeclaration) {
-          const currentMemberSyntaxGroupIndex = getMemberParameterGroupIndex(node);
-          const previousMemberSyntaxGroupIndex = getMemberParameterGroupIndex(previousDeclaration);
+          let currentMemberSyntaxGroupIndex = getMemberParameterGroupIndex(node);
+          let previousMemberSyntaxGroupIndex = getMemberParameterGroupIndex(previousDeclaration);
           let currentLocalMemberName = getFirstLocalMemberName(node);
           let previousLocalMemberName = getFirstLocalMemberName(previousDeclaration);
 
@@ -181,15 +181,15 @@ module.exports = {
         }
 
         if (!ignoreMemberSort) {
-          const importSpecifiers = _.filter(node.specifiers, (specifier) => {
+          let importSpecifiers = _.filter(node.specifiers, (specifier) => {
             return specifier.type === 'ImportSpecifier';
           });
-          const getSortableName = ignoreCase ? (specifier) => {
+          let getSortableName = ignoreCase ? (specifier) => {
             return _.toLower(specifier.local.name);
           } : (specifier) => {
             return specifier.local.name;
           };
-          const firstUnsortedIndex = _.findIndex(_.map(importSpecifiers, getSortableName), (name, index, array) => {
+          let firstUnsortedIndex = _.findIndex(_.map(importSpecifiers, getSortableName), (name, index, array) => {
             return array[index - 1] > name;
           });
 
@@ -210,8 +210,8 @@ module.exports = {
                   _.chain(importSpecifiers)
                     .clone()
                     .sort((specifierA, specifierB) => {
-                      const aName = getSortableName(specifierA);
-                      const bName = getSortableName(specifierB);
+                      let aName = getSortableName(specifierA);
+                      let bName = getSortableName(specifierB);
 
                       return aName > bName ? 1 : -1;
                     })

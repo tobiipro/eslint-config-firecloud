@@ -52,7 +52,7 @@ module.exports = {
   },
 
   create(context) {
-    const sourceCode = context.getSourceCode();
+    let sourceCode = context.getSourceCode();
 
     return {
       'VariableDeclaration:exit'(node) {

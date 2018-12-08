@@ -1,8 +1,8 @@
 /* eslint-disable firecloud/underscore-prefix-non-exported */
-const eslint = require('eslint');
-const rule = require('../rules/no-underscore-prefix-exported');
+let eslint = require('eslint');
+let rule = require('../rules/no-underscore-prefix-exported');
 
-const _ruleTester = new eslint.RuleTester({
+let _ruleTester = new eslint.RuleTester({
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: 'module'

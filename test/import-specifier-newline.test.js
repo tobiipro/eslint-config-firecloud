@@ -1,16 +1,16 @@
 /* eslint-disable firecloud/underscore-prefix-non-exported */
-const eslint = require('eslint');
-const rule = require('../rules/import-specifier-newline');
+let eslint = require('eslint');
+let rule = require('../rules/import-specifier-newline');
 
-const _ruleTester = new eslint.RuleTester({
+let _ruleTester = new eslint.RuleTester({
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: 'module'
   }
 });
-const _errorMessageAllowMultiple =
+let _errorMessageAllowMultiple =
   'Import specifiers must go on a new line if they are not all on the same line.';
-const _errorMessage = 'Import specifiers must go on a new line.';
+let _errorMessage = 'Import specifiers must go on a new line.';
 
 _ruleTester.run('import-specifier-newline', rule, {
   valid: [{
