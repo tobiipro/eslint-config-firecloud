@@ -70,7 +70,7 @@ module.exports = {
       'error',
       {includeNative: true}
     ],
-    'lodash/prefer-immutable-method': 'warn',
+    'lodash/prefer-immutable-method': 'error',
     'lodash/prefer-is-nil': 'error',
     'lodash/prefer-lodash-chain': 'error',
     'lodash/prefer-lodash-method': 'error',
