@@ -279,7 +279,9 @@ module.exports = {
       ExportDeclaration: 'always'
     }],
     'object-curly-spacing': 'error',
-    'object-property-newline': 'off',
+    'object-property-newline': ['error', {
+      allowAllPropertiesOnSameLine: true
+    }],
     'object-shorthand': ['error', 'properties'],
     'one-var-declaration-per-line': 'error',
     'one-var': ['error', 'never'],
