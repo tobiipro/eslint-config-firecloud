@@ -72,16 +72,14 @@ module.exports = {
     'id-length': 'off',
     'id-match': 'off',
     'implicit-arrow-linebreak': 'off',
-    'indent-legacy': ['error', 2, {
-      SwitchCase: 0,
+    'indent-legacy': 'off',
+    indent: ['error', 2, {
       VariableDeclarator: {
         var: 2,
         let: 2,
         const: 3
-      },
-      outerIIFEBody: 1
+      }
     }],
-    indent: 'off',
     'init-declarations': 'off',
     'jsx-quotes': 'error',
     'key-spacing': 'error',
