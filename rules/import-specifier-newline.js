@@ -57,8 +57,7 @@ module.exports = {
           }
         }
 
-        /* eslint-disable better/no-fors, fp/no-loops, no-plusplus */
-        for (let i = 1; i < specifiers.length; i++) {
+        for (let i of _.range(1, specifiers.length)) {
           const lastTokenOfPreviousSpecifier = sourceCode.getLastToken(specifiers[i - 1]);
           const firstTokenOfCurrentSpecifier = sourceCode.getFirstToken(specifiers[i]);
 
@@ -81,7 +80,6 @@ module.exports = {
             });
           }
         }
-        /* eslint-enable better/no-fors, fp/no-loops, no-plusplus */
       }
     };
   }

@@ -8,7 +8,7 @@ module.exports = {
     'better/no-deletes': 'off',
     'better/no-exceptions': 'off',
     'better/no-exports': 'off',
-    'better/no-fors': 'error',
+    'better/no-fors': 'off',
     'better/no-function-expressions': 'off',
     'better/no-ifs': 'off',
     'better/no-imports': 'off',
