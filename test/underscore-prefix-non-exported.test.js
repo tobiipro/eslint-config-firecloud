@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const eslint = require('eslint');
-const rule = require('../rules/underscore-prefix-non-exported');
+let _ = require('lodash');
+let eslint = require('eslint');
+let rule = require('../rules/underscore-prefix-non-exported');
 
-const _ruleTester = new eslint.RuleTester({
+let _ruleTester = new eslint.RuleTester({
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: 'module'

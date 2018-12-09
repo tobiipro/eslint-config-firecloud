@@ -17,7 +17,7 @@ module.exports = {
   },
 
   create(context) {
-    const sourceCode = context.getSourceCode();
+    let sourceCode = context.getSourceCode();
 
     return {
       ImportDeclaration(node) {
@@ -25,7 +25,7 @@ module.exports = {
           return;
         }
 
-        const prev = sourceCode.getTokenBefore(node);
+        let prev = sourceCode.getTokenBefore(node);
         if (!prev) {
           // probably first statement
           return;

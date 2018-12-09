@@ -5,20 +5,20 @@
   https://github.com/eslint/eslint/blob/master/tests/lib/rules/sort-imports.js
 */
 
-const eslint = require('eslint');
-const rule = require('../rules/order-imports');
+let eslint = require('eslint');
+let rule = require('../rules/order-imports');
 
-const _ruleTester = new eslint.RuleTester({
+let _ruleTester = new eslint.RuleTester({
   parserOptions: {
     ecmaVersion: 2015,
     sourceType: 'module'
   }
 });
-const _expectedError = {
+let _expectedError = {
   message: 'Imports should be sorted alphabetically.',
   type: 'ImportDeclaration'
 };
-const _ignoreCaseArgs = [{
+let _ignoreCaseArgs = [{
   ignoreCase: true
 }];
 
