@@ -26,7 +26,7 @@ module.exports = {
     'jest/no-test-return-statement': 'error',
     'jest/no-truthy-falsy': 'error',
     'jest/prefer-expect-assertions': 'off',
-    'jest/prefer-inline-snapshots': 'error',
+    'jest/prefer-inline-snapshots': 'off',
     'jest/prefer-spy-on': 'error',
     'jest/prefer-strict-equal': 'error',
     'jest/prefer-to-be-null': 'error',
