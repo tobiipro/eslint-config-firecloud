@@ -315,7 +315,7 @@ module.exports = {
     'quote-props': ['error', 'as-needed'],
     quotes: ['error', 'single', {
       avoidEscape: true,
-      allowTemplateLiterals: true
+      allowTemplateLiterals: false
     }],
     radix: 'error',
     'require-atomic-updates': 'error',
