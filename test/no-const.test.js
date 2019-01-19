@@ -14,7 +14,7 @@ _ruleTester.run('no-const', rule, {
   }, {
     code: "var b = {a: 'value'}; var {a} = b;"
   }, {
-    code: 'var a;'
+    code: 'let a;'
   }, {
     code: "let b = {a: 'value'}; let {a} = b;"
   }],
