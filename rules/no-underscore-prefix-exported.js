@@ -8,12 +8,10 @@ module.exports = {
       recommended: false
     },
 
-    schema: [
-      {
-        type: 'object',
-        additionalProperties: false
-      }
-    ]
+    schema: [{
+      type: 'object',
+      additionalProperties: false
+    }]
   },
 
   create(context) {
