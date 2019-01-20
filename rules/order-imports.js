@@ -1,6 +1,7 @@
 /* eslint-disable */
 // based on https://github.com/eslint/eslint/blob/master/lib/rules/sort-imports.js
 // - add a fixer
+// - handle default imports
 
 /**
  * @fileoverview Rule to require sorting of import declarations
@@ -33,11 +34,11 @@ module.exports = {
                     memberSyntaxSortOrder: {
                         type: "array",
                         items: {
-                            enum: ["none", "all", "single", "multiple"]
+                            enum: ["none", "all", "default", "single", "multiple"]
                         },
                         uniqueItems: true,
-                        minItems: 4,
-                        maxItems: 4
+                        minItems: 5,
+                        maxItems: 5
                     },
                     ignoreDeclarationSort: {
                         type: "boolean"
@@ -59,7 +60,7 @@ module.exports = {
             ignoreCase = configuration.ignoreCase || false,
             ignoreDeclarationSort = configuration.ignoreDeclarationSort || false,
             ignoreMemberSort = configuration.ignoreMemberSort || false,
-            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "single", "multiple"],
+            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "default", "single", "multiple"],
             sourceCode = context.getSourceCode();
         let previousDeclaration = null;
 
@@ -67,16 +68,20 @@ module.exports = {
          * Gets the used member syntax style.
          *
          * import "my-module.js" --> none
+         * import myModule from "my-module.js" --> default
          * import * as myModule from "my-module.js" --> all
          * import {myMember} from "my-module.js" --> single
          * import {foo, bar} from  "my-module.js" --> multiple
          *
          * @param {ASTNode} node - the ImportDeclaration node.
-         * @returns {string} used member parameter style, ["all", "multiple", "single"]
+         * @returns {string} used member parameter style, ["all", "default", "multiple", "single"]
          */
         function usedMemberSyntax(node) {
             if (node.specifiers.length === 0) {
                 return "none";
+            }
+            if (node.specifiers[0].type === "ImportDefaultSpecifier") {
+                return "default";
             }
             if (node.specifiers[0].type === "ImportNamespaceSpecifier") {
                 return "all";
