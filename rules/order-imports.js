@@ -1,4 +1,7 @@
 /* eslint-disable */
+// based on https://github.com/eslint/eslint/blob/master/lib/rules/sort-imports.js
+// - add a fixer
+
 /**
  * @fileoverview Rule to require sorting of import declarations
  * @author Christian Schuller
@@ -17,8 +20,7 @@ module.exports = {
         docs: {
             description: "enforce sorted import declarations within modules",
             category: "ECMAScript 6",
-            recommended: false,
-            url: "https://eslint.org/docs/rules/sort-imports"
+            recommended: false
         },
 
         schema: [
@@ -31,7 +33,7 @@ module.exports = {
                     memberSyntaxSortOrder: {
                         type: "array",
                         items: {
-                            enum: ["none", "all", "multiple", "single"]
+                            enum: ["none", "all", "single", "multiple"]
                         },
                         uniqueItems: true,
                         minItems: 4,
@@ -57,7 +59,7 @@ module.exports = {
             ignoreCase = configuration.ignoreCase || false,
             ignoreDeclarationSort = configuration.ignoreDeclarationSort || false,
             ignoreMemberSort = configuration.ignoreMemberSort || false,
-            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "multiple", "single"],
+            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "single", "multiple"],
             sourceCode = context.getSourceCode();
         let previousDeclaration = null;
 
@@ -108,6 +110,50 @@ module.exports = {
 
         }
 
+        /**
+         * Gets if the node has comments before or after it.
+         * @param {ASTNode} node - the AST node.
+         * @returns {bool} if there are comments around the node.
+         */
+        let hasCommentsAround = function(node) {
+            let before = sourceCode.getCommentsBefore(node);
+            let after = sourceCode.getCommentsAfter(node);
+
+            // checking if 'before' comment is on the same line or a line above
+            if (before.some((comment) => {
+                return comment.loc.end.line + 1 >= node.loc.start.line;
+            })) {
+                return true;
+            }
+
+            // checking if 'after comment is on the same line or a line below
+            if (after.some((comment) => {
+                return comment.loc.start.line - 1 <= node.loc.end.line;
+            })) {
+                return true;
+            }
+
+            return false;
+        };
+
+        /**
+         * Swaps nodes using given fixer.
+         * @param {Fixer} fixer - the fixer to create fixes.
+         * @param {ASTNode} a - first node.
+         * @param {ASTNode} b - second node.
+         * @returns {?Array} - array of fixings or null if fixes are not possible.
+         */
+        let swapNodes = function(fixer, a, b) {
+            if (hasCommentsAround(a) || hasCommentsAround(b)) {
+                return;
+            }
+
+            let fixes = [];
+            fixes.push(fixer.replaceText(b, sourceCode.getText().slice(a.start, a.end)));
+            fixes.push(fixer.replaceText(a, sourceCode.getText().slice(b.start, b.end)));
+            return fixes;
+        };
+
         return {
             ImportDeclaration(node) {
                 if (!ignoreDeclarationSort) {
@@ -135,6 +181,9 @@ module.exports = {
                                     data: {
                                         syntaxA: memberSyntaxSortOrder[currentMemberSyntaxGroupIndex],
                                         syntaxB: memberSyntaxSortOrder[previousMemberSyntaxGroupIndex]
+                                    },
+                                    fix(fixer) {
+                                        return swapNodes(fixer, node, previousDeclaration);
                                     }
                                 });
                             }
@@ -145,7 +194,10 @@ module.exports = {
                             ) {
                                 context.report({
                                     node,
-                                    message: "Imports should be sorted alphabetically."
+                                    message: "Imports should be sorted alphabetically.",
+                                    fix(fixer) {
+                                        return swapNodes(fixer, node, previousDeclaration);
+                                    }
                                 });
                             }
                         }
