@@ -1,6 +1,9 @@
 /* eslint-disable */
+// based on https://github.com/eslint/eslint/blob/master/lib/rules/object-property-newline.js
+// - target import specifiers instead of object properties
+
 /**
- * @fileoverview Rule to enforce placing object properties on separate lines.
+ * @fileoverview Rule to enforce placing import specifiers on separate lines.
  * @author Vitor Balocco
  */
 
@@ -15,20 +18,19 @@ module.exports = {
         type: "layout",
 
         docs: {
-            description: "enforce placing object properties on separate lines",
+            description: "enforce placing import specifiers on separate lines",
             category: "Stylistic Issues",
-            recommended: false,
-            url: "https://eslint.org/docs/rules/object-property-newline"
+            recommended: false
         },
 
         schema: [
             {
                 type: "object",
                 properties: {
-                    allowAllPropertiesOnSameLine: {
+                    allowAllSpecifiersOnSameLine: {
                         type: "boolean"
                     },
-                    allowMultiplePropertiesPerLine: { // Deprecated
+                    allowMultipleSpecifiersPerLine: { // Deprecated
                         type: "boolean"
                     }
                 },
@@ -41,22 +43,32 @@ module.exports = {
 
     create(context) {
         const allowSameLine = context.options[0] && (
-            (Boolean(context.options[0].allowAllPropertiesOnSameLine) || Boolean(context.options[0].allowMultiplePropertiesPerLine)) // Deprecated
+            (Boolean(context.options[0].allowAllSpecifiersOnSameLine) || Boolean(context.options[0].allowMultipleSpecifiersPerLine)) // Deprecated
         );
         const errorMessage = allowSameLine
-            ? "Object properties must go on a new line if they aren't all on the same line."
-            : "Object properties must go on a new line.";
+            ? "Import specifiers must go on a new line if they aren't all on the same line."
+            : "Import specifiers must go on a new line.";
 
         const sourceCode = context.getSourceCode();
 
         return {
-            ObjectExpression(node) {
-                if (allowSameLine) {
-                    if (node.properties.length > 1) {
-                        const firstTokenOfFirstProperty = sourceCode.getFirstToken(node.properties[0]);
-                        const lastTokenOfLastProperty = sourceCode.getLastToken(node.properties[node.properties.length - 1]);
+            ImportDeclaration(node) {
+                if (node.specifiers.length === 0) {
+                    // something like: import * from 'a';
+                    return;
+                }
 
-                        if (firstTokenOfFirstProperty.loc.end.line === lastTokenOfLastProperty.loc.start.line) {
+                if (node.specifiers[0].type !== 'ImportSpecifier') {
+                    // something not having list of specifiers
+                    return;
+                }
+
+                if (allowSameLine) {
+                    if (node.specifiers.length > 1) {
+                        const firstTokenOfFirstSpecifier = sourceCode.getFirstToken(node.specifiers[0]);
+                        const lastTokenOfLastSpecifier = sourceCode.getLastToken(node.specifiers[node.specifiers.length - 1]);
+
+                        if (firstTokenOfFirstSpecifier.loc.end.line === lastTokenOfLastSpecifier.loc.start.line) {
 
                             // All keys and values are on the same line
                             return;
@@ -64,18 +76,18 @@ module.exports = {
                     }
                 }
 
-                for (let i = 1; i < node.properties.length; i++) {
-                    const lastTokenOfPreviousProperty = sourceCode.getLastToken(node.properties[i - 1]);
-                    const firstTokenOfCurrentProperty = sourceCode.getFirstToken(node.properties[i]);
+                for (let i = 1; i < node.specifiers.length; i++) {
+                    const lastTokenOfPreviousSpecifier = sourceCode.getLastToken(node.specifiers[i - 1]);
+                    const firstTokenOfCurrentSpecifier = sourceCode.getFirstToken(node.specifiers[i]);
 
-                    if (lastTokenOfPreviousProperty.loc.end.line === firstTokenOfCurrentProperty.loc.start.line) {
+                    if (lastTokenOfPreviousSpecifier.loc.end.line === firstTokenOfCurrentSpecifier.loc.start.line) {
                         context.report({
                             node,
-                            loc: firstTokenOfCurrentProperty.loc.start,
+                            loc: firstTokenOfCurrentSpecifier.loc.start,
                             message: errorMessage,
                             fix(fixer) {
-                                const comma = sourceCode.getTokenBefore(firstTokenOfCurrentProperty);
-                                const rangeAfterComma = [comma.range[1], firstTokenOfCurrentProperty.range[0]];
+                                const comma = sourceCode.getTokenBefore(firstTokenOfCurrentSpecifier);
+                                const rangeAfterComma = [comma.range[1], firstTokenOfCurrentSpecifier.range[0]];
 
                                 // Don't perform a fix if there are any comments between the comma and the next property.
                                 if (sourceCode.text.slice(rangeAfterComma[0], rangeAfterComma[1]).trim()) {

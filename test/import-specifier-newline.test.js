@@ -8,15 +8,15 @@ let _ruleTester = new eslint.RuleTester({
     sourceType: 'module'
   }
 });
-let _errorMessageAllowMultiple =
-  'Import specifiers must go on a new line if they are not all on the same line.';
+let _errorMessageallowAllSpecifiersOnSameLine =
+  'Import specifiers must go on a new line if they aren\'t all on the same line.';
 let _errorMessage = 'Import specifiers must go on a new line.';
 
 _ruleTester.run('import-specifier-newline', rule, {
   valid: [{
     code: 'import {a} from "b"',
     options: [{
-      allowMultiplePerLine: false
+      allowAllSpecifiersOnSameLine: false
     }]
   }, {
     code: [
@@ -25,7 +25,7 @@ _ruleTester.run('import-specifier-newline', rule, {
       '} from "b"'
     ].join('\n'),
     options: [{
-      allowMultiplePerLine: false
+      allowAllSpecifiersOnSameLine: false
     }]
   }, {
     code: [
@@ -35,7 +35,7 @@ _ruleTester.run('import-specifier-newline', rule, {
       '} from "b"'
     ].join('\n'),
     options: [{
-      allowMultiplePerLine: false
+      allowAllSpecifiersOnSameLine: false
     }]
   }, {
     code: [
@@ -43,17 +43,17 @@ _ruleTester.run('import-specifier-newline', rule, {
       'b} from "b"'
     ].join('\n'),
     options: [{
-      allowMultiplePerLine: false
+      allowAllSpecifiersOnSameLine: false
     }]
   }, {
     code: 'import {a} from "b"',
     options: [{
-      allowMultiplePerLine: true
+      allowAllSpecifiersOnSameLine: true
     }]
   }, {
     code: 'import {a,b,c} from "b"',
     options: [{
-      allowMultiplePerLine: true
+      allowAllSpecifiersOnSameLine: true
     }]
   }, {
     code: [
@@ -62,14 +62,14 @@ _ruleTester.run('import-specifier-newline', rule, {
       'c} from "b"'
     ].join('\n'),
     options: [{
-      allowMultiplePerLine: true
+      allowAllSpecifiersOnSameLine: true
     }]
   }],
 
   invalid: [{
     code: 'import {a,b} from "b"',
     options: [{
-      allowMultiplePerLine: false
+      allowAllSpecifiersOnSameLine: false
     }],
     errors: [{
       message: _errorMessage
@@ -84,7 +84,7 @@ _ruleTester.run('import-specifier-newline', rule, {
       'b,c} from "b"'
     ].join('\n'),
     options: [{
-      allowMultiplePerLine: false
+      allowAllSpecifiersOnSameLine: false
     }],
     errors: [{
       message: _errorMessage
@@ -100,10 +100,10 @@ _ruleTester.run('import-specifier-newline', rule, {
       'c} from "b"'
     ].join('\n'),
     options: [{
-      allowMultiplePerLine: true
+      allowAllSpecifiersOnSameLine: true
     }],
     errors: [{
-      message: _errorMessageAllowMultiple
+      message: _errorMessageallowAllSpecifiersOnSameLine
     }],
     output: [
       'import {a,',
@@ -117,10 +117,10 @@ _ruleTester.run('import-specifier-newline', rule, {
       'c} from "b"'
     ].join('\n'),
     options: [{
-      allowMultiplePerLine: true
+      allowAllSpecifiersOnSameLine: true
     }],
     errors: [{
-      message: _errorMessageAllowMultiple
+      message: _errorMessageallowAllSpecifiersOnSameLine
     }],
     output: [
       'import {a,/*a comment*/b,',

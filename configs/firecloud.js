@@ -4,9 +4,7 @@ module.exports = {
   ],
 
   rules: {
-    'firecloud/import-specifier-newline': ['error', {
-      allowMultiplePerLine: false
-    }],
+    'firecloud/import-specifier-newline': 'error',
     'firecloud/no-const': 'error',
     'firecloud/no-for': 'error',
     'firecloud/no-underscore-prefix-exported': 'error',
