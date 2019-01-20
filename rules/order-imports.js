@@ -2,6 +2,7 @@
 // based on https://github.com/eslint/eslint/blob/master/lib/rules/sort-imports.js
 // - add a fixer
 // - handle default imports
+// - handle single and multiple imports as named
 
 /**
  * @fileoverview Rule to require sorting of import declarations
@@ -34,11 +35,11 @@ module.exports = {
                     memberSyntaxSortOrder: {
                         type: "array",
                         items: {
-                            enum: ["none", "all", "default", "single", "multiple"]
+                            enum: ["none", "all", "default", "named"]
                         },
                         uniqueItems: true,
-                        minItems: 5,
-                        maxItems: 5
+                        minItems: 4,
+                        maxItems: 4
                     },
                     ignoreDeclarationSort: {
                         type: "boolean"
@@ -60,7 +61,7 @@ module.exports = {
             ignoreCase = configuration.ignoreCase || false,
             ignoreDeclarationSort = configuration.ignoreDeclarationSort || false,
             ignoreMemberSort = configuration.ignoreMemberSort || false,
-            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "default", "single", "multiple"],
+            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "default", "named"],
             sourceCode = context.getSourceCode();
         let previousDeclaration = null;
 
@@ -70,11 +71,10 @@ module.exports = {
          * import "my-module.js" --> none
          * import myModule from "my-module.js" --> default
          * import * as myModule from "my-module.js" --> all
-         * import {myMember} from "my-module.js" --> single
-         * import {foo, bar} from  "my-module.js" --> multiple
+         * import {...} from "my-module.js" --> named
          *
          * @param {ASTNode} node - the ImportDeclaration node.
-         * @returns {string} used member parameter style, ["all", "default", "multiple", "single"]
+         * @returns {string} used member parameter style, ["all", "default", "named"]
          */
         function usedMemberSyntax(node) {
             if (node.specifiers.length === 0) {
@@ -86,10 +86,7 @@ module.exports = {
             if (node.specifiers[0].type === "ImportNamespaceSpecifier") {
                 return "all";
             }
-            if (node.specifiers.length === 1) {
-                return "single";
-            }
-            return "multiple";
+            return "named";
 
         }
 

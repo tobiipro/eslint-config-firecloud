@@ -42,7 +42,7 @@ ruleTester.run("order-imports", rule, {
                 "import A from 'bar.js';\n" +
                 "import {b, c} from 'foo.js';",
             options: [{
-                memberSyntaxSortOrder: ["default", "single", "multiple", "none", "all"]
+                memberSyntaxSortOrder: ["default", "named", "none", "all"]
             }]
         },
         "import {a, b} from 'bar.js';\n" +
@@ -151,7 +151,7 @@ ruleTester.run("order-imports", rule, {
                 "import a from 'foo.js';\n" +
                 "import {b, c} from 'bar.js';",
             errors: [{
-                message: "Expected 'default' syntax before 'multiple' syntax.",
+                message: "Expected 'default' syntax before 'named' syntax.",
                 type: "ImportDeclaration"
             }]
         },
@@ -187,7 +187,7 @@ ruleTester.run("order-imports", rule, {
                 "import * as a from 'foo.js';\n" +
                 "import b from 'bar.js';",
             options: [{
-                memberSyntaxSortOrder: ["all", "default", "single", "multiple", "none"]
+                memberSyntaxSortOrder: ["all", "default", "named", "none"]
             }],
             errors: [{
                 message: "Expected 'all' syntax before 'default' syntax.",
