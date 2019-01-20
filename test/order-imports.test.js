@@ -145,6 +145,15 @@ ruleTester.run("order-imports", rule, {
         },
         {
             code:
+                "import {a} from 'foo';\n" +
+                "import {b} from 'bar';",
+            output:
+                "import {b} from 'bar';\n" +
+                "import {a} from 'foo';",
+            errors: [expectedError]
+        },
+        {
+            code:
                 "import {b, c} from 'bar.js';\n" +
                 "import a from 'foo.js';",
             output:

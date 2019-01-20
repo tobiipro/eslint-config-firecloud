@@ -162,10 +162,14 @@ module.exports = {
                     if (previousDeclaration) {
                         const currentMemberSyntaxGroupIndex = getMemberParameterGroupIndex(node),
                             previousMemberSyntaxGroupIndex = getMemberParameterGroupIndex(previousDeclaration);
+                        let currentSource = node.source.value,
+                            previousSource = previousDeclaration.source.value;
                         let currentLocalMemberName = getFirstLocalMemberName(node),
                             previousLocalMemberName = getFirstLocalMemberName(previousDeclaration);
 
                         if (ignoreCase) {
+                            previousSource = previousSource && previousSource.toLowerCase();
+                            currentSource = currentSource && currentSource.toLowerCase();
                             previousLocalMemberName = previousLocalMemberName && previousLocalMemberName.toLowerCase();
                             currentLocalMemberName = currentLocalMemberName && currentLocalMemberName.toLowerCase();
                         }
@@ -190,10 +194,28 @@ module.exports = {
                                 });
                             }
                         } else {
-                            if (previousLocalMemberName &&
+                            const bothDefault =
+                                usedMemberSyntax(previousDeclaration) === 'default' &&
+                                usedMemberSyntax(node) === 'default';
+                            const bothAll =
+                                usedMemberSyntax(previousDeclaration) === 'all' &&
+                                usedMemberSyntax(node) === 'all';
+                            const unorderedLocalMemberName =
+                                previousLocalMemberName &&
                                 currentLocalMemberName &&
-                                currentLocalMemberName < previousLocalMemberName
-                            ) {
+                                currentLocalMemberName < previousLocalMemberName;
+                            const bothNamed =
+                                usedMemberSyntax(previousDeclaration) === 'named' &&
+                                usedMemberSyntax(node) === 'named';
+                            const unorderedSource =
+                                currentSource &&
+                                previousSource &&
+                                currentSource < previousSource;
+                            if ((
+                                (bothDefault || bothAll) && unorderedLocalMemberName
+                            ) || (
+                                bothNamed && unorderedSource
+                            )) {
                                 context.report({
                                     node,
                                     message: "Imports should be sorted alphabetically.",
