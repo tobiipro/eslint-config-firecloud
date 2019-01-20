@@ -11,6 +11,15 @@ include support-firecloud/repo/mk/js.publish.npg.mk
 
 # ------------------------------------------------------------------------------
 
+SF_ECLINT_FILES_IGNORE := \
+	$(SF_ECLINT_FILES_IGNORE) \
+	-e "^rules/.*\.original\.js$$" \
+	-e "^rules/import-specifier-newline\.js$$" \
+	-e "^rules/no-for\.js$$" \
+	-e "^rules/order-imports\.js$$" \
+	-e "^test/.*\.original\.js$$" \
+	-e "^test/order-imports\.test\.js$$" \
+
 JS_RULE_TEST_FILES := $(shell $(FIND_Q) test -type f -name "*.test.js" -print)
 
 # ------------------------------------------------------------------------------
