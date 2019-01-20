@@ -1,4 +1,7 @@
 /* eslint-disable */
+// based on https://github.com/eslint/eslint/blob/master/lib/rules/object-curly-newline.js
+// - handle the one and only function/class parameter
+
 /**
  * @fileoverview Rule to require or disallow line breaks inside braces.
  * @author Toru Nagashima
@@ -10,7 +13,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const astUtils = require("../util/ast-utils");
+const astUtils = require("eslint/lib/util/ast-utils");
 const lodash = require("lodash");
 
 //------------------------------------------------------------------------------
@@ -76,6 +79,7 @@ function normalizeOptionValue(value) {
  *
  * @param {string|Object|undefined} options - An option value to parse.
  * @returns {{
+ *   OnlyParam: {multiline: boolean, minProperties: number, consistent: boolean},
  *   ObjectExpression: {multiline: boolean, minProperties: number, consistent: boolean},
  *   ObjectPattern: {multiline: boolean, minProperties: number, consistent: boolean},
  *   ImportDeclaration: {multiline: boolean, minProperties: number, consistent: boolean},
@@ -87,6 +91,7 @@ function normalizeOptions(options) {
 
     if (lodash.isPlainObject(options) && lodash.some(options, isNodeSpecificOption)) {
         return {
+            OnlyParam: normalizeOptionValue(options.OnlyParam),
             ObjectExpression: normalizeOptionValue(options.ObjectExpression),
             ObjectPattern: normalizeOptionValue(options.ObjectPattern),
             ImportDeclaration: normalizeOptionValue(options.ImportDeclaration),
@@ -96,11 +101,11 @@ function normalizeOptions(options) {
 
     const value = normalizeOptionValue(options);
 
-    return { ObjectExpression: value, ObjectPattern: value, ImportDeclaration: value, ExportNamedDeclaration: value };
+    return { OnlyParam: value, ObjectExpression: value, ObjectPattern: value, ImportDeclaration: value, ExportNamedDeclaration: value };
 }
 
 /**
- * Determines if ObjectExpression, ObjectPattern, ImportDeclaration or ExportNamedDeclaration
+ * Determines if OnlyParam, ObjectExpression, ObjectPattern, ImportDeclaration or ExportNamedDeclaration
  * node needs to be checked for missing line breaks
  *
  * @param {ASTNode} node - Node under inspection
@@ -140,8 +145,7 @@ module.exports = {
         docs: {
             description: "enforce consistent line breaks inside braces",
             category: "Stylistic Issues",
-            recommended: false,
-            url: "https://eslint.org/docs/rules/object-curly-newline"
+            recommended: false
         },
 
         fixable: "whitespace",
@@ -153,6 +157,7 @@ module.exports = {
                     {
                         type: "object",
                         properties: {
+                            OnlyParam: OPTION_VALUE,
                             ObjectExpression: OPTION_VALUE,
                             ObjectPattern: OPTION_VALUE,
                             ImportDeclaration: OPTION_VALUE,
@@ -172,11 +177,15 @@ module.exports = {
 
         /**
          * Reports a given node if it violated this rule.
-         * @param {ASTNode} node - A node to check. This is an ObjectExpression, ObjectPattern, ImportDeclaration or ExportNamedDeclaration node.
+         * @param {ASTNode} node - A node to check. This is an OnlyParam, ObjectExpression, ObjectPattern, ImportDeclaration or ExportNamedDeclaration node.
          * @returns {void}
          */
         function check(node) {
-            const options = normalizedOptions[node.type];
+            const isParam = node.type === "ObjectExpression" &&
+                node.parent &&
+                (node.parent.type === "CallExpression" || node.parent.type === "NewExpression");
+            const isOnlyParam = isParam && node.parent.arguments.length === 1;
+            const options = isOnlyParam ? normalizedOptions.OnlyParam : normalizedOptions[node.type];
 
             if (
                 (node.type === "ImportDeclaration" &&
