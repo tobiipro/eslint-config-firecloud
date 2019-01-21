@@ -1623,6 +1623,46 @@ ruleTester.run("array-bracket-newline", rule, {
                     column: 1
                 }
             ]
+        },
+        {
+            code: "var foo = [\n{a: 1},\n{b: 1}\n];",
+            output: "var foo = [{a: 1},\n{b: 1}];",
+            options: [{ objectsInArrays: false }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayExpression",
+                    line: 1,
+                    column: 11
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayExpression",
+                    line: 4,
+                    column: 1
+                }
+            ]
+        },
+        {
+            code: "var [\n{a},\n{b}\n] = foo;",
+            output: "var [{a},\n{b}] = foo;",
+            options: [{ objectsInArrays: false }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayPattern",
+                    line: 1,
+                    column: 5
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayPattern",
+                    line: 4,
+                    column: 1
+                }
+            ]
         }
 
     ]
