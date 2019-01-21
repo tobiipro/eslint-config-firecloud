@@ -4,6 +4,14 @@
 // - handle default imports
 // - handle single and multiple imports as named
 
+// Intended sorting:
+// - First of all, import specifiers are ordered by groups in the order all, default, named.
+// - In the all and default groups of import statements,
+//   they are sorted by the import specifier local variable in alphabetical order.
+// - In the case of named group, import statements are sorted by the import source.
+// - Inside the curly braces in every named import,
+//   they are sorted in alphabetical order by the import specifier local variable.
+
 /**
  * @fileoverview Rule to require sorting of import declarations
  * @author Christian Schuller
