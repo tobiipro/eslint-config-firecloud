@@ -1,6 +1,16 @@
 /* eslint-disable */
 // based on https://github.com/eslint/eslint/blob/master/lib/rules/sort-imports.js
 // - add a fixer
+// - handle default imports
+// - handle single and multiple imports as named
+
+// Intended sorting:
+// - First of all, import specifiers are ordered by groups in the order all, default, named.
+// - In the all and default groups of import statements,
+//   they are sorted by the import specifier local variable in alphabetical order.
+// - In the case of named group, import statements are sorted by the import source.
+// - Inside the curly braces in every named import,
+//   they are sorted in alphabetical order by the import specifier local variable.
 
 /**
  * @fileoverview Rule to require sorting of import declarations
@@ -33,7 +43,7 @@ module.exports = {
                     memberSyntaxSortOrder: {
                         type: "array",
                         items: {
-                            enum: ["none", "all", "single", "multiple"]
+                            enum: ["none", "all", "default", "named"]
                         },
                         uniqueItems: true,
                         minItems: 4,
@@ -59,7 +69,7 @@ module.exports = {
             ignoreCase = configuration.ignoreCase || false,
             ignoreDeclarationSort = configuration.ignoreDeclarationSort || false,
             ignoreMemberSort = configuration.ignoreMemberSort || false,
-            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "single", "multiple"],
+            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "default", "named"],
             sourceCode = context.getSourceCode();
         let previousDeclaration = null;
 
@@ -67,24 +77,24 @@ module.exports = {
          * Gets the used member syntax style.
          *
          * import "my-module.js" --> none
+         * import myModule from "my-module.js" --> default
          * import * as myModule from "my-module.js" --> all
-         * import {myMember} from "my-module.js" --> single
-         * import {foo, bar} from  "my-module.js" --> multiple
+         * import {...} from "my-module.js" --> named
          *
          * @param {ASTNode} node - the ImportDeclaration node.
-         * @returns {string} used member parameter style, ["all", "multiple", "single"]
+         * @returns {string} used member parameter style, ["all", "default", "named"]
          */
         function usedMemberSyntax(node) {
             if (node.specifiers.length === 0) {
                 return "none";
             }
+            if (node.specifiers[0].type === "ImportDefaultSpecifier") {
+                return "default";
+            }
             if (node.specifiers[0].type === "ImportNamespaceSpecifier") {
                 return "all";
             }
-            if (node.specifiers.length === 1) {
-                return "single";
-            }
-            return "multiple";
+            return "named";
 
         }
 
@@ -160,10 +170,14 @@ module.exports = {
                     if (previousDeclaration) {
                         const currentMemberSyntaxGroupIndex = getMemberParameterGroupIndex(node),
                             previousMemberSyntaxGroupIndex = getMemberParameterGroupIndex(previousDeclaration);
+                        let currentSource = node.source.value,
+                            previousSource = previousDeclaration.source.value;
                         let currentLocalMemberName = getFirstLocalMemberName(node),
                             previousLocalMemberName = getFirstLocalMemberName(previousDeclaration);
 
                         if (ignoreCase) {
+                            previousSource = previousSource && previousSource.toLowerCase();
+                            currentSource = currentSource && currentSource.toLowerCase();
                             previousLocalMemberName = previousLocalMemberName && previousLocalMemberName.toLowerCase();
                             currentLocalMemberName = currentLocalMemberName && currentLocalMemberName.toLowerCase();
                         }
@@ -188,10 +202,28 @@ module.exports = {
                                 });
                             }
                         } else {
-                            if (previousLocalMemberName &&
+                            const bothDefault =
+                                usedMemberSyntax(previousDeclaration) === 'default' &&
+                                usedMemberSyntax(node) === 'default';
+                            const bothAll =
+                                usedMemberSyntax(previousDeclaration) === 'all' &&
+                                usedMemberSyntax(node) === 'all';
+                            const unorderedLocalMemberName =
+                                previousLocalMemberName &&
                                 currentLocalMemberName &&
-                                currentLocalMemberName < previousLocalMemberName
-                            ) {
+                                currentLocalMemberName < previousLocalMemberName;
+                            const bothNamed =
+                                usedMemberSyntax(previousDeclaration) === 'named' &&
+                                usedMemberSyntax(node) === 'named';
+                            const unorderedSource =
+                                currentSource &&
+                                previousSource &&
+                                currentSource < previousSource;
+                            if ((
+                                (bothDefault || bothAll) && unorderedLocalMemberName
+                            ) || (
+                                bothNamed && unorderedSource
+                            )) {
                                 context.report({
                                     node,
                                     message: "Imports should be sorted alphabetically.",

@@ -42,7 +42,7 @@ ruleTester.run("order-imports", rule, {
                 "import A from 'bar.js';\n" +
                 "import {b, c} from 'foo.js';",
             options: [{
-                memberSyntaxSortOrder: ["single", "multiple", "none", "all"]
+                memberSyntaxSortOrder: ["default", "named", "none", "all"]
             }]
         },
         "import {a, b} from 'bar.js';\n" +
@@ -51,8 +51,8 @@ ruleTester.run("order-imports", rule, {
                 "import B from 'bar.js';",
         "import A from 'foo.js';\n" +
                 "import a from 'bar.js';",
-        "import c from 'bar.js';\n" +
-                "import a, * as b from 'foo.js';",
+        "import a, * as b from 'foo.js';\n" +
+                "import c from 'bar.js';",
         "import 'foo.js';\n" +
                 " import a from 'bar.js';",
         "import B from 'foo.js';\n" +
@@ -145,13 +145,22 @@ ruleTester.run("order-imports", rule, {
         },
         {
             code:
+                "import {a} from 'foo';\n" +
+                "import {b} from 'bar';",
+            output:
+                "import {b} from 'bar';\n" +
+                "import {a} from 'foo';",
+            errors: [expectedError]
+        },
+        {
+            code:
                 "import {b, c} from 'bar.js';\n" +
                 "import a from 'foo.js';",
             output:
                 "import a from 'foo.js';\n" +
                 "import {b, c} from 'bar.js';",
             errors: [{
-                message: "Expected 'single' syntax before 'multiple' syntax.",
+                message: "Expected 'default' syntax before 'named' syntax.",
                 type: "ImportDeclaration"
             }]
         },
@@ -163,7 +172,7 @@ ruleTester.run("order-imports", rule, {
                 "import * as b from 'bar.js';\n" +
                 "import a from 'foo.js';",
             errors: [{
-                message: "Expected 'all' syntax before 'single' syntax.",
+                message: "Expected 'all' syntax before 'default' syntax.",
                 type: "ImportDeclaration"
             }]
         },
@@ -175,7 +184,7 @@ ruleTester.run("order-imports", rule, {
                 "import 'bar.js';\n" +
                 "import a from 'foo.js';",
             errors: [{
-                message: "Expected 'none' syntax before 'single' syntax.",
+                message: "Expected 'none' syntax before 'default' syntax.",
                 type: "ImportDeclaration"
             }]
         },
@@ -187,10 +196,10 @@ ruleTester.run("order-imports", rule, {
                 "import * as a from 'foo.js';\n" +
                 "import b from 'bar.js';",
             options: [{
-                memberSyntaxSortOrder: ["all", "single", "multiple", "none"]
+                memberSyntaxSortOrder: ["all", "default", "named", "none"]
             }],
             errors: [{
-                message: "Expected 'all' syntax before 'single' syntax.",
+                message: "Expected 'all' syntax before 'default' syntax.",
                 type: "ImportDeclaration"
             }]
         },
