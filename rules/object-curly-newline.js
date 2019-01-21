@@ -181,10 +181,20 @@ module.exports = {
          * @returns {void}
          */
         function check(node) {
-            const isParam = node.type === "ObjectExpression" &&
+            const isParam =
+                (
+                    node.type === "ObjectExpression" ||
+                    node.type === "ObjectPattern"
+                ) &&
                 node.parent &&
-                (node.parent.type === "CallExpression" || node.parent.type === "NewExpression");
-            const isOnlyParam = isParam && node.parent.arguments.length === 1;
+                (
+                    node.parent.type === "ArrowFunctionExpression" ||
+                    node.parent.type === "CallExpression" ||
+                    node.parent.type === "FunctionDeclaration" ||
+                    node.parent.type === "FunctionExpression" ||
+                    node.parent.type === "NewExpression"
+                );
+            const isOnlyParam = isParam && (node.parent.arguments || node.parent.params).length === 1;
             const options = isOnlyParam ? normalizedOptions.OnlyParam : normalizedOptions[node.type];
 
             if (
