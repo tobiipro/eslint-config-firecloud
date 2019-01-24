@@ -1,5 +1,6 @@
 module.exports.rules = {
   'array-bracket-newline': require('./array-bracket-newline'),
+  'array-element-newline': require('./array-element-newline'),
   'import-specifier-newline': require('./import-specifier-newline'),
   'no-const': require('./no-const'),
   'no-underscore-prefix-exported': require('./no-underscore-prefix-exported'),

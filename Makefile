@@ -15,12 +15,14 @@ SF_ECLINT_FILES_IGNORE := \
 	$(SF_ECLINT_FILES_IGNORE) \
 	-e "^rules/.*\.original\.js$$" \
 	-e "^rules/array-bracket-newline\.js$$" \
+	-e "^rules/array-element-newline\.js$$" \
 	-e "^rules/import-specifier-newline\.js$$" \
 	-e "^rules/no-for\.js$$" \
 	-e "^rules/object-curly-newline\.js$$" \
 	-e "^rules/order-imports\.js$$" \
 	-e "^test/.*\.original\.js$$" \
 	-e "^test/array-bracket-newline\.test\.js$$" \
+	-e "^test/array-element-newline\.test\.js$$" \
 	-e "^test/object-curly-newline\.test\.js$$" \
 	-e "^test/order-imports\.test\.js$$" \
 
