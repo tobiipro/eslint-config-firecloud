@@ -1,4 +1,7 @@
 /* eslint-disable */
+// based on https://github.com/eslint/eslint/blob/master/lib/rules/array-element-newline.js
+// - no new line if last array item is an object
+
 /**
  * @fileoverview Rule to enforce line breaks after each array element
  * @author Jan Peer Stöcklmair <https://github.com/JPeer264>
@@ -6,7 +9,7 @@
 
 "use strict";
 
-const astUtils = require("../util/ast-utils");
+const astUtils = require("eslint/lib/util/ast-utils");
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -19,8 +22,7 @@ module.exports = {
         docs: {
             description: "enforce line breaks after each array element",
             category: "Stylistic Issues",
-            recommended: false,
-            url: "https://eslint.org/docs/rules/array-element-newline"
+            recommended: false
         },
 
         fixable: "whitespace",
@@ -40,6 +42,9 @@ module.exports = {
                             minItems: {
                                 type: ["integer", "null"],
                                 minimum: 0
+                            },
+                            notIfLastItemIsAnObject: {
+                                type: "boolean"
                             }
                         },
                         additionalProperties: false
@@ -71,22 +76,28 @@ module.exports = {
             let consistent = false;
             let multiline = false;
             let minItems;
+            let notIfLastItemIsAnObject = false;
 
             const option = providedOption || "always";
 
-            if (!option || option === "always" || option.minItems === 0) {
-                minItems = 0;
-            } else if (option === "never") {
-                minItems = Number.POSITIVE_INFINITY;
-            } else if (option === "consistent") {
-                consistent = true;
-                minItems = Number.POSITIVE_INFINITY;
+            if (option) {
+                if (option === "always" || option.minItems === 0) {
+                    minItems = 0;
+                } else if (option === "never") {
+                    minItems = Number.POSITIVE_INFINITY;
+                } else if (option === "consistent") {
+                    consistent = true;
+                    minItems = Number.POSITIVE_INFINITY;
+                } else {
+                    multiline = Boolean(option.multiline);
+                    minItems = option.minItems || Number.POSITIVE_INFINITY;
+                }
+                notIfLastItemIsAnObject = Boolean(option.notIfLastItemIsAnObject);
             } else {
-                multiline = Boolean(option.multiline);
-                minItems = option.minItems || Number.POSITIVE_INFINITY;
+                minItems = 0;
             }
 
-            return { consistent, multiline, minItems };
+            return { consistent, multiline, minItems, notIfLastItemIsAnObject };
         }
 
         /**
@@ -215,7 +226,7 @@ module.exports = {
                 return !astUtils.isTokenOnSameLine(lastTokenOfPreviousElement, firstTokenOfCurrentElement);
             }).filter(isBreak => isBreak === true).length;
 
-            const needsLinebreaks = (
+            const needsLinebreaksOriginal = (
                 elements.length >= options.minItems ||
                 (
                     options.multiline &&
@@ -227,6 +238,23 @@ module.exports = {
                     linebreaksCount < node.elements.length
                 )
             );
+
+            const needsLinebreaks =
+                (
+                    elements.length === 0 &&
+                    needsLinebreaksOriginal
+                ) ||
+                (
+                    elements.length > 0 &&
+                    (!['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)) &&
+                    needsLinebreaksOriginal
+                ) ||
+                (
+                    elements.length > 0 &&
+                    (['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)) &&
+                    !options.notIfLastItemIsAnObject &&
+                    needsLinebreaksOriginal
+                );
 
             elements.forEach((element, i) => {
                 const previousElement = elements[i - 1];

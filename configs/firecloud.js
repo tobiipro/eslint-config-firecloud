@@ -9,6 +9,11 @@ module.exports = {
       minItems: 1,
       notIfLastItemIsAnObject: true
     }],
+    'firecloud/array-element-newline': ['error', {
+      multiline: true,
+      minItems: 1,
+      notIfLastItemIsAnObject: true
+    }],
     'firecloud/import-specifier-newline': 'error',
     'firecloud/no-const': 'error',
     'firecloud/no-for': 'error',

@@ -10,8 +10,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/array-element-newline");
-const RuleTester = require("../../../lib/testers/rule-tester");
+const rule = require("../rules/array-element-newline");
+const RuleTester = require("eslint/lib/testers/rule-tester");
 
 
 //------------------------------------------------------------------------------
@@ -825,6 +825,34 @@ ruleTester.run("array-element-newline", rule, {
                     messageId: "missingLineBreak",
                     line: 1,
                     column: 11
+                }
+            ]
+        },
+
+        // { notIfLastItemIsAnObject: true }
+        {
+            code: "var foo = [\n1,\n {b: 1}\n];",
+            output: "var foo = [\n1, {b: 1}\n];",
+            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedLineBreak",
+                    line: 2,
+                    column: 3
+                }
+            ]
+        },
+        {
+            code: "var [\na,\n {b}\n] = foo;",
+            output: "var [\na, {b}\n] = foo;",
+            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedLineBreak",
+                    line: 2,
+                    column: 3
                 }
             ]
         }
