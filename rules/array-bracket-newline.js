@@ -1,4 +1,7 @@
 /* eslint-disable */
+// based on https://raw.githubusercontent.com/eslint/eslint/master/lib/rules/array-bracket-newline.js
+// - no new line if array items are objects
+
 /**
  * @fileoverview Rule to enforce linebreaks after open and before close array brackets
  * @author Jan Peer Stöcklmair <https://github.com/JPeer264>
@@ -6,7 +9,7 @@
 
 "use strict";
 
-const astUtils = require("../util/ast-utils");
+const astUtils = require("eslint/lib/util/ast-utils");
 
 //------------------------------------------------------------------------------
 // Rule Definition
@@ -19,8 +22,7 @@ module.exports = {
         docs: {
             description: "enforce linebreaks after opening and before closing array brackets",
             category: "Stylistic Issues",
-            recommended: false,
-            url: "https://eslint.org/docs/rules/array-bracket-newline"
+            recommended: false
         },
 
         fixable: "whitespace",
@@ -40,6 +42,9 @@ module.exports = {
                             minItems: {
                                 type: ["integer", "null"],
                                 minimum: 0
+                            },
+                            objectsInArrays: {
+                                type: "boolean"
                             }
                         },
                         additionalProperties: false
@@ -74,6 +79,7 @@ module.exports = {
             let consistent = false;
             let multiline = false;
             let minItems = 0;
+            let objectsInArrays = true;
 
             if (option) {
                 if (option === "consistent") {
@@ -87,13 +93,15 @@ module.exports = {
                     multiline = Boolean(option.multiline);
                     minItems = option.minItems || Number.POSITIVE_INFINITY;
                 }
+                objectsInArrays = Boolean(option.objectsInArrays);
             } else {
                 consistent = false;
                 multiline = true;
                 minItems = Number.POSITIVE_INFINITY;
+                objectsInArrays = true;
             }
 
-            return { consistent, multiline, minItems };
+            return { consistent, multiline, minItems, objectsInArrays };
         }
 
         /**
@@ -205,7 +213,7 @@ module.exports = {
             const first = sourceCode.getTokenAfter(openBracket);
             const last = sourceCode.getTokenBefore(closeBracket);
 
-            const needsLinebreaks = (
+            const needsLinebreaksOriginal = (
                 elements.length >= options.minItems ||
                 (
                     options.multiline &&
@@ -223,6 +231,23 @@ module.exports = {
                     firstIncComment.loc.start.line !== openBracket.loc.end.line
                 )
             );
+
+            const needsLinebreaks =
+                (
+                    elements.length === 0 &&
+                    needsLinebreaksOriginal
+                ) ||
+                (
+                    elements.length > 0 &&
+                    elements[0].type !== 'ObjectExpression' &&
+                    needsLinebreaksOriginal
+                ) ||
+                (
+                    elements.length > 0 &&
+                    elements[0].type === 'ObjectExpression' &&
+                    options.objectsInArrays &&
+                    needsLinebreaksOriginal
+                );
 
             /*
              * Use tokens or comments to check multiline or not.

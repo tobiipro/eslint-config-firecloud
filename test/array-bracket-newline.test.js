@@ -1,4 +1,6 @@
 /* eslint-disable */
+// based on https://github.com/eslint/eslint/blob/master/tests/lib/rules/array-bracket-newline.js
+
 /**
  * @fileoverview Tests for array-bracket-newline rule.
  * @author Jan Peer Stöcklmair <https://github.com/JPeer264>
@@ -10,8 +12,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/array-bracket-newline");
-const RuleTester = require("../../../lib/testers/rule-tester");
+const rule = require("../rules/array-bracket-newline");
+const RuleTester = require("eslint/lib/testers/rule-tester");
 
 
 //------------------------------------------------------------------------------
@@ -1539,6 +1541,46 @@ ruleTester.run("array-bracket-newline", rule, {
                     type: "ArrayPattern",
                     line: 2,
                     column: 2
+                }
+            ]
+        },
+        {
+            code: "var foo = [\n{a: 1}\n];",
+            output: "var foo = [{a: 1}];",
+            options: [{ objectsInArrays: false }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayExpression",
+                    line: 1,
+                    column: 11
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayExpression",
+                    line: 3,
+                    column: 1
+                }
+            ]
+        },
+        {
+            code: "var [\n{a}\n] = foo;",
+            output: "var [{a}] = foo;",
+            options: [{ objectsInArrays: false }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayPattern",
+                    line: 1,
+                    column: 5
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayPattern",
+                    line: 3,
+                    column: 1
                 }
             ]
         }
