@@ -1,6 +1,6 @@
 /* eslint-disable */
 // based on https://raw.githubusercontent.com/eslint/eslint/master/lib/rules/array-bracket-newline.js
-// - no new line if array items are objects
+// - no new line if last array item is an object
 
 /**
  * @fileoverview Rule to enforce linebreaks after open and before close array brackets
@@ -43,7 +43,7 @@ module.exports = {
                                 type: ["integer", "null"],
                                 minimum: 0
                             },
-                            objectsInArrays: {
+                            notIfLastItemIsAnObject: {
                                 type: "boolean"
                             }
                         },
@@ -79,7 +79,7 @@ module.exports = {
             let consistent = false;
             let multiline = false;
             let minItems = 0;
-            let objectsInArrays = true;
+            let notIfLastItemIsAnObject = false;
 
             if (option) {
                 if (option === "consistent") {
@@ -93,15 +93,15 @@ module.exports = {
                     multiline = Boolean(option.multiline);
                     minItems = option.minItems || Number.POSITIVE_INFINITY;
                 }
-                objectsInArrays = Boolean(option.objectsInArrays);
+                notIfLastItemIsAnObject = Boolean(option.notIfLastItemIsAnObject);
             } else {
                 consistent = false;
                 multiline = true;
                 minItems = Number.POSITIVE_INFINITY;
-                objectsInArrays = true;
+                notIfLastItemIsAnObject = false;
             }
 
-            return { consistent, multiline, minItems, objectsInArrays };
+            return { consistent, multiline, minItems, notIfLastItemIsAnObject };
         }
 
         /**
@@ -239,13 +239,13 @@ module.exports = {
                 ) ||
                 (
                     elements.length > 0 &&
-                    elements[0].type !== 'ObjectExpression' &&
+                    (!['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)) &&
                     needsLinebreaksOriginal
                 ) ||
                 (
                     elements.length > 0 &&
-                    elements[0].type === 'ObjectExpression' &&
-                    options.objectsInArrays &&
+                    (['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)) &&
+                    !options.notIfLastItemIsAnObject &&
                     needsLinebreaksOriginal
                 );
 

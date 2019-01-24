@@ -7,7 +7,7 @@ module.exports = {
     'firecloud/array-bracket-newline': ['error', {
       multiline: true,
       minItems: 1,
-      objectsInArrays: false
+      notIfLastItemIsAnObject: true
     }],
     'firecloud/import-specifier-newline': 'error',
     'firecloud/no-const': 'error',

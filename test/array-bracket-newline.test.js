@@ -1545,49 +1545,9 @@ ruleTester.run("array-bracket-newline", rule, {
             ]
         },
         {
-            code: "var [{a}] = foo;",
-            output: "var [\n{a}\n] = foo;",
-            options: [{ minItems: 1, objectsInArrays: true }],
-            parserOptions: { ecmaVersion: 6 },
-            errors: [
-                {
-                    messageId: "missingOpeningLinebreak",
-                    type: "ArrayPattern",
-                    line: 1,
-                    column: 5
-                },
-                {
-                    messageId: "missingClosingLinebreak",
-                    type: "ArrayPattern",
-                    line: 1,
-                    column: 9
-                }
-            ]
-        },
-        {
-            code: "var foo = [{a: 1}];",
-            output: "var foo = [\n{a: 1}\n];",
-            options: [{ minItems: 1, objectsInArrays: true }],
-            parserOptions: { ecmaVersion: 6 },
-            errors: [
-                {
-                    messageId: "missingOpeningLinebreak",
-                    type: "ArrayExpression",
-                    line: 1,
-                    column: 11
-                },
-                {
-                    messageId: "missingClosingLinebreak",
-                    type: "ArrayExpression",
-                    line: 1,
-                    column: 18
-                }
-            ]
-        },
-        {
             code: "var foo = [\n{a: 1}\n];",
             output: "var foo = [{a: 1}];",
-            options: [{ objectsInArrays: false }],
+            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
@@ -1607,7 +1567,7 @@ ruleTester.run("array-bracket-newline", rule, {
         {
             code: "var [\n{a}\n] = foo;",
             output: "var [{a}] = foo;",
-            options: [{ objectsInArrays: false }],
+            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
@@ -1627,7 +1587,7 @@ ruleTester.run("array-bracket-newline", rule, {
         {
             code: "var foo = [\n{a: 1},\n{b: 1}\n];",
             output: "var foo = [{a: 1},\n{b: 1}];",
-            options: [{ objectsInArrays: false }],
+            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
@@ -1647,7 +1607,7 @@ ruleTester.run("array-bracket-newline", rule, {
         {
             code: "var [\n{a},\n{b}\n] = foo;",
             output: "var [{a},\n{b}] = foo;",
-            options: [{ objectsInArrays: false }],
+            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
