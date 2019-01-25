@@ -46,7 +46,10 @@ let _whileExporting = {
   }]
 };
 
-_.forEach(['valid', 'invalid'], function(prop) {
+_.forEach([
+  'valid',
+  'invalid'
+], function(prop) {
   _.forEach(_whileExporting[prop], function(test) {
     test.code = `${test.code}\nexport default exports;`;
   });
