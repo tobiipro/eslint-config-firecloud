@@ -1406,7 +1406,7 @@ ruleTester.run("object-curly-newline", rule, {
             ]
         },
 
-        // "OnlyParam" ---------------------------------------------
+        // "OnlyParam" with ObjectExpression --------------------------------------------------
         {
             code: [
                 "console.log({a: 1, b: 2});",
@@ -1441,6 +1441,44 @@ ruleTester.run("object-curly-newline", rule, {
             errors: [
                 { line: 1, column: 13, message: "Expected a line break after this opening brace." },
                 { line: 1, column: 24, message: "Expected a line break before this closing brace." }
+            ]
+        },
+
+        // "OnlyParam" with ObjectPattern -----------------------------------------------------
+        {
+            code: [
+                "let log = function({a, b}){};",
+                "let {a, b} = c;"
+            ].join("\n"),
+            output: [
+                "let log = function({a, b}){};",
+                "let {",
+                "a, b",
+                "} = c;"
+            ].join("\n"),
+            options: [{ OnlyParam: "never", ObjectPattern: "always"}],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                { line: 2, column: 5, message: "Expected a line break after this opening brace." },
+                { line: 2, column: 10, message: "Expected a line break before this closing brace." }
+            ]
+        },
+        {
+            code: [
+                "let log = function({a, b}){};",
+                "let {a, b} = c;"
+            ].join("\n"),
+            output: [
+                "let log = function({",
+                "a, b",
+                "}){};",
+                "let {a, b} = c;"
+            ].join("\n"),
+            options: [{ OnlyParam: "always", ObjectExpression: "never"}],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                { line: 1, column: 20, message: "Expected a line break after this opening brace." },
+                { line: 1, column: 25, message: "Expected a line break before this closing brace." }
             ]
         },
 
