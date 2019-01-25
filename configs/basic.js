@@ -264,20 +264,7 @@ module.exports = {
     }],
     'no-whitespace-before-property': 'error',
     'no-with': 'error',
-    'object-curly-newline': ['warn', {
-      ObjectExpression: {
-        multiline: true,
-        minProperties: 0, // aka disable
-        consistent: true
-      },
-      ObjectPattern: {
-        multiline: true,
-        minProperties: 0, // aka disable
-        consistent: true
-      },
-      ImportDeclaration: 'always',
-      ExportDeclaration: 'always'
-    }],
+    'object-curly-newline': 'off',
     'object-curly-spacing': 'error',
     'object-property-newline': ['error', {
       allowAllPropertiesOnSameLine: true
