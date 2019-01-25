@@ -7,7 +7,7 @@ module.exports = {
     'firecloud/array-bracket-newline': ['error', {
       multiline: true,
       minItems: 1,
-      notIfLastItemIsAnObject: true
+      allowObjectCurly: true
     }],
     'firecloud/array-element-newline': ['error', {
       multiline: true,

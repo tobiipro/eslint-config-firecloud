@@ -43,7 +43,7 @@ module.exports = {
                                 type: ["integer", "null"],
                                 minimum: 0
                             },
-                            notIfLastItemIsAnObject: {
+                            allowObjectCurly: {
                                 type: "boolean"
                             }
                         },
@@ -79,7 +79,7 @@ module.exports = {
             let consistent = false;
             let multiline = false;
             let minItems = 0;
-            let notIfLastItemIsAnObject = false;
+            let allowObjectCurly = false;
 
             if (option) {
                 if (option === "consistent") {
@@ -93,15 +93,15 @@ module.exports = {
                     multiline = Boolean(option.multiline);
                     minItems = option.minItems || Number.POSITIVE_INFINITY;
                 }
-                notIfLastItemIsAnObject = Boolean(option.notIfLastItemIsAnObject);
+                allowObjectCurly = Boolean(option.allowObjectCurly);
             } else {
                 consistent = false;
                 multiline = true;
                 minItems = Number.POSITIVE_INFINITY;
-                notIfLastItemIsAnObject = false;
+                allowObjectCurly = false;
             }
 
-            return { consistent, multiline, minItems, notIfLastItemIsAnObject };
+            return { consistent, multiline, minItems, allowObjectCurly };
         }
 
         /**
@@ -232,22 +232,26 @@ module.exports = {
                 )
             );
 
-            const needsLinebreaks =
+            const needsLinebreaks = needsLinebreaksOriginal && (
+                elements.length === 0 ||
                 (
-                    elements.length === 0 &&
-                    needsLinebreaksOriginal
+                    // first and last item are not objects
+                    elements.length > 0 &&
+                    !(
+                        ['ObjectExpression', 'ObjectPattern'].includes(elements[0].type) ||
+                        ['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)
+                    )
                 ) ||
                 (
+                    // first or last item are objects but allowObjectCurly is turned off
                     elements.length > 0 &&
-                    (!['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)) &&
-                    needsLinebreaksOriginal
-                ) ||
-                (
-                    elements.length > 0 &&
-                    (['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)) &&
-                    !options.notIfLastItemIsAnObject &&
-                    needsLinebreaksOriginal
-                );
+                    (
+                        ['ObjectExpression', 'ObjectPattern'].includes(elements[0].type) ||
+                        ['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)
+                    ) &&
+                    !options.allowObjectCurly
+                )
+            );
 
             /*
              * Use tokens or comments to check multiline or not.

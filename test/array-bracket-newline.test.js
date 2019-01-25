@@ -1544,10 +1544,12 @@ ruleTester.run("array-bracket-newline", rule, {
                 }
             ]
         },
+
+        // { allowObjectCurly: true } with ObjectExpression
         {
             code: "var foo = [\n{a: 1}\n];",
             output: "var foo = [{a: 1}];",
-            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
+            options: [{ minItems: 0, allowObjectCurly: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
@@ -1565,29 +1567,9 @@ ruleTester.run("array-bracket-newline", rule, {
             ]
         },
         {
-            code: "var [\n{a}\n] = foo;",
-            output: "var [{a}] = foo;",
-            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
-            parserOptions: { ecmaVersion: 6 },
-            errors: [
-                {
-                    messageId: "unexpectedOpeningLinebreak",
-                    type: "ArrayPattern",
-                    line: 1,
-                    column: 5
-                },
-                {
-                    messageId: "unexpectedClosingLinebreak",
-                    type: "ArrayPattern",
-                    line: 3,
-                    column: 1
-                }
-            ]
-        },
-        {
-            code: "var foo = [\n{a: 1},\n{b: 1}\n];",
-            output: "var foo = [{a: 1},\n{b: 1}];",
-            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
+            code: "var foo = [\n{a: 1},\n1\n];",
+            output: "var foo = [{a: 1},\n1];",
+            options: [{ minItems: 0, allowObjectCurly: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
@@ -1605,9 +1587,111 @@ ruleTester.run("array-bracket-newline", rule, {
             ]
         },
         {
+            code: "var foo = [\n{a: 1},\n{b: 1}\n];",
+            output: "var foo = [{a: 1},\n{b: 1}];",
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayExpression",
+                    line: 1,
+                    column: 11
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayExpression",
+                    line: 4,
+                    column: 1
+                }
+            ]
+        },
+        {
+            code: "var foo = [\n1,\n{b: 1}\n];",
+            output: "var foo = [1,\n{b: 1}];",
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayExpression",
+                    line: 1,
+                    column: 11
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayExpression",
+                    line: 4,
+                    column: 1
+                }
+            ]
+        },
+
+        // { allowObjectCurly: true } with ObjectPattern
+        {
+            code: "var [\n{a}\n] = foo;",
+            output: "var [{a}] = foo;",
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayPattern",
+                    line: 1,
+                    column: 5
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayPattern",
+                    line: 3,
+                    column: 1
+                }
+            ]
+        },
+        {
+            code: "var [\n{a},\nb\n] = foo;",
+            output: "var [{a},\nb] = foo;",
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayPattern",
+                    line: 1,
+                    column: 5
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayPattern",
+                    line: 4,
+                    column: 1
+                }
+            ]
+        },
+        {
             code: "var [\n{a},\n{b}\n] = foo;",
             output: "var [{a},\n{b}] = foo;",
-            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedOpeningLinebreak",
+                    type: "ArrayPattern",
+                    line: 1,
+                    column: 5
+                },
+                {
+                    messageId: "unexpectedClosingLinebreak",
+                    type: "ArrayPattern",
+                    line: 4,
+                    column: 1
+                }
+            ]
+        },
+        {
+            code: "var [\na,\n{b}\n] = foo;",
+            output: "var [a,\n{b}] = foo;",
+            options: [{ minItems: 0, allowObjectCurly: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
