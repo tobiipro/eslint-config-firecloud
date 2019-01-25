@@ -28,7 +28,7 @@ module.exports = {
     'array-callback-return': ['error', {
       allowImplicit: true
     }],
-    'array-element-newline': 'off', // FIXME should be 'error', if only #7
+    'array-element-newline': 'off',
     'arrow-body-style': ['error', 'always'],
     'arrow-parens': 'error',
     'arrow-spacing': 'error',

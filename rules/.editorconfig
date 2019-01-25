@@ -1,3 +1,9 @@
+[array-bracket-newline*.js]
+indent_size = 4
+
+[array-element-newline*.js]
+indent_size = 4
+
 [import-specifier-newline*.js]
 indent_size = 4
 

@@ -4,6 +4,16 @@ module.exports = {
   ],
 
   rules: {
+    'firecloud/array-bracket-newline': ['error', {
+      multiline: true,
+      minItems: 1,
+      allowObjectCurly: true
+    }],
+    'firecloud/array-element-newline': ['error', {
+      multiline: true,
+      minItems: 1,
+      allowObjectCurly: true
+    }],
     'firecloud/import-specifier-newline': 'error',
     'firecloud/no-const': 'error',
     'firecloud/no-for': 'error',
