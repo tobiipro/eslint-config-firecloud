@@ -12,7 +12,7 @@ module.exports = {
     'firecloud/array-element-newline': ['error', {
       multiline: true,
       minItems: 1,
-      notIfLastItemIsAnObject: true
+      allowObjectCurly: true
     }],
     'firecloud/import-specifier-newline': 'error',
     'firecloud/no-const': 'error',

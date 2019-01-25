@@ -829,11 +829,37 @@ ruleTester.run("array-element-newline", rule, {
             ]
         },
 
-        // { notIfLastItemIsAnObject: true }
+        // { allowObjectCurly: true } with ObjectExpression
+        {
+            code: "var foo = [\n{a: 1},\n 1\n];",
+            output: "var foo = [\n{a: 1}, 1\n];",
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedLineBreak",
+                    line: 2,
+                    column: 8
+                }
+            ]
+        },
+        {
+            code: "var foo = [\n{a: 1},\n {b: 1}\n];",
+            output: "var foo = [\n{a: 1}, {b: 1}\n];",
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedLineBreak",
+                    line: 2,
+                    column: 8
+                }
+            ]
+        },
         {
             code: "var foo = [\n1,\n {b: 1}\n];",
             output: "var foo = [\n1, {b: 1}\n];",
-            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
+            options: [{ minItems: 0, allowObjectCurly: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
@@ -843,10 +869,38 @@ ruleTester.run("array-element-newline", rule, {
                 }
             ]
         },
+
+        // { allowObjectCurly: true } with ObjectPattern
+        {
+            code: "var [\n{a},\n b\n] = foo;",
+            output: "var [\n{a}, b\n] = foo;",
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedLineBreak",
+                    line: 2,
+                    column: 5
+                }
+            ]
+        },
+        {
+            code: "var [\n{a},\n {b}\n] = foo;",
+            output: "var [\n{a}, {b}\n] = foo;",
+            options: [{ minItems: 0, allowObjectCurly: true }],
+            parserOptions: { ecmaVersion: 6 },
+            errors: [
+                {
+                    messageId: "unexpectedLineBreak",
+                    line: 2,
+                    column: 5
+                }
+            ]
+        },
         {
             code: "var [\na,\n {b}\n] = foo;",
             output: "var [\na, {b}\n] = foo;",
-            options: [{ minItems: 0, notIfLastItemIsAnObject: true }],
+            options: [{ minItems: 0, allowObjectCurly: true }],
             parserOptions: { ecmaVersion: 6 },
             errors: [
                 {
