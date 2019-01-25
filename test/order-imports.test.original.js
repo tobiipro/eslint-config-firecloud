@@ -1,8 +1,6 @@
 /* eslint-disable */
-// based on https://github.com/eslint/eslint/blob/master/tests/lib/rules/sort-imports.js
-
 /**
- * @fileoverview Tests for order-imports rule.
+ * @fileoverview Tests for sort-imports rule.
  * @author Christian Schuller
  */
 
@@ -12,8 +10,8 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../rules/order-imports"),
-    RuleTester = require("eslint/lib/testers/rule-tester");
+const rule = require("../../../lib/rules/sort-imports"),
+    RuleTester = require("../../../lib/testers/rule-tester");
 
 //------------------------------------------------------------------------------
 // Tests
@@ -26,7 +24,7 @@ const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 6, sourceType:
     },
     ignoreCaseArgs = [{ ignoreCase: true }];
 
-ruleTester.run("order-imports", rule, {
+ruleTester.run("sort-imports", rule, {
     valid: [
         "import a from 'foo.js';\n" +
                 "import b from 'bar.js';\n" +
@@ -35,14 +33,14 @@ ruleTester.run("order-imports", rule, {
                 "import A from 'bar.js';",
         "import * as B from 'foo.js';\n" +
                 "import {a, b} from 'bar.js';",
-        "import A from 'foo.js';\n" +
-                "import {b, c} from 'bar.js';",
+        "import {b, c} from 'bar.js';\n" +
+                "import A from 'foo.js';",
         {
             code:
                 "import A from 'bar.js';\n" +
                 "import {b, c} from 'foo.js';",
             options: [{
-                memberSyntaxSortOrder: ["default", "named", "none", "all"]
+                memberSyntaxSortOrder: ["single", "multiple", "none", "all"]
             }]
         },
         "import {a, b} from 'bar.js';\n" +
@@ -111,56 +109,37 @@ ruleTester.run("order-imports", rule, {
             code:
                 "import a from 'foo.js';\n" +
                 "import A from 'bar.js';",
-            output:
-                "import A from 'bar.js';\n" +
-                "import a from 'foo.js';",
+            output: null,
             errors: [expectedError]
         },
         {
             code:
                 "import b from 'foo.js';\n" +
                 "import a from 'bar.js';",
-            output:
-                "import a from 'bar.js';\n" +
-                "import b from 'foo.js';",
+            output: null,
             errors: [expectedError]
         },
         {
             code:
                 "import {b, c} from 'foo.js';\n" +
                 "import {a, d} from 'bar.js';",
-            output:
-                "import {a, d} from 'bar.js';\n" +
-                "import {b, c} from 'foo.js';",
+            output: null,
             errors: [expectedError]
         },
         {
             code:
                 "import * as foo from 'foo.js';\n" +
                 "import * as bar from 'bar.js';",
-            output:
-                "import * as bar from 'bar.js';\n" +
-                "import * as foo from 'foo.js';",
+            output: null,
             errors: [expectedError]
         },
         {
             code:
-                "import {a} from 'foo';\n" +
-                "import {b} from 'bar';",
-            output:
-                "import {b} from 'bar';\n" +
-                "import {a} from 'foo';",
-            errors: [expectedError]
-        },
-        {
-            code:
-                "import {b, c} from 'bar.js';\n" +
-                "import a from 'foo.js';",
-            output:
                 "import a from 'foo.js';\n" +
                 "import {b, c} from 'bar.js';",
+            output: null,
             errors: [{
-                message: "Expected 'default' syntax before 'named' syntax.",
+                message: "Expected 'multiple' syntax before 'single' syntax.",
                 type: "ImportDeclaration"
             }]
         },
@@ -168,11 +147,9 @@ ruleTester.run("order-imports", rule, {
             code:
                 "import a from 'foo.js';\n" +
                 "import * as b from 'bar.js';",
-            output:
-                "import * as b from 'bar.js';\n" +
-                "import a from 'foo.js';",
+            output: null,
             errors: [{
-                message: "Expected 'all' syntax before 'default' syntax.",
+                message: "Expected 'all' syntax before 'single' syntax.",
                 type: "ImportDeclaration"
             }]
         },
@@ -180,11 +157,9 @@ ruleTester.run("order-imports", rule, {
             code:
                 "import a from 'foo.js';\n" +
                 "import 'bar.js';",
-            output:
-                "import 'bar.js';\n" +
-                "import a from 'foo.js';",
+            output: null,
             errors: [{
-                message: "Expected 'none' syntax before 'default' syntax.",
+                message: "Expected 'none' syntax before 'single' syntax.",
                 type: "ImportDeclaration"
             }]
         },
@@ -192,14 +167,12 @@ ruleTester.run("order-imports", rule, {
             code:
                 "import b from 'bar.js';\n" +
                 "import * as a from 'foo.js';",
-            output:
-                "import * as a from 'foo.js';\n" +
-                "import b from 'bar.js';",
+            output: null,
             options: [{
-                memberSyntaxSortOrder: ["all", "default", "named", "none"]
+                memberSyntaxSortOrder: ["all", "single", "multiple", "none"]
             }],
             errors: [{
-                message: "Expected 'all' syntax before 'default' syntax.",
+                message: "Expected 'all' syntax before 'single' syntax.",
                 type: "ImportDeclaration"
             }]
         },

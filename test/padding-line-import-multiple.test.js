@@ -48,7 +48,8 @@ _ruleTester.run('padding-line-import-multiple', rule, {
   invalid: [{
     code: [
       'import a from "b";',
-      'import {b,', 'c} from "b"'
+      'import {b,',
+      'c} from "b"'
     ].join('\n'),
     errors: [{
       message: _errorMessage

@@ -1,7 +1,4 @@
 /* eslint-disable */
-// based on https://github.com/jfmengels/eslint-plugin-fp/blob/8757d3c/rules/no-loops.js
-// - target only for loops
-
 'use strict';
 
 const create = function (context) {
@@ -20,7 +17,12 @@ const create = function (context) {
   }
 
   return {
-    ForStatement: reportForLoop
+    ForStatement: reportForLoop,
+    ForInStatement: reportForLoop,
+    ForOfStatement: reportForLoop,
+
+    WhileStatement: reportWhileLoop,
+    DoWhileStatement: reportWhileLoop
   };
 };
 
@@ -28,8 +30,9 @@ module.exports = {
   create,
   meta: {
     docs: {
-      description: 'Forbid the use of for loops.',
-      recommended: 'error'
+      description: 'Forbid the use of loops.',
+      recommended: 'error',
+      url: 'https://github.com/jfmengels/eslint-plugin-fp/tree/master/docs/rules/no-loops.md'
     }
   }
 };

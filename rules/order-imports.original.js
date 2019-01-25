@@ -1,17 +1,4 @@
 /* eslint-disable */
-// based on https://github.com/eslint/eslint/blob/master/lib/rules/sort-imports.js
-// - add a fixer
-// - handle default imports
-// - handle single and multiple imports as named
-
-// Intended sorting:
-// - First of all, import specifiers are ordered by groups in the order all, default, named.
-// - In the all and default groups of import statements,
-//   they are sorted by the import specifier local variable in alphabetical order.
-// - In the case of named group, import statements are sorted by the import source.
-// - Inside the curly braces in every named import,
-//   they are sorted in alphabetical order by the import specifier local variable.
-
 /**
  * @fileoverview Rule to require sorting of import declarations
  * @author Christian Schuller
@@ -30,7 +17,8 @@ module.exports = {
         docs: {
             description: "enforce sorted import declarations within modules",
             category: "ECMAScript 6",
-            recommended: false
+            recommended: false,
+            url: "https://eslint.org/docs/rules/sort-imports"
         },
 
         schema: [
@@ -43,7 +31,7 @@ module.exports = {
                     memberSyntaxSortOrder: {
                         type: "array",
                         items: {
-                            enum: ["none", "all", "default", "named"]
+                            enum: ["none", "all", "multiple", "single"]
                         },
                         uniqueItems: true,
                         minItems: 4,
@@ -69,7 +57,7 @@ module.exports = {
             ignoreCase = configuration.ignoreCase || false,
             ignoreDeclarationSort = configuration.ignoreDeclarationSort || false,
             ignoreMemberSort = configuration.ignoreMemberSort || false,
-            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "default", "named"],
+            memberSyntaxSortOrder = configuration.memberSyntaxSortOrder || ["none", "all", "multiple", "single"],
             sourceCode = context.getSourceCode();
         let previousDeclaration = null;
 
@@ -77,24 +65,24 @@ module.exports = {
          * Gets the used member syntax style.
          *
          * import "my-module.js" --> none
-         * import myModule from "my-module.js" --> default
          * import * as myModule from "my-module.js" --> all
-         * import {...} from "my-module.js" --> named
+         * import {myMember} from "my-module.js" --> single
+         * import {foo, bar} from  "my-module.js" --> multiple
          *
          * @param {ASTNode} node - the ImportDeclaration node.
-         * @returns {string} used member parameter style, ["all", "default", "named"]
+         * @returns {string} used member parameter style, ["all", "multiple", "single"]
          */
         function usedMemberSyntax(node) {
             if (node.specifiers.length === 0) {
                 return "none";
             }
-            if (node.specifiers[0].type === "ImportDefaultSpecifier") {
-                return "default";
-            }
             if (node.specifiers[0].type === "ImportNamespaceSpecifier") {
                 return "all";
             }
-            return "named";
+            if (node.specifiers.length === 1) {
+                return "single";
+            }
+            return "multiple";
 
         }
 
@@ -120,64 +108,16 @@ module.exports = {
 
         }
 
-        /**
-         * Gets if the node has comments before or after it.
-         * @param {ASTNode} node - the AST node.
-         * @returns {bool} if there are comments around the node.
-         */
-        let hasCommentsAround = function(node) {
-            let before = sourceCode.getCommentsBefore(node);
-            let after = sourceCode.getCommentsAfter(node);
-
-            // checking if 'before' comment is on the same line or a line above
-            if (before.some((comment) => {
-                return comment.loc.end.line + 1 >= node.loc.start.line;
-            })) {
-                return true;
-            }
-
-            // checking if 'after comment is on the same line or a line below
-            if (after.some((comment) => {
-                return comment.loc.start.line - 1 <= node.loc.end.line;
-            })) {
-                return true;
-            }
-
-            return false;
-        };
-
-        /**
-         * Swaps nodes using given fixer.
-         * @param {Fixer} fixer - the fixer to create fixes.
-         * @param {ASTNode} a - first node.
-         * @param {ASTNode} b - second node.
-         * @returns {?Array} - array of fixings or null if fixes are not possible.
-         */
-        let swapNodes = function(fixer, a, b) {
-            if (hasCommentsAround(a) || hasCommentsAround(b)) {
-                return;
-            }
-
-            let fixes = [];
-            fixes.push(fixer.replaceText(b, sourceCode.getText().slice(a.start, a.end)));
-            fixes.push(fixer.replaceText(a, sourceCode.getText().slice(b.start, b.end)));
-            return fixes;
-        };
-
         return {
             ImportDeclaration(node) {
                 if (!ignoreDeclarationSort) {
                     if (previousDeclaration) {
                         const currentMemberSyntaxGroupIndex = getMemberParameterGroupIndex(node),
                             previousMemberSyntaxGroupIndex = getMemberParameterGroupIndex(previousDeclaration);
-                        let currentSource = node.source.value,
-                            previousSource = previousDeclaration.source.value;
                         let currentLocalMemberName = getFirstLocalMemberName(node),
                             previousLocalMemberName = getFirstLocalMemberName(previousDeclaration);
 
                         if (ignoreCase) {
-                            previousSource = previousSource && previousSource.toLowerCase();
-                            currentSource = currentSource && currentSource.toLowerCase();
                             previousLocalMemberName = previousLocalMemberName && previousLocalMemberName.toLowerCase();
                             currentLocalMemberName = currentLocalMemberName && currentLocalMemberName.toLowerCase();
                         }
@@ -195,41 +135,17 @@ module.exports = {
                                     data: {
                                         syntaxA: memberSyntaxSortOrder[currentMemberSyntaxGroupIndex],
                                         syntaxB: memberSyntaxSortOrder[previousMemberSyntaxGroupIndex]
-                                    },
-                                    fix(fixer) {
-                                        return swapNodes(fixer, node, previousDeclaration);
                                     }
                                 });
                             }
                         } else {
-                            const bothDefault =
-                                usedMemberSyntax(previousDeclaration) === 'default' &&
-                                usedMemberSyntax(node) === 'default';
-                            const bothAll =
-                                usedMemberSyntax(previousDeclaration) === 'all' &&
-                                usedMemberSyntax(node) === 'all';
-                            const unorderedLocalMemberName =
-                                previousLocalMemberName &&
+                            if (previousLocalMemberName &&
                                 currentLocalMemberName &&
-                                currentLocalMemberName < previousLocalMemberName;
-                            const bothNamed =
-                                usedMemberSyntax(previousDeclaration) === 'named' &&
-                                usedMemberSyntax(node) === 'named';
-                            const unorderedSource =
-                                currentSource &&
-                                previousSource &&
-                                currentSource < previousSource;
-                            if ((
-                                (bothDefault || bothAll) && unorderedLocalMemberName
-                            ) || (
-                                bothNamed && unorderedSource
-                            )) {
+                                currentLocalMemberName < previousLocalMemberName
+                            ) {
                                 context.report({
                                     node,
-                                    message: "Imports should be sorted alphabetically.",
-                                    fix(fixer) {
-                                        return swapNodes(fixer, node, previousDeclaration);
-                                    }
+                                    message: "Imports should be sorted alphabetically."
                                 });
                             }
                         }

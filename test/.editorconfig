@@ -1,0 +1,11 @@
+[array-bracket-newline*.js]
+indent_size = 4
+
+[array-element-newline*.js]
+indent_size = 4
+
+[object-curly-newline*.js]
+indent_size = 4
+
+[order-imports*.js]
+indent_size = 4
