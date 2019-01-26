@@ -20,11 +20,13 @@ SF_ECLINT_FILES_IGNORE := \
 	-e "^rules/no-for\.js$$" \
 	-e "^rules/object-curly-newline\.js$$" \
 	-e "^rules/order-imports\.js$$" \
+	-e "^rules/sort-object-pattern\.js$$" \
 	-e "^test/.*\.original\.js$$" \
 	-e "^test/array-bracket-newline\.test\.js$$" \
 	-e "^test/array-element-newline\.test\.js$$" \
 	-e "^test/object-curly-newline\.test\.js$$" \
 	-e "^test/order-imports\.test\.js$$" \
+	-e "^test/sort-object-pattern\.test\.js$$" \
 
 JS_RULE_TEST_FILES := $(shell $(FIND_Q) test -type f -name "*.test.js" -print)
 
