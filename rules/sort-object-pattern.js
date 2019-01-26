@@ -1,5 +1,7 @@
 /* eslint-disable */
 // based on https://raw.githubusercontent.com/eslint/eslint/master/lib/rules/sort-keys.js
+// - handle only ObjectPattern
+// NOTE maybe merge https://github.com/eslint/eslint/pull/7715/files
 
 /**
  * @fileoverview Rule to require object keys to be sorted
@@ -119,19 +121,19 @@ module.exports = {
         let stack = null;
 
         return {
-            ObjectExpression() {
+            ObjectPattern() {
                 stack = {
                     upper: stack,
                     prevName: null
                 };
             },
 
-            "ObjectExpression:exit"() {
+            "ObjectPattern:exit"() {
                 stack = stack.upper;
             },
 
             Property(node) {
-                if (node.parent.type === "ObjectPattern" || node.parent.properties.some(n => n.type === "SpreadElement")) {
+                if (node.parent.type !== "ObjectPattern") {
                     return;
                 }
 

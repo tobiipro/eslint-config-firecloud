@@ -23,145 +23,146 @@ ruleTester.run("sort-keys", rule, {
     valid: [
 
         // default (asc)
-        { code: "var obj = {_:2, a:1, b:3} // default", options: [] },
-        { code: "var obj = {a:1, b:3, c:2}", options: [] },
-        { code: "var obj = {a:2, b:3, b_:1}", options: [] },
-        { code: "var obj = {C:3, b_:1, c:2}", options: [] },
-        { code: "var obj = {$:1, A:3, _:2, a:4}", options: [] },
-        { code: "var obj = {1:1, '11':2, 2:4, A:3}", options: [] },
-        { code: "var obj = {'#':1, 'Z':2, À:3, è:4}", options: [] },
+        { code: "var {_, a, b} = obj; // default", options: [], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, c} = obj;", options: [], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, b_} = obj;", options: [], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {C, b_, c} = obj;", options: [], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {$, A, _, a} = obj;", options: [], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {1: _1, '11': _2, 2: _3, A} = obj;", options: [], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {'#': _1, 'Z': _2, À: _3, è: _4} = obj;", options: [], parserOptions: { ecmaVersion: 6 } },
 
         // ignore non-simple computed properties.
-        { code: "var obj = {a:1, b:3, [a + b]: -1, c:2}", options: [], parserOptions: { ecmaVersion: 6 } },
-
-        // ignore spread properties.
-        { code: "var obj = {a:1, ...z, b:1}", options: [], parserOptions: { ecmaVersion: 2018 } },
-        { code: "var obj = {b:1, ...z, a:1}", options: [], parserOptions: { ecmaVersion: 2018 } },
-
-        // ignore destructuring patterns.
-        { code: "let {a, b} = {}", options: [], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, [a + b]: _1, c} = obj;", options: [], parserOptions: { ecmaVersion: 6 } },
 
         // nested
-        { code: "var obj = {a:1, b:{x:1, y:1}, c:1}", options: [] },
+        { code: "var {a, b:{x, y}, c} = obj;", options: [], parserOptions: { ecmaVersion: 6 } },
 
         // asc
-        { code: "var obj = {_:2, a:1, b:3} // asc", options: ["asc"] },
-        { code: "var obj = {a:1, b:3, c:2}", options: ["asc"] },
-        { code: "var obj = {a:2, b:3, b_:1}", options: ["asc"] },
-        { code: "var obj = {C:3, b_:1, c:2}", options: ["asc"] },
-        { code: "var obj = {$:1, A:3, _:2, a:4}", options: ["asc"] },
-        { code: "var obj = {1:1, '11':2, 2:4, A:3}", options: ["asc"] },
-        { code: "var obj = {'#':1, 'Z':2, À:3, è:4}", options: ["asc"] },
+        { code: "var {_, a, b} = obj; // asc", options: ["asc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, c} = obj;", options: ["asc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, b_} = obj;", options: ["asc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {C, b_, c} = obj;", options: ["asc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {$, A, _, a} = obj;", options: ["asc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {1: _1, '11': _2, 2: _3, A} = obj;", options: ["asc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {'#': _1, 'Z': _2, À: _3, è: _4} = obj;", options: ["asc"], parserOptions: { ecmaVersion: 6 } },
 
         // asc, insensitive
-        { code: "var obj = {_:2, a:1, b:3} // asc, insensitive", options: ["asc", { caseSensitive: false }] },
-        { code: "var obj = {a:1, b:3, c:2}", options: ["asc", { caseSensitive: false }] },
-        { code: "var obj = {a:2, b:3, b_:1}", options: ["asc", { caseSensitive: false }] },
-        { code: "var obj = {b_:1, C:3, c:2}", options: ["asc", { caseSensitive: false }] },
-        { code: "var obj = {b_:1, c:3, C:2}", options: ["asc", { caseSensitive: false }] },
-        { code: "var obj = {$:1, _:2, A:3, a:4}", options: ["asc", { caseSensitive: false }] },
-        { code: "var obj = {1:1, '11':2, 2:4, A:3}", options: ["asc", { caseSensitive: false }] },
-        { code: "var obj = {'#':1, 'Z':2, À:3, è:4}", options: ["asc", { caseSensitive: false }] },
+        { code: "var {_, a, b} = obj; // asc, insensitive", options: ["asc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, c} = obj;", options: ["asc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, b_} = obj;", options: ["asc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {b_, C, c} = obj;", options: ["asc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {b_, c, C} = obj;", options: ["asc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {$, _, A, a} = obj;", options: ["asc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {1: _1, '11': _2, 2: _3, A} = obj;", options: ["asc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {'#': _1, 'Z': _2, À: _3, è: _4} = obj;", options: ["asc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
 
         // asc, natural
-        { code: "var obj = {_:2, a:1, b:3} // asc, natural", options: ["asc", { natural: true }] },
-        { code: "var obj = {a:1, b:3, c:2}", options: ["asc", { natural: true }] },
-        { code: "var obj = {a:2, b:3, b_:1}", options: ["asc", { natural: true }] },
-        { code: "var obj = {C:3, b_:1, c:2}", options: ["asc", { natural: true }] },
-        { code: "var obj = {$:1, _:2, A:3, a:4}", options: ["asc", { natural: true }] },
-        { code: "var obj = {1:1, 2:4, '11':2, A:3}", options: ["asc", { natural: true }] },
-        { code: "var obj = {'#':1, 'Z':2, À:3, è:4}", options: ["asc", { natural: true }] },
+        { code: "var {_, a, b} = obj; // asc, natural", options: ["asc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, c} = obj;", options: ["asc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, b_} = obj;", options: ["asc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {C, b_, c} = obj;", options: ["asc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {$, _, A, a} = obj;", options: ["asc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {1: _1, 2: _2, '11': _3, A} = obj;", options: ["asc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {'#': _1, 'Z': _2, À: _3, è: _4} = obj;", options: ["asc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
 
         // asc, natural, insensitive
-        { code: "var obj = {_:2, a:1, b:3} // asc, natural, insensitive", options: ["asc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {a:1, b:3, c:2}", options: ["asc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {a:2, b:3, b_:1}", options: ["asc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {b_:1, C:3, c:2}", options: ["asc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {b_:1, c:3, C:2}", options: ["asc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {$:1, _:2, A:3, a:4}", options: ["asc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {1:1, 2:4, '11':2, A:3}", options: ["asc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {'#':1, 'Z':2, À:3, è:4}", options: ["asc", { natural: true, caseSensitive: false }] },
+        { code: "var {_, a, b} = obj; // asc, natural, insensitive", options: ["asc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, c} = obj;", options: ["asc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, b, b_} = obj;", options: ["asc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {b_, C, c} = obj;", options: ["asc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {b_, c, C} = obj;", options: ["asc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {$, _, A, a} = obj;", options: ["asc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {1: _1, 2: _2, '11': _3, A} = obj;", options: ["asc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {'#': _1, 'Z': _2, À: _3, è: _4} = obj;", options: ["asc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
 
         // desc
-        { code: "var obj = {b:3, a:1, _:2} // desc", options: ["desc"] },
-        { code: "var obj = {c:2, b:3, a:1}", options: ["desc"] },
-        { code: "var obj = {b_:1, b:3, a:2}", options: ["desc"] },
-        { code: "var obj = {c:2, b_:1, C:3}", options: ["desc"] },
-        { code: "var obj = {a:4, _:2, A:3, $:1}", options: ["desc"] },
-        { code: "var obj = {A:3, 2:4, '11':2, 1:1}", options: ["desc"] },
-        { code: "var obj = {è:4, À:3, 'Z':2, '#':1}", options: ["desc"] },
+        { code: "var {b, a, _} = obj; // desc", options: ["desc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {c, b, a} = obj;", options: ["desc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {b_, b, a} = obj;", options: ["desc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {c, b_, C} = obj;", options: ["desc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, _, A, $} = obj;", options: ["desc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {A, 2: _1, '11': _2, 1: _3} = obj;", options: ["desc"], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {è: _1, À: _2, 'Z': _3, '#': _4} = obj;", options: ["desc"], parserOptions: { ecmaVersion: 6 } },
 
         // desc, insensitive
-        { code: "var obj = {b:3, a:1, _:2} // desc, insensitive", options: ["desc", { caseSensitive: false }] },
-        { code: "var obj = {c:2, b:3, a:1}", options: ["desc", { caseSensitive: false }] },
-        { code: "var obj = {b_:1, b:3, a:2}", options: ["desc", { caseSensitive: false }] },
-        { code: "var obj = {c:2, C:3, b_:1}", options: ["desc", { caseSensitive: false }] },
-        { code: "var obj = {C:2, c:3, b_:1}", options: ["desc", { caseSensitive: false }] },
-        { code: "var obj = {a:4, A:3, _:2, $:1}", options: ["desc", { caseSensitive: false }] },
-        { code: "var obj = {A:3, 2:4, '11':2, 1:1}", options: ["desc", { caseSensitive: false }] },
-        { code: "var obj = {è:4, À:3, 'Z':2, '#':1}", options: ["desc", { caseSensitive: false }] },
+        { code: "var {b, a, _} = obj; // desc, insensitive", options: ["desc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {c, b, a} = obj;", options: ["desc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {b_, b, a} = obj;", options: ["desc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {c, C, b_} = obj;", options: ["desc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {C, c, b_} = obj;", options: ["desc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, A, _, $} = obj;", options: ["desc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {A, 2: _1, '11': _2, 1: _3} = obj;", options: ["desc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {è: _1, À: _2, 'Z': _3, '#': _4} = obj;", options: ["desc", { caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
 
         // desc, natural
-        { code: "var obj = {b:3, a:1, _:2} // desc, natural", options: ["desc", { natural: true }] },
-        { code: "var obj = {c:2, b:3, a:1}", options: ["desc", { natural: true }] },
-        { code: "var obj = {b_:1, b:3, a:2}", options: ["desc", { natural: true }] },
-        { code: "var obj = {c:2, b_:1, C:3}", options: ["desc", { natural: true }] },
-        { code: "var obj = {a:4, A:3, _:2, $:1}", options: ["desc", { natural: true }] },
-        { code: "var obj = {A:3, '11':2, 2:4, 1:1}", options: ["desc", { natural: true }] },
-        { code: "var obj = {è:4, À:3, 'Z':2, '#':1}", options: ["desc", { natural: true }] },
+        { code: "var {b, a, _} = obj; // desc, natural", options: ["desc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {c, b, a} = obj;", options: ["desc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {b_, b, a} = obj;", options: ["desc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {c, b_, C} = obj;", options: ["desc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, A, _, $} = obj;", options: ["desc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {A, '11': _1, 2: _2, 1: _3} = obj;", options: ["desc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {è: _1, À: _2, 'Z': _3, '#': _4} = obj;", options: ["desc", { natural: true }], parserOptions: { ecmaVersion: 6 } },
 
         // desc, natural, insensitive
-        { code: "var obj = {b:3, a:1, _:2} // desc, natural, insensitive", options: ["desc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {c:2, b:3, a:1}", options: ["desc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {b_:1, b:3, a:2}", options: ["desc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {c:2, C:3, b_:1}", options: ["desc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {C:2, c:3, b_:1}", options: ["desc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {a:4, A:3, _:2, $:1}", options: ["desc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {A:3, '11':2, 2:4, 1:1}", options: ["desc", { natural: true, caseSensitive: false }] },
-        { code: "var obj = {è:4, À:3, 'Z':2, '#':1}", options: ["desc", { natural: true, caseSensitive: false }] }
+        { code: "var {b, a, _} = obj; // desc, natural, insensitive", options: ["desc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {c, b, a} = obj;", options: ["desc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {b_, b, a} = obj;", options: ["desc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {c, C, b_} = obj;", options: ["desc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {C, c, b_} = obj;", options: ["desc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {a, A, _, $} = obj;", options: ["desc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {A, '11': _1, 2: _2, 1: _3} = obj;", options: ["desc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } },
+        { code: "var {è: _1, À: _2, 'Z': _3, '#': _4} = obj;", options: ["desc", { natural: true, caseSensitive: false }], parserOptions: { ecmaVersion: 6 } }
     ],
     invalid: [
 
         // default (asc)
         {
-            code: "var obj = {a:1, _:2, b:3} // default",
+            code: "var {a, _, b} = obj; // default",
+            parserOptions: { ecmaVersion: 6 },
             errors: ["Expected object keys to be in ascending order. '_' should be before 'a'."]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
+            parserOptions: { ecmaVersion: 6 },
             errors: ["Expected object keys to be in ascending order. 'b' should be before 'c'."]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
+            parserOptions: { ecmaVersion: 6 },
             errors: ["Expected object keys to be in ascending order. 'a' should be before 'b_'."]
         },
         {
-            code: "var obj = {b_:1, c:2, C:3}",
+            code: "var {b_, c, C} = obj;",
+            parserOptions: { ecmaVersion: 6 },
             errors: ["Expected object keys to be in ascending order. 'C' should be before 'c'."]
         },
         {
-            code: "var obj = {$:1, _:2, A:3, a:4}",
+            code: "var {$, _, A, a} = obj;",
+            parserOptions: { ecmaVersion: 6 },
             errors: ["Expected object keys to be in ascending order. 'A' should be before '_'."]
         },
         {
-            code: "var obj = {1:1, 2:4, A:3, '11':2}",
+            code: "var {1: _1, 2: _2, A, '11': _3} = obj;",
+            parserOptions: { ecmaVersion: 6 },
             errors: ["Expected object keys to be in ascending order. '11' should be before 'A'."]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
+            parserOptions: { ecmaVersion: 6 },
             errors: ["Expected object keys to be in ascending order. 'Z' should be before 'À'."]
         },
 
         // not ignore simple computed properties.
         {
-            code: "var obj = {a:1, b:3, [a]: -1, c:2}",
+            code: "var {a, b, [a]: _1, c} = obj;",
             parserOptions: { ecmaVersion: 6 },
             errors: ["Expected object keys to be in ascending order. 'a' should be before 'b'."]
         },
 
         // nested
         {
-            code: "var obj = {a:1, c:{y:1, x:1}, b:1}",
+            code: "var {a, c:{y, x}, b} = obj;",
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in ascending order. 'x' should be before 'y'.",
                 "Expected object keys to be in ascending order. 'b' should be before 'c'."
@@ -170,50 +171,57 @@ ruleTester.run("sort-keys", rule, {
 
         // asc
         {
-            code: "var obj = {a:1, _:2, b:3} // asc",
+            code: "var {a, _, b} = obj; // asc",
             options: ["asc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in ascending order. '_' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
             options: ["asc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in ascending order. 'b' should be before 'c'."
             ]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
             options: ["asc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in ascending order. 'a' should be before 'b_'."
             ]
         },
         {
-            code: "var obj = {b_:1, c:2, C:3}",
+            code: "var {b_, c, C} = obj;",
             options: ["asc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in ascending order. 'C' should be before 'c'."
             ]
         },
         {
-            code: "var obj = {$:1, _:2, A:3, a:4}",
+            code: "var {$, _, A, a} = obj;",
             options: ["asc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in ascending order. 'A' should be before '_'."
             ]
         },
         {
-            code: "var obj = {1:1, 2:4, A:3, '11':2}",
+            code: "var {1: _1, 2: _2, A, '11': _3} = obj;",
             options: ["asc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in ascending order. '11' should be before 'A'."
             ]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
             options: ["asc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in ascending order. 'Z' should be before 'À'."
             ]
@@ -221,43 +229,49 @@ ruleTester.run("sort-keys", rule, {
 
         // asc, insensitive
         {
-            code: "var obj = {a:1, _:2, b:3} // asc, insensitive",
+            code: "var {a, _, b} = obj; // asc, insensitive",
             options: ["asc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive ascending order. '_' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
             options: ["asc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive ascending order. 'b' should be before 'c'."
             ]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
             options: ["asc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive ascending order. 'a' should be before 'b_'."
             ]
         },
         {
-            code: "var obj = {$:1, A:3, _:2, a:4}",
+            code: "var {$, A, _, a} = obj;",
             options: ["asc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive ascending order. '_' should be before 'A'."
             ]
         },
         {
-            code: "var obj = {1:1, 2:4, A:3, '11':2}",
+            code: "var {1: _1, 2: _2, A: _3, '11': _4} = obj;",
             options: ["asc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive ascending order. '11' should be before 'A'."
             ]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
             options: ["asc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive ascending order. 'Z' should be before 'À'."
             ]
@@ -265,50 +279,57 @@ ruleTester.run("sort-keys", rule, {
 
         // asc, natural
         {
-            code: "var obj = {a:1, _:2, b:3} // asc, natural",
+            code: "var {a, _, b} = obj; // asc, natural",
             options: ["asc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural ascending order. '_' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
             options: ["asc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural ascending order. 'b' should be before 'c'."
             ]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
             options: ["asc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural ascending order. 'a' should be before 'b_'."
             ]
         },
         {
-            code: "var obj = {b_:1, c:2, C:3}",
+            code: "var {b_, c, C} = obj;",
             options: ["asc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural ascending order. 'C' should be before 'c'."
             ]
         },
         {
-            code: "var obj = {$:1, A:3, _:2, a:4}",
+            code: "var {$, A, _, a} = obj;",
             options: ["asc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural ascending order. '_' should be before 'A'."
             ]
         },
         {
-            code: "var obj = {1:1, 2:4, A:3, '11':2}",
+            code: "var {1: _1, 2: _2, A, '11': _3} = obj;",
             options: ["asc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural ascending order. '11' should be before 'A'."
             ]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
             options: ["asc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural ascending order. 'Z' should be before 'À'."
             ]
@@ -316,43 +337,49 @@ ruleTester.run("sort-keys", rule, {
 
         // asc, natural, insensitive
         {
-            code: "var obj = {a:1, _:2, b:3} // asc, natural, insensitive",
+            code: "var {a, _, b} = obj; // asc, natural, insensitive",
             options: ["asc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive ascending order. '_' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
             options: ["asc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive ascending order. 'b' should be before 'c'."
             ]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
             options: ["asc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive ascending order. 'a' should be before 'b_'."
             ]
         },
         {
-            code: "var obj = {$:1, A:3, _:2, a:4}",
+            code: "var {$, A, _, a} = obj;",
             options: ["asc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive ascending order. '_' should be before 'A'."
             ]
         },
         {
-            code: "var obj = {1:1, '11':2, 2:4, A:3}",
+            code: "var {1: _1, '11': _2, 2: _3, A} = obj;",
             options: ["asc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive ascending order. '2' should be before '11'."
             ]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
             options: ["asc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive ascending order. 'Z' should be before 'À'."
             ]
@@ -360,52 +387,59 @@ ruleTester.run("sort-keys", rule, {
 
         // desc
         {
-            code: "var obj = {a:1, _:2, b:3} // desc",
+            code: "var {a, _, b} = obj; // desc",
             options: ["desc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in descending order. 'b' should be before '_'."
             ]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
             options: ["desc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in descending order. 'c' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
             options: ["desc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in descending order. 'b' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {b_:1, c:2, C:3}",
+            code: "var {b_, c, C} = obj;",
             options: ["desc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in descending order. 'c' should be before 'b_'."
             ]
         },
         {
-            code: "var obj = {$:1, _:2, A:3, a:4}",
+            code: "var {$, _, A, a} = obj;",
             options: ["desc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in descending order. '_' should be before '$'.",
                 "Expected object keys to be in descending order. 'a' should be before 'A'."
             ]
         },
         {
-            code: "var obj = {1:1, 2:4, A:3, '11':2}",
+            code: "var {1: _1, 2: _2, A, '11': _3} = obj;",
             options: ["desc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in descending order. '2' should be before '1'.",
                 "Expected object keys to be in descending order. 'A' should be before '2'."
             ]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
             options: ["desc"],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in descending order. 'À' should be before '#'.",
                 "Expected object keys to be in descending order. 'è' should be before 'Z'."
@@ -414,52 +448,59 @@ ruleTester.run("sort-keys", rule, {
 
         // desc, insensitive
         {
-            code: "var obj = {a:1, _:2, b:3} // desc, insensitive",
+            code: "var {a, _, b} = obj; // desc, insensitive",
             options: ["desc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive descending order. 'b' should be before '_'."
             ]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
             options: ["desc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive descending order. 'c' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
             options: ["desc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive descending order. 'b' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {b_:1, c:2, C:3}",
+            code: "var {b_, c, C} = obj;",
             options: ["desc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive descending order. 'c' should be before 'b_'."
             ]
         },
         {
-            code: "var obj = {$:1, _:2, A:3, a:4}",
+            code: "var {$, _, A, a} = obj;",
             options: ["desc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive descending order. '_' should be before '$'.",
                 "Expected object keys to be in insensitive descending order. 'A' should be before '_'."
             ]
         },
         {
-            code: "var obj = {1:1, 2:4, A:3, '11':2}",
+            code: "var {1: _1, 2: _2, A, '11': _3} = obj;",
             options: ["desc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive descending order. '2' should be before '1'.",
                 "Expected object keys to be in insensitive descending order. 'A' should be before '2'."
             ]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
             options: ["desc", { caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in insensitive descending order. 'À' should be before '#'.",
                 "Expected object keys to be in insensitive descending order. 'è' should be before 'Z'."
@@ -468,36 +509,41 @@ ruleTester.run("sort-keys", rule, {
 
         // desc, natural
         {
-            code: "var obj = {a:1, _:2, b:3} // desc, natural",
+            code: "var {a, _, b} = obj; // desc, natural",
             options: ["desc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural descending order. 'b' should be before '_'."
             ]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
             options: ["desc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural descending order. 'c' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
             options: ["desc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural descending order. 'b' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {b_:1, c:2, C:3}",
+            code: "var {b_, c, C} = obj;",
             options: ["desc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural descending order. 'c' should be before 'b_'."
             ]
         },
         {
-            code: "var obj = {$:1, _:2, A:3, a:4}",
+            code: "var {$, _, A, a} = obj;",
             options: ["desc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural descending order. '_' should be before '$'.",
                 "Expected object keys to be in natural descending order. 'A' should be before '_'.",
@@ -505,16 +551,18 @@ ruleTester.run("sort-keys", rule, {
             ]
         },
         {
-            code: "var obj = {1:1, 2:4, A:3, '11':2}",
+            code: "var {1: _1, 2: _2, A, '11': _3} = obj;",
             options: ["desc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural descending order. '2' should be before '1'.",
                 "Expected object keys to be in natural descending order. 'A' should be before '2'."
             ]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
             options: ["desc", { natural: true }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural descending order. 'À' should be before '#'.",
                 "Expected object keys to be in natural descending order. 'è' should be before 'Z'."
@@ -523,44 +571,50 @@ ruleTester.run("sort-keys", rule, {
 
         // desc, natural, insensitive
         {
-            code: "var obj = {a:1, _:2, b:3} // desc, natural, insensitive",
+            code: "var {a, _, b} = obj; // desc, natural, insensitive",
             options: ["desc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive descending order. 'b' should be before '_'."
             ]
         },
         {
-            code: "var obj = {a:1, c:2, b:3}",
+            code: "var {a, c, b} = obj;",
             options: ["desc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive descending order. 'c' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {b_:1, a:2, b:3}",
+            code: "var {b_, a, b} = obj;",
             options: ["desc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive descending order. 'b' should be before 'a'."
             ]
         },
         {
-            code: "var obj = {b_:1, c:2, C:3}",
+            code: "var {b_, c, C} = obj;",
             options: ["desc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive descending order. 'c' should be before 'b_'."
             ]
         },
         {
-            code: "var obj = {$:1, _:2, A:3, a:4}",
+            code: "var {$, _, A, a} = obj;",
             options: ["desc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive descending order. '_' should be before '$'.",
                 "Expected object keys to be in natural insensitive descending order. 'A' should be before '_'."
             ]
         },
         {
-            code: "var obj = {1:1, 2:4, '11':2, A:3}",
+            code: "var {1: _1, 2: _2, '11': _3, A} = obj;",
             options: ["desc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive descending order. '2' should be before '1'.",
                 "Expected object keys to be in natural insensitive descending order. '11' should be before '2'.",
@@ -568,8 +622,9 @@ ruleTester.run("sort-keys", rule, {
             ]
         },
         {
-            code: "var obj = {'#':1, À:3, 'Z':2, è:4}",
+            code: "var {'#': _1, À: _2, 'Z': _3, è: _4} = obj;",
             options: ["desc", { natural: true, caseSensitive: false }],
+            parserOptions: { ecmaVersion: 6 },
             errors: [
                 "Expected object keys to be in natural insensitive descending order. 'À' should be before '#'.",
                 "Expected object keys to be in natural insensitive descending order. 'è' should be before 'Z'."
