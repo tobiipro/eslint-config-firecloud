@@ -8,5 +8,6 @@ module.exports.rules = {
   'object-curly-newline': require('./object-curly-newline'),
   'order-imports': require('./order-imports'),
   'padding-line-import-multiple': require('./padding-line-import-multiple'),
+  'sort-object-pattern': require('./sort-object-pattern'),
   'underscore-prefix-non-exported': require('./underscore-prefix-non-exported')
 };
