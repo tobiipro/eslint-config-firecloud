@@ -35,7 +35,7 @@ module.exports = {
     'lodash/prefer-filter': 'error',
     'lodash/prefer-flat-map': 'off',
     'lodash/prefer-invoke-map': 'off',
-    'lodash/prefer-map': 'error',
+    'lodash/prefer-map': 'off',
     'lodash/prefer-reject': 'off',
     'lodash/prefer-thru': 'off',
     'lodash/prefer-wrapper-method': 'error',
