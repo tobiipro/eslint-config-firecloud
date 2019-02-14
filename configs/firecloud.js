@@ -48,7 +48,6 @@ module.exports = {
 
     'firecloud/order-imports': 'error',
     'firecloud/padding-line-import-multiple': 'error',
-    'firecloud/sort-object-pattern': 'error',
     'firecloud/underscore-prefix-non-exported': 'error'
   }
 };
