@@ -266,9 +266,7 @@ module.exports = {
     'no-with': 'error',
     'object-curly-newline': 'off',
     'object-curly-spacing': 'error',
-    'object-property-newline': ['error', {
-      allowAllPropertiesOnSameLine: true
-    }],
+    'object-property-newline': 'off',
     'object-shorthand': ['error', 'properties'],
     'one-var-declaration-per-line': 'error',
     'one-var': ['error', 'never'],
