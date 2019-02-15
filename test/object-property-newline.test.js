@@ -67,7 +67,15 @@ ruleTester.run("object-property-newline", rule, {
         { code: "var obj = {\nk1: 'val1', k2: {e1: 'foo', e2: 'bar'}, k3: 'val2'\n};", options: [{ allowAllPropertiesOnSameLine: true }] },
 
         // allowMultiplePropertiesPerLine: true (deprecated)
-        { code: "var obj = { k1: 'val1', k2: 'val2', k3: 'val3' };", options: [{ allowMultiplePropertiesPerLine: true }] }
+        { code: "var obj = { k1: 'val1', k2: 'val2', k3: 'val3' };", options: [{ allowMultiplePropertiesPerLine: true }] },
+
+        // ObjectPattern
+        { code: "function foo({a, b}, c) {};", parserOptions: { ecmaVersion: 2018 }, options: [{ allowAllPropertiesOnSameLine: true }] },
+        { code: "function foo({a, b} = {}, c) {};", parserOptions: { ecmaVersion: 2018 }, options: [{ allowAllPropertiesOnSameLine: true }] },
+
+        // allowOnlyParamOnSameLine: true
+        { code: "function foo({a, b}) {};", parserOptions: { ecmaVersion: 2018 }, options: [{ allowOnlyParamOnSameLine: true }] },
+        { code: "function foo({a, b} = {}) {};", parserOptions: { ecmaVersion: 2018 }, options: [{ allowOnlyParamOnSameLine: true }] }
     ],
 
     invalid: [
@@ -571,6 +579,63 @@ ruleTester.run("object-property-newline", rule, {
                     type: "ObjectExpression",
                     line: 3,
                     column: 13
+                }
+            ]
+        },
+
+        // ObjectPattern
+        {
+            code: "function foo({a, b}) {};",
+            output: "function foo({a,\nb}) {};",
+            parserOptions: { ecmaVersion: 2018 },
+            errors: [
+                {
+                    message: "Object properties must go on a new line.",
+                    type: "ObjectPattern",
+                    line: 1,
+                    column: 18
+                }
+            ]
+        },
+        {
+            code: "function foo({a, b} = {}) {};",
+            output: "function foo({a,\nb} = {}) {};",
+            parserOptions: { ecmaVersion: 2018 },
+            errors: [
+                {
+                    message: "Object properties must go on a new line.",
+                    type: "ObjectPattern",
+                    line: 1,
+                    column: 18
+                }
+            ]
+        },
+        // allowOnlyParamOnSameLine: true
+        {
+            code: "function foo({a, b}, c) {};",
+            output: "function foo({a,\nb}, c) {};",
+            parserOptions: { ecmaVersion: 2018 },
+            options: [{ allowOnlyParamOnSameLine: true }],
+            errors: [
+                {
+                    message: "Object properties must go on a new line.",
+                    type: "ObjectPattern",
+                    line: 1,
+                    column: 18
+                }
+            ]
+        },
+        {
+            code: "function foo({a, b} = {}, c) {};",
+            output: "function foo({a,\nb} = {}, c) {};",
+            parserOptions: { ecmaVersion: 2018 },
+            options: [{ allowOnlyParamOnSameLine: true }],
+            errors: [
+                {
+                    message: "Object properties must go on a new line.",
+                    type: "ObjectPattern",
+                    line: 1,
+                    column: 18
                 }
             ]
         }
