@@ -239,22 +239,24 @@ module.exports = {
                 )
             );
 
+            const firstElementType = elements[0] && elements[0].type;
+            const lastElementType = elements[elements.length - 1] && elements[elements.length - 1].type;
             const needsLinebreaks = needsLinebreaksOriginal && (
                 elements.length === 0 ||
                 (
                     // first and last item are not objects
                     elements.length > 0 &&
                     !(
-                        ['ObjectExpression', 'ObjectPattern'].includes(elements[0].type) ||
-                        ['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)
+                        ['ObjectExpression', 'ObjectPattern'].includes(firstElementType) ||
+                        ['ObjectExpression', 'ObjectPattern'].includes(lastElementType)
                     )
                 ) ||
                 (
                     // first or last item are objects but allowObjectCurly is turned off
                     elements.length > 0 &&
                     (
-                        ['ObjectExpression', 'ObjectPattern'].includes(elements[0].type) ||
-                        ['ObjectExpression', 'ObjectPattern'].includes(elements[elements.length - 1].type)
+                        ['ObjectExpression', 'ObjectPattern'].includes(firstElementType) ||
+                        ['ObjectExpression', 'ObjectPattern'].includes(lastElementType)
                     ) &&
                     !options.allowObjectCurly
                 )
