@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * @fileoverview Tests for object-curly-newline rule.
  * @author Toru Nagashima
