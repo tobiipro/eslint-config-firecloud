@@ -15,6 +15,7 @@
 
 const astUtils = require("eslint/lib/util/ast-utils");
 const lodash = require("lodash");
+const isNodeOnlyParamObject = require('./util').isNodeOnlyParamObject;
 
 //------------------------------------------------------------------------------
 // Helpers
@@ -181,24 +182,7 @@ module.exports = {
          * @returns {void}
          */
         function check(node) {
-            const isArgument =
-                node.type === "ObjectExpression" &&
-                node.parent &&
-                (
-                    node.parent.type === "CallExpression" ||
-                    node.parent.type === "NewExpression"
-                );
-            const isParam =
-                node.type === "ObjectPattern" &&
-                node.parent &&
-                (
-                    node.parent.type === "ArrowFunctionExpression" ||
-                    node.parent.type === "FunctionDeclaration" ||
-                    node.parent.type === "FunctionExpression"
-                );
-            const isOnlyParam =
-                (isArgument && node.parent.arguments.length === 1) ||
-                (isParam && node.parent.params.length === 1);
+            const isOnlyParam = isNodeOnlyParamObject(node);
             const options = isOnlyParam ? normalizedOptions.OnlyParam : normalizedOptions[node.type];
 
             if (

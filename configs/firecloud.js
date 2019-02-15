@@ -45,7 +45,10 @@ module.exports = {
         consistent: true
       }
     }],
-
+    'firecloud/object-property-newline': ['error', {
+      allowAllPropertiesOnSameLine: false,
+      allowOnlyParamOnSameLine: true
+    }],
     'firecloud/order-imports': 'error',
     'firecloud/padding-line-import-multiple': 'error',
     'firecloud/underscore-prefix-non-exported': 'error'

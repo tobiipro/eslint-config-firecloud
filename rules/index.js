@@ -6,6 +6,7 @@ module.exports.rules = {
   'no-underscore-prefix-exported': require('./no-underscore-prefix-exported'),
   'no-for': require('./no-for'),
   'object-curly-newline': require('./object-curly-newline'),
+  'object-property-newline': require('./object-property-newline'),
   'order-imports': require('./order-imports'),
   'padding-line-import-multiple': require('./padding-line-import-multiple'),
   'underscore-prefix-non-exported': require('./underscore-prefix-non-exported')
