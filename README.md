@@ -30,6 +30,31 @@ Common bundles are provided as following:
 - Node.js test with Mocha&Chai: `firecloud/test-mocha-chai.js`
 
 
+## Guiding Principles
+
+"I (don't) like/want ..." is no argument in this codebase.
+Instead, we follow a few guiding principles
+that have concrete consequences on daily work.
+
+1. Keep It Short
+  * lines
+  * functions
+  * modules
+2. Reduce merge conflicts
+  * do less on the same line
+  * break array/object expressions/patterns
+  * break import specifiers
+  * break conditions
+3. Reduce cognitive load via explicit code
+  * even if code becomes more verbose
+4. Reduce dependency on specific ecma versions
+  * use a transpiler like babel (for syntax)
+  * use a utility library like lodash-firecloud (for functionality)
+5. Increase consistency
+  * Don't use arrow functions when you don't need them
+  * Don't use template literals when you don't need them
+
+
 ## License
 
 [UNLICENSE](UNLICENSE)
