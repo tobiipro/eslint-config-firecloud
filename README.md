@@ -40,19 +40,19 @@ that have concrete consequences on daily work.
   * lines
   * functions
   * modules
-2. Reduce merge conflicts
+2. Reduce Merge Conflicts
   * do less on the same line
   * break array/object expressions/patterns
   * break import specifiers
   * break conditions
-3. Reduce cognitive load via explicit code
+3. Reduce Cognitive Load (via explicit code)
   * even if code becomes more verbose
 4. Reduce dependency on specific ecma versions
   * use a transpiler like babel (for syntax)
   * use a utility library like lodash-firecloud (for functionality)
-5. Increase consistency
-  * Don't use arrow functions when you don't need them
-  * Don't use template literals when you don't need them
+5. Increase Consistency
+  * don't use arrow functions when you don't need them
+  * don't use template literals when you don't need them
 
 
 ## License
