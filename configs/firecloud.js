@@ -21,7 +21,8 @@ module.exports = {
     'firecloud/object-curly-newline': ['error', {
       OnlyParam: {
         multiline: true,
-        minProperties: 0, // aka disable
+        // 0 aka disable
+        minProperties: 0,
         consistent: true
       },
       ObjectExpression: {

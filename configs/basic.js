@@ -84,7 +84,7 @@ module.exports = {
     'jsx-quotes': 'error',
     'key-spacing': 'error',
     'keyword-spacing': 'error',
-    'line-comment-position': 'off',
+    'line-comment-position': ['error', 'above'],
     'linebreak-style': 'error',
     'lines-around-comment': 'error',
     'lines-between-class-members': ['error', 'always'],
@@ -126,7 +126,8 @@ module.exports = {
     }],
     'no-continue': 'off',
     'no-control-regex': 'error',
-    'no-debugger': 'off', // FIXME set to warn after https://github.com/eslint/eslint/issues/7549
+    // FIXME set no-debugger warn after https://github.com/eslint/eslint/issues/7549
+    'no-debugger': 'off',
     'no-delete-var': 'error',
     'no-div-regex': 'off',
     'no-dupe-args': 'error',
