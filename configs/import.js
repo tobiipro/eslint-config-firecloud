@@ -14,9 +14,8 @@ module.exports = {
     'import/dynamic-import-chunkname': 'off',
     'import/export': 'error',
     'import/exports-last': 'off',
-    'import/extensions': ['error', {
-      js: 'never',
-      json: 'always'
+    'import/extensions': ['error', 'always', {
+      js: 'never'
     }],
     'import/first': 'error',
     'import/group-exports': 'off',
