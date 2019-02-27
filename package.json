@@ -6,7 +6,9 @@
   "license": "Unlicense",
   "files": [
     "/*.js",
+    "/BUILD",
     "/UNLICENSE",
+    "/VERSION",
     "/configs/",
     "/npm-install-peer-dependencies",
     "/rules/"
