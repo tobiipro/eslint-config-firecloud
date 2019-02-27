@@ -36,21 +36,21 @@ Common bundles are provided as following:
 Instead, we follow a few guiding principles
 that have concrete consequences on daily work.
 
-1. Keep It Short
+### 1. Keep It Short
   * lines
   * functions
   * modules
-2. Reduce Merge Conflicts
+### 2. Reduce Merge Conflicts
   * do less on the same line
   * break array/object expressions/patterns
   * break import specifiers
   * break conditions
-3. Reduce Cognitive Load (via explicit code)
+### 3. Reduce Cognitive Load (via explicit code)
   * even if code becomes more verbose
-4. Reduce dependency on specific ecma versions
+### 4. Reduce Dependency (on specific ecma versions)
   * use a transpiler like babel (for syntax)
   * use a utility library like lodash-firecloud (for functionality)
-5. Increase Consistency
+### 5. Increase Consistency
   * don't use arrow functions when you don't need them
   * don't use template literals when you don't need them
 
