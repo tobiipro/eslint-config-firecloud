@@ -247,6 +247,7 @@ module.exports = {
       variables: false
     }],
     'no-useless-call': 'error',
+    'no-useless-catch': 'error',
     'no-useless-computed-key': 'error',
     'no-useless-concat': 'error',
     'no-useless-constructor': 'error',
@@ -290,6 +291,7 @@ module.exports = {
     }, {
       enforceForRenamedProperties: false
     }],
+    'prefer-named-capture-group': 'off',
     'prefer-numeric-literals': 'error',
     'prefer-object-spread': 'error',
     'prefer-promise-reject-errors': 'error',
