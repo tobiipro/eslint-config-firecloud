@@ -8,6 +8,7 @@ let _ruleTester = new eslint.RuleTester({
     sourceType: 'module'
   }
 });
+
 let _errorMessage = 'Expected an empty line before multiline import statement.';
 
 _ruleTester.run('padding-line-import-multiple', rule, {

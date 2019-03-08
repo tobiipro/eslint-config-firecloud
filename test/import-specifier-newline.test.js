@@ -8,8 +8,10 @@ let _ruleTester = new eslint.RuleTester({
     sourceType: 'module'
   }
 });
+
 let _errorMessageallowAllSpecifiersOnSameLine =
   'Import specifiers must go on a new line if they aren\'t all on the same line.';
+
 let _errorMessage = 'Import specifiers must go on a new line.';
 
 _ruleTester.run('import-specifier-newline', rule, {
