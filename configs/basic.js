@@ -284,10 +284,6 @@ module.exports = {
       next: 'export'
     }, {
       blankLine: 'always',
-      prev: '*',
-      next: 'export'
-    }, {
-      blankLine: 'always',
       prev: 'multiline-block-like',
       next: '*'
     }, {
