@@ -282,6 +282,22 @@ module.exports = {
       blankLine: 'always',
       prev: '*',
       next: 'export'
+    }, {
+      blankLine: 'always',
+      prev: '*',
+      next: 'export'
+    }, {
+      blankLine: 'always',
+      prev: 'multiline-block-like',
+      next: '*'
+    }, {
+      blankLine: 'always',
+      prev: 'multiline-expression',
+      next: '*'
+    }, {
+      blankLine: 'always',
+      prev: 'multiline-let',
+      next: '*'
     }],
     'prefer-arrow-callback': 'off',
     'prefer-const': 'off',
