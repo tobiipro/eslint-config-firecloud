@@ -288,11 +288,19 @@ module.exports = {
       next: '*'
     }, {
       blankLine: 'always',
+      prev: 'multiline-const',
+      next: '*'
+    }, {
+      blankLine: 'always',
       prev: 'multiline-expression',
       next: '*'
     }, {
       blankLine: 'always',
       prev: 'multiline-let',
+      next: '*'
+    }, {
+      blankLine: 'always',
+      prev: 'multiline-var',
       next: '*'
     }],
     'prefer-arrow-callback': 'off',
