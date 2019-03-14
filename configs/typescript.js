@@ -7,7 +7,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended'
   ],
 
-  rules: [
+  rules: {
     // should be in sync with basic.js
     '@typescript-eslint/camelcase': ['warn', {
       properties: 'never'
@@ -28,5 +28,5 @@ module.exports = {
       vars: 'all',
       varsIgnorePattern: '^_'
     }]
-  ]
+  }
 };
