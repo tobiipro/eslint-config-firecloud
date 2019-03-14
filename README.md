@@ -33,7 +33,7 @@ module.exports = {
 ```
 
 and running `npm install --dev eslint-plugin-jest@^X.X.X`
-(take the `X.X.X` version from `node_modules/eslint-config-firecloud/configs/jest.js`)
+(take the `X.X.X` version from the Bundles section below)
 
 
 ## Bundles
@@ -45,10 +45,10 @@ Common bundles are provided as following:
 
 along with these addons that require you to install the plugin manually (semver can be found in `configs` folder):
 
-- `@typescript/eslint-plugin`: `firecloud/typescript.js`
-- `eslint-plugin-jest`: `firecloud/jest.js`
-- `eslint-plugin-mocha` (with Chai): `firecloud/mocha.js`
-- `eslint-plugin-vue`: `firecloud/vue.js`
+- `@typescript/eslint-plugin@^1.4.2`: `firecloud/typescript.js`
+- `eslint-plugin-jest@^22.1.0`: `firecloud/jest.js`
+- `eslint-plugin-mocha@^5.2.0` (with Chai): `firecloud/mocha.js`
+- `eslint-plugin-vue@^5.2.2`: `firecloud/vue.js`
 
 
 ## Guiding Principles

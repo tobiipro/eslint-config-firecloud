@@ -1,5 +1,6 @@
-// required dev dependencies
-// "@typescript-eslint/eslint-plugin": "^1.4.2",
+// note that this is an addon
+// please update README.md with required version of the eslint plugin
+// when introducing breaking changes
 
 module.exports = {
   extends: [

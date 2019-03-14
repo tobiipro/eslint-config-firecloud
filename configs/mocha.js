@@ -1,5 +1,6 @@
-// required dev dependency
-// "eslint-plugin-mocha": "^5.2.0",
+// note that this is an addon
+// please update README.md with required version of the eslint plugin
+// when introducing breaking changes
 
 module.exports = {
   env: {
