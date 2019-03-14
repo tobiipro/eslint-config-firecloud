@@ -26,8 +26,11 @@ Common bundles are provided as following:
 - Node.js: `firecloud/node.js`
 - Browser: `firecloud/browser.js`
 
-- Node.js test with Jest: `firecloud/test-jest.js`
-- Node.js test with Mocha&Chai: `firecloud/test-mocha-chai.js`
+along with these addons:
+
+- Test with Jest: `firecloud/test-jest.js`
+- Test with Mocha&Chai: `firecloud/test-mocha-chai.js`
+- TypeScript: `firecloud/typescript.js`
 
 
 ## Guiding Principles
