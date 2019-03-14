@@ -1,3 +1,6 @@
+// required dev dependencies
+// "eslint-plugin-jest": "^22.1.0",
+
 module.exports = {
   env: {
     jest: true
