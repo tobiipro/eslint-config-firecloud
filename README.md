@@ -18,6 +18,23 @@ module.exports = {
 Optionally, you can run `node_modules/eslint-config-firecloud/npm-install-peer-dependencies`
 in order to install the required peer dependencies.
 
+If you want to use an addon, it's as easy as doing this in `.eslintrc.js`:
+
+```js
+module.exports = {
+  extends: [
+    'firecloud/node.js',
+    'firecloud/jest.js'
+  ],
+  rules: {
+    'override-some-rule': error
+  }
+}
+```
+
+and running `npm install --dev eslint-plugin-jest@^X.X.X`
+(take the `X.X.X` version from `node_modules/eslint-config-firecloud/configs/jest.js`)
+
 
 ## Bundles
 
@@ -26,8 +43,11 @@ Common bundles are provided as following:
 - Node.js: `firecloud/node.js`
 - Browser: `firecloud/browser.js`
 
-- Node.js test with Jest: `firecloud/test-jest.js`
-- Node.js test with Mocha&Chai: `firecloud/test-mocha-chai.js`
+along with these addons that require you to install the plugin manually (semver can be found in `configs` folder):
+
+- `eslint-plugin-jest`: `firecloud/jest.js`
+- `eslint-plugin-mocha` (with Chai): `firecloud/mocha.js`
+- `@typescript/eslint-plugin`: `firecloud/typescript.js`
 
 
 ## Guiding Principles

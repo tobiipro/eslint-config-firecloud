@@ -1,3 +1,6 @@
+// required dev dependency
+// "eslint-plugin-mocha": "^5.2.0",
+
 module.exports = {
   env: {
     mocha: true
