@@ -46,10 +46,11 @@ Common bundles are provided as following:
 along with these addons that require you to install the plugin manually (semver can be found in `configs` folder):
 
 - `@typescript-eslint/eslint-plugin@^1.4.2`: `firecloud/typescript.js`
+- `eslint-plugin-jasmine@^2.10.1`: `firecloud/jasmine.js`
 - `eslint-plugin-jest@^22.1.0`: `firecloud/jest.js`
 - `eslint-plugin-mocha@^5.2.0` (with Chai): `firecloud/mocha.js`
+- `eslint-plugin-protractor@^1.41.1`: `firecloud/protractor.js`
 - `eslint-plugin-vue@^5.2.2`: `firecloud/vue.js`
-
 
 ## Guiding Principles
 
