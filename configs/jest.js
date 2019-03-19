@@ -3,12 +3,8 @@
 // when introducing breaking changes
 
 module.exports = {
-  env: {
-    jest: true
-  },
-
-  plugins: [
-    'jest'
+  extends: [
+    'plugin:jest/recommended'
   ],
 
   rules: {
@@ -18,15 +14,10 @@ module.exports = {
     'jest/expect-expect': 'error',
     'jest/lowercase-name': 'error',
     'jest/no-alias-methods': 'error',
-    'jest/no-disabled-tests': 'warn',
-    'jest/no-focused-tests': 'error',
     'jest/no-hooks': 'off',
-    'jest/no-identical-title': 'error',
     'jest/no-jasmine-globals': 'error',
-    'jest/no-jest-import': 'error',
     'jest/no-large-snapshots': 'error',
     'jest/no-test-callback': 'error',
-    'jest/no-test-prefixes': 'error',
     'jest/no-test-return-statement': 'error',
     'jest/no-truthy-falsy': 'error',
     'jest/prefer-expect-assertions': 'off',
@@ -37,9 +28,6 @@ module.exports = {
     'jest/prefer-to-be-undefined': 'error',
     'jest/prefer-to-contain': 'error',
     'jest/prefer-to-have-length': 'error',
-    'jest/require-tothrow-message': 'off',
-    'jest/valid-describe': 'error',
-    'jest/valid-expect': 'error',
-    'jest/valid-expect-in-promise': 'error'
+    'jest/require-tothrow-message': 'off'
   }
 };

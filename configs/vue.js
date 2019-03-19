@@ -7,10 +7,6 @@ module.exports = {
     'plugin:vue/recommended'
   ],
 
-  plugins: [
-    'vue'
-  ],
-
   rules: {
     'vue/html-closing-bracket-newline': ['error', {
       singleline: 'never',

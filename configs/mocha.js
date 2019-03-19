@@ -3,10 +3,16 @@
 // when introducing breaking changes
 
 module.exports = {
+  extends: [
+    'plugin:mocha/recommended'
+  ],
+
+  // not set by 'plugin:mocha/recommended'
   env: {
     mocha: true
   },
 
+  // not set by 'plugin:mocha/recommended'
   plugins: [
     'mocha'
   ],

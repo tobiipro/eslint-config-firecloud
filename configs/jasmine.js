@@ -3,16 +3,16 @@
 // when introducing breaking changes
 
 module.exports = {
+  extends: [
+    'plugin:jasmine/recommended'
+  ],
+
   env: {
     jasmine: true
   },
 
   plugins: [
     'jasmine'
-  ],
-
-  extends: [
-    'plugin:jasmine/recommended'
   ],
 
   rules: {
