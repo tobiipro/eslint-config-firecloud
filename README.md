@@ -43,7 +43,7 @@ Common bundles are provided as following:
 - Node.js: `firecloud/node`
 - Browser: `firecloud/browser`
 
-along with these addons that require you to install the plugin manually (semver can be found in `configs` folder):
+These addons require you to install the plugin manually:
 
 - `@typescript-eslint/eslint-plugin@^1.4.2`: `firecloud/configs/typescript`
 - `eslint-plugin-jasmine@^2.10.1`: `firecloud/configs/jasmine`
