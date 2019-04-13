@@ -60,7 +60,14 @@ module.exports = {
           return;
         }
 
-        let constToken = sourceCode.getFirstToken(node);
+        // support typescript AST
+        // see https://github.com/typescript-eslint/typescript-eslint/issues/410#issuecomment-480414829
+        let constToken = sourceCode.getFirstToken(node, {
+          filter: function(token) {
+            return token.value === node.kind;
+          }
+        });
+
         context.report({
           node,
           message: 'Unexpected const, use let instead.',
