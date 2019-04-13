@@ -23,12 +23,18 @@ module.exports = {
 
   rules: {
     'accessor-pairs': 'error',
-    'array-bracket-newline': 'off',
+    'array-bracket-newline': ['error', {
+      multiline: true,
+      minItems: 1
+    }],
     'array-bracket-spacing': 'error',
     'array-callback-return': ['error', {
       allowImplicit: true
     }],
-    'array-element-newline': 'off',
+    'array-element-newline': ['error', {
+      multiline: true,
+      minItems: 1
+    }],
     'arrow-body-style': ['error', 'always'],
     'arrow-parens': 'error',
     'arrow-spacing': 'error',
@@ -265,9 +271,30 @@ module.exports = {
     }],
     'no-whitespace-before-property': 'error',
     'no-with': 'error',
-    'object-curly-newline': 'off',
+    'object-curly-newline': ['error', {
+      ObjectExpression: {
+        multiline: true,
+        minProperties: 1,
+        consistent: true
+      },
+      ObjectPattern: {
+        multiline: true,
+        minProperties: 1,
+        consistent: true
+      },
+      ImportDeclaration: {
+        multiline: true,
+        minProperties: 1,
+        consistent: true
+      },
+      ExportDeclaration: {
+        multiline: true,
+        minProperties: 1,
+        consistent: true
+      }
+    }],
     'object-curly-spacing': 'error',
-    'object-property-newline': 'off',
+    'object-property-newline': 'error',
     'object-shorthand': ['error', 'properties'],
     'one-var-declaration-per-line': 'error',
     'one-var': ['error', 'never'],
