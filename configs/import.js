@@ -47,7 +47,7 @@ module.exports = {
     'import/no-unassigned-import': 'error',
     'import/no-unresolved': 'error',
     'import/no-webpack-loader-syntax': 'error',
-    'import/no-unused-modules': 'error',
+    'import/no-unused-modules': 'off',
     'import/no-useless-path-segments': 'error',
     'import/order': 'off',
     'import/prefer-default-export': 'warn',
