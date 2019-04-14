@@ -47,7 +47,7 @@ These addons require you to install the plugin manually:
 
 - `@typescript-eslint/eslint-plugin@^1.4.2`: `firecloud/configs/typescript`
 - `eslint-plugin-jasmine@^2.10.1`: `firecloud/configs/jasmine`
-- `eslint-plugin-jest@^22.1.0`: `firecloud/configs/jest`
+- `eslint-plugin-jest@^22.4.1`: `firecloud/configs/jest`
 - `eslint-plugin-mocha@^5.2.0` (with Chai): `firecloud/configs/mocha`
 - `eslint-plugin-protractor@^1.41.1`: `firecloud/configs/protractor`
 - `eslint-plugin-vue@^5.2.2`: `firecloud/configs/vue`
