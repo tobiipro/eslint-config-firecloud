@@ -45,7 +45,7 @@ Common bundles are provided as following:
 
 These addons require you to install the plugin manually:
 
-- `@typescript-eslint/eslint-plugin@^1.4.2`: `firecloud/configs/typescript`
+- `@typescript-eslint/eslint-plugin@^1.6.0`: `firecloud/configs/typescript`
 - `eslint-plugin-jasmine@^2.10.1`: `firecloud/configs/jasmine`
 - `eslint-plugin-jest@^22.4.1`: `firecloud/configs/jest`
 - `eslint-plugin-mocha@^5.2.0` (with Chai): `firecloud/configs/mocha`
