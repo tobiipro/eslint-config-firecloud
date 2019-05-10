@@ -333,7 +333,7 @@ module.exports = {
     }],
     radix: 'error',
     'require-atomic-updates': 'error',
-    'require-await': 'off',
+    'require-await': 'error',
     'require-jsdoc': 'off',
     'require-unicode-regexp': 'off',
     'require-yield': 'warn',
