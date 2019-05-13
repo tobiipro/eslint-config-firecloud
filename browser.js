@@ -3,6 +3,7 @@ module.exports = {
     './configs/basic.js',
     './configs/babel.js',
     './configs/async-await.js',
+    './configs/eslint-comments.js',
     './configs/firecloud.js',
     './configs/fp.js',
     './configs/import.js',
