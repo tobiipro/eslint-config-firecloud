@@ -1,4 +1,6 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
+/* eslint-enable eslint-comments/no-unlimited-disable */
 // based on https://github.com/eslint/eslint/blob/master/tests/lib/rules/array-bracket-newline.js
 
 /**

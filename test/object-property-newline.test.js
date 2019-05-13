@@ -1,4 +1,6 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
+/* eslint-enable eslint-comments/no-unlimited-disable */
 // based on https://raw.githubusercontent.com/eslint/eslint/master/tests/lib/rules/object-property-newline.js
 
 /**

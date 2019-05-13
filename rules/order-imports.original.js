@@ -1,4 +1,6 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
+/* eslint-enable eslint-comments/no-unlimited-disable */
 /**
  * @fileoverview Rule to require sorting of import declarations
  * @author Christian Schuller

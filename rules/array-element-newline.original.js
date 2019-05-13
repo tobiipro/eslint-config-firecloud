@@ -1,4 +1,6 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
+/* eslint-enable eslint-comments/no-unlimited-disable */
 /**
  * @fileoverview Rule to enforce line breaks after each array element
  * @author Jan Peer Stöcklmair <https://github.com/JPeer264>
