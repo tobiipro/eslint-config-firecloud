@@ -6,7 +6,7 @@ module.exports = {
     'fp/no-arguments': 'error',
     'fp/no-class': 'off',
     'fp/no-delete': 'off',
-    'fp/no-events': 'error',
+    'fp/no-events': 'off',
     'fp/no-get-set': 'error',
     'fp/no-let': 'off',
     'fp/no-loops': 'off',
