@@ -1,3 +1,9 @@
+// Refs
+// * https://github.com/getify/eslint-plugin-proper-arrows
+// * https://davidwalsh.name/i-dont-hate-arrow-functions
+// * https://github.com/eslint/eslint/issues/3357
+// * https://twitter.com/getify/status/1111257781607301125
+
 module.exports = {
   plugins: [
     '@getify/proper-arrows'
