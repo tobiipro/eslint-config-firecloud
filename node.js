@@ -9,6 +9,7 @@ module.exports = {
     './configs/import.js',
     './configs/lodash.js',
     './configs/no-null.js',
+    './configs/proper-arrows.js',
 
     './configs/node.js'
   ]

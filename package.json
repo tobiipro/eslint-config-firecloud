@@ -14,6 +14,7 @@
     "/rules/"
   ],
   "peerDependencies": {
+    "@getify/eslint-plugin-proper-arrows": "^8.0.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
     "eslint-plugin-async-await": "^0.0.0",
@@ -29,6 +30,7 @@
     "lodash": "^4.17.5"
   },
   "devDependencies": {
+    "@getify/eslint-plugin-proper-arrows": "^8.0.1",
     "babel-eslint": "^10.0.1",
     "eclint": "^2.6.0",
     "eslint": "^5.9.0",
