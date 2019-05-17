@@ -128,8 +128,16 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': _basic.rules['no-unused-vars'], // tslint:no-unused-variable
 
     'no-useless-constructor': 'off',
-    '@typescript-eslint/no-useless-constructor': _basic.rules['no-useless-constructor']
+    '@typescript-eslint/no-useless-constructor': _basic.rules['no-useless-constructor'],
 
     // @typescript-eslint/prefer-for-of
+
+    // -------------------------------------------------------------------------
+
+    // bad for typescript, lowers type inference
+    // NOTE we assume eslint-plugin-lodash is still loaded
+
+    'lodash/prop-shorthand': 'off',
+    'lodash/prefer-lodash-method': 'off'
   }
 };
