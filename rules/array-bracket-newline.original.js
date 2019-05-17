@@ -1,6 +1,5 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
-/* eslint-enable eslint-comments/no-unlimited-disable */
 /**
  * @fileoverview Rule to enforce linebreaks after open and before close array brackets
  * @author Jan Peer Stöcklmair <https://github.com/JPeer264>

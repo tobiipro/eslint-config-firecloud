@@ -1,6 +1,5 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
-/* eslint-enable eslint-comments/no-unlimited-disable */
 // based on https://github.com/jfmengels/eslint-plugin-fp/blob/8757d3c/rules/no-loops.js
 // - target only for loops
 

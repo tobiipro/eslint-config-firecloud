@@ -1,6 +1,5 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
-/* eslint-enable eslint-comments/no-unlimited-disable */
 'use strict';
 
 const create = function (context) {

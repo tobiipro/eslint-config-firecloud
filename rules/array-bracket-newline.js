@@ -1,6 +1,5 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
-/* eslint-enable eslint-comments/no-unlimited-disable */
 // based on https://raw.githubusercontent.com/eslint/eslint/master/lib/rules/array-bracket-newline.js
 // - no new line if last array item is an object
 

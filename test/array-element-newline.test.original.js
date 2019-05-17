@@ -1,6 +1,5 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
-/* eslint-enable eslint-comments/no-unlimited-disable */
 /**
  * @fileoverview Tests for array-element-newline rule.
  * @author Jan Peer Stöcklmair <https://github.com/JPeer264>

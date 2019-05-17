@@ -1,6 +1,5 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
-/* eslint-enable eslint-comments/no-unlimited-disable */
 // based on https://github.com/eslint/eslint/blob/master/lib/rules/object-curly-newline.js
 // - handle the one and only function/class parameter
 

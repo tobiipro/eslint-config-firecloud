@@ -1,6 +1,5 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
-/* eslint-enable eslint-comments/no-unlimited-disable */
 /**
  * @fileoverview Tests for sort-imports rule.
  * @author Christian Schuller
