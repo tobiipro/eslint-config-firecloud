@@ -3,6 +3,7 @@
 // * https://davidwalsh.name/i-dont-hate-arrow-functions
 // * https://github.com/eslint/eslint/issues/3357
 // * https://twitter.com/getify/status/1111257781607301125
+// * https://twitter.com/getify/status/1101521219243966466
 
 module.exports = {
   plugins: [
