@@ -137,7 +137,7 @@ module.exports = {
     // bad for typescript, lowers type inference
     // NOTE we assume eslint-plugin-lodash is still loaded
 
-    'lodash/prop-shorthand': 'off',
+    'lodash/prop-shorthand': ['error', 'never'],
     'lodash/prefer-lodash-method': 'off'
   }
 };
