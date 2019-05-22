@@ -23,7 +23,7 @@ let _merge = function(...objs) {
       acc[key] = _.defaults({}, ...objsKey);
     } else {
       acc[key] = _.find(objsKey, function(value) {
-        return _.isDefined(value);
+        return !_.isUndefined(value);
       });
     }
 
