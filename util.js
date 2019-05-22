@@ -1,4 +1,4 @@
-let _ = require('lodash-firecloud');
+let _ = require('lodash');
 let ecfTypescript = require('eslint-config-firecloud/configs/typescript');
 let tsEslintRecommended = require('@typescript-eslint/eslint-plugin/dist/configs/recommended.json');
 
