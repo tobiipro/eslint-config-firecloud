@@ -42,8 +42,11 @@ let makeTsConfig = function(tsConfig) {
     throw new Error(`tsConfig should only extend 'firecloud/configs/typescript'. Found ${tsConfig.extends}.`);
   }
 
-  tsConfig = _merge(tsConfig, ecfTypescriptOmitExtends, tsEslintRecommendedOmitExtends);
-  return tsConfig;
+  let tsConfigOmitExtends = _.omit(tsConfig, [
+    'extends'
+  ]);
+
+  return _merge(tsConfigOmitExtends, ecfTypescriptOmitExtends, tsEslintRecommendedOmitExtends);
 };
 
 module.exports = {
