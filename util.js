@@ -1,11 +1,15 @@
 let _ = require('lodash');
 let ecfTypescript = require('eslint-config-firecloud/configs/typescript');
 let tsEslintRecommended = require('@typescript-eslint/eslint-plugin/dist/configs/recommended.json');
+let tsEslintBase = require('@typescript-eslint/eslint-plugin/dist/configs/base.json');
 
 let ecfTypescriptOmitExtends = _.omit(ecfTypescript, [
   'extends'
 ]);
 let tsEslintRecommendedOmitExtends = _.omit(tsEslintRecommended, [
+  'extends'
+]);
+let tsEslintBaseOmitExtends = _.omit(tsEslintBase, [
   'extends'
 ]);
 
@@ -46,7 +50,13 @@ let makeTsConfig = function(tsConfig) {
     'extends'
   ]);
 
-  return _merge(tsConfigOmitExtends, ecfTypescriptOmitExtends, tsEslintRecommendedOmitExtends);
+  let configs = [
+    tsConfigOmitExtends,
+    ecfTypescriptOmitExtends,
+    tsEslintRecommendedOmitExtends,
+    tsEslintBaseOmitExtends
+  ];
+  return _merge(...configs);
 };
 
 module.exports = {
