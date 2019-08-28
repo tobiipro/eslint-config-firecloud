@@ -10,13 +10,13 @@
 // 2. while we agree that var is suboptimal, and you should go with let or const (scoped declarations),
 //    having to always choose between let and const, or remembering that a var can or cannot be reassigned
 //    is suboptimal in itself. You only increase the cognitive load.
-// 2. if today you have a const variable, and tomorrow you need to reassign it, you will
+// 3. if today you have a const variable, and tomorrow you need to reassign it, you will
 //    - probably fail an eslint test in a jiffy
 //    - add a fix by changing const to let a few lines above.
 //    Thus more changes, not necessarily grouped together. Thus increased cognitive load for everyone
 //    and bonus a scattered changeset.
 //
-// If we had syntax that create immutable variables (by value), I would be the first to ban using let and const.
+// If we had syntax that creates immutable variables (by value), I would be the first to ban using let and const.
 // The lack of one means one thing and one thing only: take JavaScript for what it (currently) is. A mutative language.
 
 // -----------------------------------------------------------------------------
