@@ -5,14 +5,15 @@ undefine INSTALL_SUPPORT_FIRECLOUD
 endif
 endif
 
-include support-firecloud/repo/mk/js.common.node.mk
+include support-firecloud/repo/mk/node.common.mk
 include support-firecloud/repo/mk/js.check.eslint.mk
-include support-firecloud/repo/mk/js.publish.npg.mk
+include support-firecloud/repo/mk/core.misc.release.npg.mk
 
 # ------------------------------------------------------------------------------
 
-SF_ECLINT_FILES_IGNORE := \
-	$(SF_ECLINT_FILES_IGNORE) \
+JS_RULE_TEST_FILES := $(shell $(FIND_Q) test -type f -name "*.test.js" -print)
+
+SF_ECLINT_FILES_IGNORE += \
 	-e "^rules/.*\.original\.js$$" \
 	-e "^rules/array-bracket-newline\.js$$" \
 	-e "^rules/array-element-newline\.js$$" \
@@ -28,15 +29,14 @@ SF_ECLINT_FILES_IGNORE := \
 	-e "^test/object-property-newline\.test\.js$$" \
 	-e "^test/order-imports\.test\.js$$" \
 
-JS_RULE_TEST_FILES := $(shell $(FIND_Q) test -type f -name "*.test.js" -print)
+SF_TEST_TARGETS += \
+	test-rules \
 
 # ------------------------------------------------------------------------------
 
-.PHONY: test
-test: ## Test.
-	@$(ECHO_DO) "Testing..."
+.PHONY: test-rules
+test-rules:
 	for f in $(JS_RULE_TEST_FILES); do \
-		$(ECHO) Running $${f} ; \
+		$(ECHO) "Running $${f}..." ; \
 		$(NODE) $${f} ; \
 	done
-	@$(ECHO_DONE)
