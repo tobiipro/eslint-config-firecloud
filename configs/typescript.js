@@ -1,6 +1,13 @@
-// note that this is an addon
-// please update README.md with required version of the eslint plugin
-// when introducing breaking changes
+// NOTE that this is an addon config. An eslint plugin needs to be installed manually.
+
+let _pluginVsn = '^1.6.0';
+let _pluginName = '@typescript-eslint/eslint-plugin';
+let _pluginActualVsn = require(`${_pluginName}/package.json`).version;
+let _semver = require('semver');
+
+if (!_semver.satisfies(_pluginActualVsn, _pluginVsn)) {
+  throw new Error(`Expected ${_pluginName}@${_pluginVsn} but found version ${_pluginActualVsn} installed.`);
+}
 
 let _basic = require('./basic');
 
