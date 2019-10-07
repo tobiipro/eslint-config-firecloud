@@ -14,7 +14,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const astUtils = require("eslint/lib/util/ast-utils");
+const astUtils = require("eslint/lib/rules/utils/ast-utils");
 const lodash = require("lodash");
 const isNodeOnlyParamObject = require('./util').isNodeOnlyParamObject;
 

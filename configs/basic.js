@@ -57,6 +57,7 @@ module.exports = {
     'constructor-super': 'error',
     curly: 'error',
     'default-case': 'error',
+    'default-param-last': 'error',
     'dot-location': ['error', 'property'],
     'dot-notation': 'error',
     'eol-last': 'error',
@@ -68,6 +69,7 @@ module.exports = {
     'func-style': ['error', 'expression', {
       allowArrowFunctions: true
     }],
+    'function-call-argument-newline': 'off',
     'function-paren-newline': 'off',
     'generator-star-spacing': 'error',
     'getter-return': 'error',
@@ -163,6 +165,7 @@ module.exports = {
     'no-implicit-coercion': 'error',
     'no-implicit-globals': 'error',
     'no-implied-eval': 'error',
+    'no-import-assign': 'error',
     'no-inline-comments': 'off',
     'no-inner-declarations': 'error',
     'no-invalid-regexp': 'error',
@@ -331,6 +334,7 @@ module.exports = {
     'prefer-object-spread': 'error',
     'prefer-promise-reject-errors': 'error',
     'prefer-reflect': 'off',
+    'prefer-regex-literals': 'off',
     'prefer-rest-params': 'error',
     'prefer-spread': 'error',
     'prefer-template': 'error',

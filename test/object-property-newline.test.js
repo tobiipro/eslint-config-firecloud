@@ -14,7 +14,7 @@
 //------------------------------------------------------------------------------
 
 const rule = require("../rules/object-property-newline"),
-    RuleTester = require("eslint/lib/testers/rule-tester");
+    { RuleTester } = require("eslint/lib/rule-tester");
 
 //------------------------------------------------------------------------------
 // Tests
