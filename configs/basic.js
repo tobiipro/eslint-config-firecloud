@@ -264,8 +264,10 @@ module.exports = {
     'no-void': 'error',
     'no-warning-comments': ['warn', {
       terms: [
-        'fixme',
-        'todo'
+        // fixme is intended for immediate fixes, and should not leak into the master branch
+        'fixme'
+        // todo is intended for long-term nice-to-have fixes, and thus no warning is needed
+        // 'todo'
       ],
       location: 'start'
     }],
