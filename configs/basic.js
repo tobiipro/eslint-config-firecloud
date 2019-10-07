@@ -313,8 +313,14 @@ module.exports = {
     'prefer-arrow-callback': 'off',
     'prefer-const': 'off',
     'prefer-destructuring': ['error', {
-      array: false,
-      object: true
+      VariableDeclarator: {
+        array: false,
+        object: true
+      },
+      AssignmentExpression: {
+        array: false,
+        object: false
+      }
     }, {
       enforceForRenamedProperties: false
     }],
