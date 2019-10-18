@@ -77,6 +77,11 @@ that have concrete consequences on daily work.
   * don't use template literals when you don't need them
 
 
+## References to conventions that cannot/will not be put into eslint rules
+
+* https://www.robinwieruch.de/javascript-naming-conventions
+
+
 ## License
 
 [UNLICENSE](UNLICENSE)
