@@ -110,7 +110,15 @@ module.exports = {
     // @typescript-eslint/explicit-function-return-type
 
     indent: 'off',
-    '@typescript-eslint/indent': _basic.rules.indent,
+    '@typescript-eslint/indent': [
+      _basic.rules.indent[0],
+      _basic.rules.indent[1],
+      {
+        SwitchCase: 0, // maintain eslint defaults
+        flatTernaryExpressions: false, // maintain eslint defaults
+        ..._basic.rules.indent[2]
+      }
+    ],
 
     'no-array-constructor': 'off',
     '@typescript-eslint/no-array-constructor': _basic.rules['no-array-constructor'],
