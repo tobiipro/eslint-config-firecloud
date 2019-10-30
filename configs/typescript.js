@@ -106,8 +106,13 @@ module.exports = {
     camelcase: 'off',
     '@typescript-eslint/camelcase': _basic.rules.camelcase,
 
-    // @typescript-eslint/explicit-function-return-type
     '@typescript-eslint/class-name-casing': 'error', // tslint:class-name
+
+    '@typescript-eslint/explicit-function-return-type': ['error', {
+      allowExpressions: true,
+      allowTypedFunctionExpressions: true,
+      allowHigherOrderFunctions: true
+    }],
 
     indent: 'off',
     '@typescript-eslint/indent': [
