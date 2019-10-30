@@ -71,7 +71,7 @@ module.exports = {
     '@typescript-eslint/no-triple-slash-reference': 'error', // tslint:no-reference
     '@typescript-eslint/no-unnecessary-qualifier': 'error',
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
-    '@typescript-eslint/prefer-function-type': 'error', // tslint:callable-types
+    '@typescript-eslint/prefer-function-type': 'off', // tslint:callable-types
     '@typescript-eslint/prefer-namespace-keyword': 'error', // tslint:no-internal-module
     '@typescript-eslint/promise-function-async': 'error', // requiresTypeInfo
     '@typescript-eslint/restrict-plus-operands': 'error', // requiresTypeInfo
