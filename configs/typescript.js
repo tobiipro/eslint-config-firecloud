@@ -49,7 +49,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/ban-types': 'off',
 
-    '@typescript-eslint/no-type-alias': 'error', // tslint:interface-over-type-literal
+    '@typescript-eslint/no-type-alias': 'off', // tslint:interface-over-type-literal
     '@typescript-eslint/prefer-interface': 'error', // tslint:interface-over-type-literal
 
     '@typescript-eslint/explicit-member-accessibility': 'off', // tslint:member-access
