@@ -9,6 +9,7 @@ if (!_semver.satisfies(_pluginActualVsn, _pluginVsn)) {
   throw new Error(`Expected ${_pluginName}@${_pluginVsn} but found version ${_pluginActualVsn} installed.`);
 }
 
+let _ = require('lodash');
 let _basic = require('./basic');
 
 module.exports = {
@@ -115,15 +116,12 @@ module.exports = {
     }],
 
     indent: 'off',
-    '@typescript-eslint/indent': [
-      _basic.rules.indent[0],
-      _basic.rules.indent[1],
-      {
-        SwitchCase: 0, // maintain eslint defaults
-        flatTernaryExpressions: false, // maintain eslint defaults
-        ..._basic.rules.indent[2]
-      }
-    ],
+    // eslint-disable-next-line no-sparse-arrays
+    '@typescript-eslint/indent': _.merge([,, {
+      // maintain eslint defaults
+      SwitchCase: 0,
+      flatTernaryExpressions: false
+    }, _basic.rules.indent]),
 
     'no-array-constructor': 'off',
     '@typescript-eslint/no-array-constructor': _basic.rules['no-array-constructor'],
