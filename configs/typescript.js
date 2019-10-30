@@ -156,6 +156,16 @@ module.exports = {
     // NOTE we assume eslint-plugin-lodash is still loaded
 
     'lodash/prop-shorthand': ['error', 'never'],
-    'lodash/prefer-lodash-method': 'off'
+    'lodash/prefer-lodash-method': 'off',
+
+    // -------------------------------------------------------------------------
+
+    // jsdoc types are redundant
+
+    // eslint-disable-next-line no-sparse-arrays
+    'valid-jsdoc': _.merge([, {}], _basic.rules['valid-jsdoc'], [, {
+      requireParamType: false,
+      requireReturnType: false
+    }])
   }
 };
