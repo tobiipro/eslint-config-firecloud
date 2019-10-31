@@ -74,7 +74,9 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
     '@typescript-eslint/prefer-function-type': 'off', // tslint:callable-types
     '@typescript-eslint/prefer-namespace-keyword': 'error', // tslint:no-internal-module
-    '@typescript-eslint/promise-function-async': 'error', // requiresTypeInfo
+    '@typescript-eslint/promise-function-async': ['error', {
+      allowAny: true
+    }], // requiresTypeInfo
     '@typescript-eslint/restrict-plus-operands': 'error', // requiresTypeInfo
     '@typescript-eslint/type-annotation-spacing': ['error', { // tslint:typedef-whitespace
       'call-signature': 'nospace',
