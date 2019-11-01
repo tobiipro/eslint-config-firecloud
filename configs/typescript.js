@@ -21,23 +21,6 @@ module.exports = {
     project: './tsconfig.json'
   },
 
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: [
-          // default + react
-          '.js',
-          '.json',
-          '.jsx',
-          '.mjs',
-          // typescript + react
-          '.ts',
-          '.tsx'
-        ]
-      }
-    }
-  },
-
   rules: {
     // 'no-var' is broken atm for typescript, but it will be fixed in a the next version
     // see https://github.com/eslint/eslint/pull/11443
