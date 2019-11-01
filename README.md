@@ -80,6 +80,9 @@ that have concrete consequences on daily work.
 ## References to conventions that cannot/will not be put into eslint rules
 
 * https://www.robinwieruch.de/javascript-naming-conventions
+* Not related to eslint/style, but when writing TypeScript, make use of utility belts like the following for (more) complete typing of function signatures (input and output)
+  * https://github.com/pirix-gh/ts-toolbelt
+  * https://github.com/piotrwitek/utility-types
 
 
 ## License
