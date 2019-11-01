@@ -1,6 +1,6 @@
 // NOTE that this is an addon config. An eslint plugin needs to be installed manually.
 
-let _pluginVsn = '^1.13.0';
+let _pluginVsn = '^2.6.0';
 let _pluginName = '@typescript-eslint/eslint-plugin';
 let _pluginActualVsn = require(`${_pluginName}/package.json`).version;
 let _semver = require('semver');
@@ -49,7 +49,10 @@ module.exports = {
     '@typescript-eslint/member-ordering': ['error', {
       order: 'fields-first'
     }],
-    '@typescript-eslint/no-angle-bracket-type-assertion': 'error',
+
+    // tslint:no-angle-bracket-type-assertion, tslint: no-object-literal-type-assertion
+    '@typescript-eslint/consistent-type-assertions': 'error',
+
     '@typescript-eslint/no-empty-interface': 'error',
     '@typescript-eslint/no-explicit-any': 'off', // tslint:no-any
     '@typescript-eslint/no-floating-promises': 'error',
@@ -57,7 +60,6 @@ module.exports = {
     '@typescript-eslint/no-misused-new': 'error',
     '@typescript-eslint/no-namespace': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
-    '@typescript-eslint/no-object-literal-type-assertion': 'error',
     '@typescript-eslint/no-parameter-properties': 'error',
 
     // typescript specific but not marked typescriptOnly
@@ -70,11 +72,10 @@ module.exports = {
     '@typescript-eslint/prefer-function-type': 'off', // tslint:callable-types
     '@typescript-eslint/prefer-namespace-keyword': 'error', // tslint:no-internal-module
     '@typescript-eslint/prefer-readonly': 'error',
-    '@typescript-eslint/promise-function-async': ['error', {
-      allowAny: true
-    }], // requiresTypeInfo
+    '@typescript-eslint/promise-function-async': 'error', // requiresTypeInfo
     '@typescript-eslint/restrict-plus-operands': 'error', // requiresTypeInfo
-    '@typescript-eslint/strict-boolean-expressions': 'error',
+    '@typescript-eslint/strict-boolean-expressions': 'error', // requiresTypeInfo
+    '@typescript-eslint/typedef': 'off',
     '@typescript-eslint/type-annotation-spacing': ['error', { // tslint:typedef-whitespace
       'call-signature': 'nospace',
       'index-signature': 'nospace',
@@ -89,6 +90,7 @@ module.exports = {
       'variable-declaration': 'onespace'
     }],
     '@typescript-eslint/unbound-method': 'error', // tslint:no-unbound-method
+    '@typescript-eslint/no-unnecessary-type-arguments': 'error', // tslint:use-default-type-parameter
     '@typescript-eslint/unified-signatures': 'error',
 
     // -------------------------------------------------------------------------
@@ -111,16 +113,20 @@ module.exports = {
 
     // -------------------------------------------------------------------------
 
-    // rules not in tslint, specific to typescript-language
+    // rules not in tslint, specific to the typescript plugin
 
     '@typescript-eslint/member-delimiter-style': 'off', // 'error', // FIXME
     '@typescript-eslint/member-naming': ['error', {
       private: '^_'
     }],
+    '@typescript-eslint/no-unnecessary-condition': 'error',
 
     // -------------------------------------------------------------------------
 
-    // rules not in tslint, not specific to typescript-language
+    // rules not in tslint, not specific to the typescript plugin
+
+    'brace-style': 'off',
+    '@typescript-eslint/brace-style': _basic.rules['brace-style'],
 
     // 'camelcase': 'off',
     'babel/camelcase': 'off',
@@ -169,9 +175,8 @@ module.exports = {
     '@typescript-eslint/prefer-regexp-exec': 'error',
     '@typescript-eslint/prefer-string-starts-ends-with': 'error',
 
-    // DISABLED because it conflicts with '@typescript-eslint/promise-function-async'
-    // 'require-await': 'off',
-    // '@typescript-eslint/require-await': _basic.rules['require-await'],
+    'require-await': 'off',
+    '@typescript-eslint/require-await': _basic.rules['require-await'],
 
     // -------------------------------------------------------------------------
 
