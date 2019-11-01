@@ -7,6 +7,7 @@ module.exports = {
     './configs/firecloud.js',
     './configs/fp.js',
     './configs/import.js',
+    './configs/jsdoc.js',
     './configs/lodash.js',
     './configs/no-null.js',
     './configs/proper-arrows.js',

@@ -21,6 +21,12 @@ module.exports = {
     project: './tsconfig.json'
   },
 
+  settings: {
+    jsdoc: {
+      mode: 'typescript'
+    }
+  },
+
   rules: {
     // 'no-var' is broken atm for typescript, but it will be fixed in a the next version
     // see https://github.com/eslint/eslint/pull/11443
@@ -145,12 +151,12 @@ module.exports = {
 
     // -------------------------------------------------------------------------
 
-    // jsdoc types are redundant
+    // NOTE we assume eslint-plugin-jsdoc is still loaded
 
-    // eslint-disable-next-line no-sparse-arrays
-    'valid-jsdoc': _.merge([, {}], _basic.rules['valid-jsdoc'], [, {
-      requireParamType: false,
-      requireReturnType: false
-    }])
+    'jsdoc/no-types': 'error',
+    'jsdoc/require-param-description': 'error',
+    'jsdoc/require-param-type': 'off',
+    'jsdoc/require-param': 'off',
+    'jsdoc/require-returns': 'off'
   }
 };
