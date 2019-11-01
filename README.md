@@ -81,6 +81,7 @@ that have concrete consequences on daily work.
 
 * https://www.robinwieruch.de/javascript-naming-conventions
 * Not related to eslint/style, but when writing TypeScript, make use of utility belts like the following for (more) complete typing of function signatures (input and output)
+  * built-in utility types https://codewithstyle.info/Comprehensive-list-of-useful-built-in-types-in-TypeScript/
   * https://github.com/pirix-gh/ts-toolbelt
   * https://github.com/piotrwitek/utility-types
 
