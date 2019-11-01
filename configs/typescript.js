@@ -34,7 +34,7 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
 
     '@typescript-eslint/no-type-alias': 'off', // tslint:interface-over-type-literal
-    '@typescript-eslint/prefer-interface': 'error', // tslint:interface-over-type-literal
+    '@typescript-eslint/prefer-interface': 'off', // tslint:interface-over-type-literal
 
     '@typescript-eslint/explicit-member-accessibility': 'off', // tslint:member-access
     '@typescript-eslint/generic-type-naming': 'error',
