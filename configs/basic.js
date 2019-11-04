@@ -331,7 +331,7 @@ module.exports = {
     'prefer-object-spread': 'error',
     'prefer-promise-reject-errors': 'error',
     'prefer-reflect': 'off',
-    'prefer-rest-params': 'off',
+    'prefer-rest-params': 'error',
     'prefer-spread': 'error',
     'prefer-template': 'error',
     'quote-props': ['error', 'as-needed'],
