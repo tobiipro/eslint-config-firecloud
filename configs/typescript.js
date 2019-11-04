@@ -40,7 +40,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/ban-types': 'off',
 
-    '@typescript-eslint/no-type-alias': 'error', // tslint:interface-over-type-literal
+    '@typescript-eslint/no-type-alias': 'off', // tslint:interface-over-type-literal
     // DEPRECATED // '@typescript-eslint/prefer-interface': 'off', // tslint:interface-over-type-literal
     '@typescript-eslint/consistent-type-definitions': 'off', // tslint:interface-over-type-literal
 
