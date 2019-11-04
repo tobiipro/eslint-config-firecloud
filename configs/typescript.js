@@ -112,7 +112,7 @@ module.exports = {
       // maintain eslint defaults
       SwitchCase: 0,
       flatTernaryExpressions: false
-    }, _basic.rules.indent]),
+    }], _basic.rules.indent),
 
     'no-array-constructor': 'off',
     '@typescript-eslint/no-array-constructor': _basic.rules['no-array-constructor'],
