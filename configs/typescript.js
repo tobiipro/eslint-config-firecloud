@@ -41,7 +41,6 @@ module.exports = {
     '@typescript-eslint/ban-types': 'off',
 
     '@typescript-eslint/no-type-alias': 'off', // tslint:interface-over-type-literal
-    // DEPRECATED // '@typescript-eslint/prefer-interface': 'off', // tslint:interface-over-type-literal
     '@typescript-eslint/consistent-type-definitions': 'off', // tslint:interface-over-type-literal
 
     '@typescript-eslint/class-name-casing': 'error', // tslint:class-name
@@ -63,7 +62,6 @@ module.exports = {
     '@typescript-eslint/no-parameter-properties': 'error',
 
     // typescript specific but not marked typescriptOnly
-    // DEPRECATED // '@typescript-eslint/no-triple-slash-reference': 'error', // tslint:no-reference
     '@typescript-eslint/triple-slash-reference': 'error', // tslint:no-reference-import
 
     '@typescript-eslint/no-unnecessary-qualifier': 'error',
