@@ -33,7 +33,9 @@ module.exports = {
     // actual tslint rule name follows as a comment, IFF different than @typescript-eslint rule name
 
     '@typescript-eslint/adjacent-overload-signatures': 'error',
-    '@typescript-eslint/array-type': ['error', 'array'],
+    '@typescript-eslint/array-type': ['error', {
+      default: 'array'
+    }],
     '@typescript-eslint/await-thenable': 'error', // tslint:await-promise
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/ban-types': 'off',
@@ -46,9 +48,7 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': 'off', // tslint:member-access
     '@typescript-eslint/generic-type-naming': 'error',
     '@typescript-eslint/interface-name-prefix': 'error', // tslint:interface-name
-    '@typescript-eslint/member-ordering': ['error', {
-      order: 'fields-first'
-    }],
+    '@typescript-eslint/member-ordering': ['error'],
 
     // tslint:no-angle-bracket-type-assertion, tslint: no-object-literal-type-assertion
     '@typescript-eslint/consistent-type-assertions': 'error',
@@ -76,19 +76,7 @@ module.exports = {
     '@typescript-eslint/restrict-plus-operands': 'error', // requiresTypeInfo
     '@typescript-eslint/strict-boolean-expressions': 'error', // requiresTypeInfo
     '@typescript-eslint/typedef': 'off',
-    '@typescript-eslint/type-annotation-spacing': ['error', { // tslint:typedef-whitespace
-      'call-signature': 'nospace',
-      'index-signature': 'nospace',
-      parameter: 'nospace',
-      'property-declaration': 'nospace',
-      'variable-declaration': 'nospace'
-    }, {
-      'call-signature': 'onespace',
-      'index-signature': 'onespace',
-      parameter: 'onespace',
-      'property-declaration': 'onespace',
-      'variable-declaration': 'onespace'
-    }],
+    '@typescript-eslint/type-annotation-spacing': ['error'], // tslint:typedef-whitespace
     '@typescript-eslint/unbound-method': 'error', // tslint:no-unbound-method
     '@typescript-eslint/no-unnecessary-type-arguments': 'error', // tslint:use-default-type-parameter
     '@typescript-eslint/unified-signatures': 'error',
@@ -104,7 +92,6 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': _basic.rules['no-use-before-define'], // tslint:no-use-before-declare
 
-    'no-unnecessary-class': undefined,
     '@typescript-eslint/no-extraneous-class': 'error', // tslint: no-unnecessary-class
 
     // marked as, but not really typescriptOnly
