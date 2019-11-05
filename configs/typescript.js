@@ -12,6 +12,7 @@ if (!_semver.satisfies(_pluginActualVsn, _pluginVsn)) {
 let _ = require('lodash');
 let _basic = require('./basic');
 let _babel = require('./babel');
+let _restoreBasicOverrides = require('./typescript-eslint-recommended');
 
 module.exports = {
   extends: [
@@ -29,6 +30,11 @@ module.exports = {
   },
 
   rules: {
+    // restore all keys in @typescript-eslint/recommended that are not @typescript-eslint i.e. basic
+    ..._restoreBasicOverrides.rules,
+
+    // -------------------------------------------------------------------------
+
     // rules in tslint
     // actual tslint rule name follows as a comment, IFF different than @typescript-eslint rule name
 
