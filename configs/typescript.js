@@ -42,7 +42,7 @@ module.exports = {
     '@typescript-eslint/array-type': ['error', {
       default: 'array'
     }],
-    '@typescript-eslint/await-thenable': 'error', // tslint:await-promise
+    '@typescript-eslint/await-thenable': 'off', // tslint:await-promise
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/ban-types': 'off',
 
