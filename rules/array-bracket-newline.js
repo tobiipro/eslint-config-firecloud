@@ -10,7 +10,7 @@
 
 "use strict";
 
-const astUtils = require("eslint/lib/util/ast-utils");
+const astUtils = require("eslint/lib/rules/utils/ast-utils");
 
 //------------------------------------------------------------------------------
 // Rule Definition

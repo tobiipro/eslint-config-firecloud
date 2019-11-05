@@ -12,7 +12,7 @@
 //------------------------------------------------------------------------------
 
 const rule = require("../rules/array-element-newline");
-const RuleTester = require("eslint/lib/testers/rule-tester");
+const { RuleTester } = require("eslint/lib/rule-tester");
 
 
 //------------------------------------------------------------------------------

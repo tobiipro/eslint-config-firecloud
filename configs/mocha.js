@@ -1,6 +1,6 @@
 // NOTE that this is an addon config. An eslint plugin needs to be installed manually.
 
-let _pluginVsn = '^5.2.0';
+let _pluginVsn = '^6.1.1';
 let _pluginName = 'eslint-plugin-mocha';
 let _pluginActualVsn = require(`${_pluginName}/package.json`).version;
 let _semver = require('semver');
@@ -35,6 +35,8 @@ module.exports = {
     'mocha/max-top-level-suites': ['error', {
       limit: 1
     }],
+    'mocha/ no-return-from-async': 'error',
+    'mocha/no-async-describe': 'error',
     'mocha/no-exclusive-tests': 'error',
     'mocha/no-global-tests': 'error',
     'mocha/no-hooks': 'off',

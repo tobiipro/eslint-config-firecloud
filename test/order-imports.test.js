@@ -14,7 +14,7 @@
 //------------------------------------------------------------------------------
 
 const rule = require("../rules/order-imports"),
-    RuleTester = require("eslint/lib/testers/rule-tester");
+    { RuleTester } = require("eslint/lib/rule-tester");
 
 //------------------------------------------------------------------------------
 // Tests
