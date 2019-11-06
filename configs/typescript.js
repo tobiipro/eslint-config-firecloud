@@ -185,11 +185,6 @@ module.exports = {
     'jsdoc/require-param-type': 'off',
     'jsdoc/require-param': 'off',
     'jsdoc/require-returns': 'off',
-    'jsdoc/require-returns-type': 'off',
-
-    // -------------------------------------------------------------------------
-
-    // FIXME gives Allocation failed - JavaScript heap out of memory
-    'firecloud/order-imports': 'off'
+    'jsdoc/require-returns-type': 'off'
   }
 };

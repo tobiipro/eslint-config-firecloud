@@ -160,8 +160,8 @@ module.exports = {
             }
 
             let fixes = [];
-            fixes.push(fixer.replaceText(b, sourceCode.getText().slice(a.start, a.end)));
-            fixes.push(fixer.replaceText(a, sourceCode.getText().slice(b.start, b.end)));
+            fixes.push(fixer.replaceText(b, sourceCode.getText(a)));
+            fixes.push(fixer.replaceText(a, sourceCode.getText(b)));
             return fixes;
         };
 
