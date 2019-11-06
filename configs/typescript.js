@@ -175,7 +175,6 @@ module.exports = {
     // NOTE we assume eslint-plugin-lodash is still loaded
 
     'lodash/prop-shorthand': ['error', 'never'],
-    'lodash/prefer-lodash-method': 'off',
 
     // -------------------------------------------------------------------------
 
