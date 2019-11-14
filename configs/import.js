@@ -18,6 +18,7 @@ module.exports = {
           '.jsx',
           '.mjs',
           // typescript + react
+          '.d.ts',
           '.ts',
           '.tsx'
         ]
