@@ -344,7 +344,7 @@ module.exports = {
       allowTemplateLiterals: false
     }],
     radix: 'error',
-    'require-atomic-updates': 'error',
+    'require-atomic-updates': 'off',
     'require-await': 'off',
     'require-jsdoc': 'off',
     'require-unicode-regexp': 'off',
