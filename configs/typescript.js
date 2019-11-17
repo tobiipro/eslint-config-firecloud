@@ -108,11 +108,11 @@ module.exports = {
 
     '@typescript-eslint/member-delimiter-style': ['error', {
       multiline: {
-        delimiter: 'semicolon',
+        delimiter: 'semi',
         requireLast: true
       },
       singleline: {
-        delimiter: 'semicolon',
+        delimiter: 'semi',
         requireLast: true
       }
     }],
