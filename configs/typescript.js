@@ -183,10 +183,10 @@ module.exports = {
 
     // -------------------------------------------------------------------------
 
-    // bad for typescript, lowers type inference
     // NOTE we assume eslint-plugin-lodash is still loaded
 
     'lodash/prefer-noop': 'off',
+    // bad for typescript, lowers type inference
     'lodash/prop-shorthand': ['error', 'never'],
 
     // -------------------------------------------------------------------------
