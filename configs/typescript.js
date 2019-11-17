@@ -106,7 +106,16 @@ module.exports = {
 
     // rules not in tslint, specific to the typescript plugin
 
-    '@typescript-eslint/member-delimiter-style': 'off', // 'error', // FIXME
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      multiline: {
+        delimiter: 'semicolon',
+        requireLast: true
+      },
+      singleline: {
+        delimiter: 'semicolon',
+        requireLast: true
+      }
+    }],
     '@typescript-eslint/member-naming': ['error', {
       private: '^_'
     }],
@@ -168,6 +177,9 @@ module.exports = {
 
     'require-await': 'off',
     '@typescript-eslint/require-await': _basic.rules['require-await'],
+
+    semi: 'off',
+    '@typescript-eslint/semi': _basic.rules.semi,
 
     // -------------------------------------------------------------------------
 
