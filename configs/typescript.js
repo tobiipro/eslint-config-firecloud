@@ -187,6 +187,8 @@ module.exports = {
 
     'lodash/prefer-noop': 'off',
     // bad for typescript, lowers type inference
+    'lodash/matches-prop-shorthand': ['error', 'never'],
+    'lodash/matches-shorthand': ['error', 'never'],
     'lodash/prop-shorthand': ['error', 'never'],
 
     // -------------------------------------------------------------------------
