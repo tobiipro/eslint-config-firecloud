@@ -86,7 +86,7 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'error', // requiresTypeInfo
     '@typescript-eslint/typedef': 'off',
     '@typescript-eslint/type-annotation-spacing': ['error'], // tslint:typedef-whitespace
-    '@typescript-eslint/unbound-method': 'error', // tslint:no-unbound-method
+    '@typescript-eslint/unbound-method': 'off', // tslint:no-unbound-method
     '@typescript-eslint/no-unnecessary-type-arguments': 'error', // tslint:use-default-type-parameter
     '@typescript-eslint/unified-signatures': 'error',
 
