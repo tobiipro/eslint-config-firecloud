@@ -63,7 +63,7 @@ module.exports = {
     // tslint:no-angle-bracket-type-assertion, tslint: no-object-literal-type-assertion
     '@typescript-eslint/consistent-type-assertions': 'error',
 
-    '@typescript-eslint/no-empty-interface': 'error',
+    '@typescript-eslint/no-empty-interface': 'off',
     '@typescript-eslint/no-explicit-any': 'off', // tslint:no-any
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/no-inferrable-types': 'off',
