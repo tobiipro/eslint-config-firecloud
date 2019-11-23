@@ -14,6 +14,11 @@ let _basic = require('./basic');
 let _babel = require('./babel');
 let _restoreBasicOverrides = require('./typescript-eslint-recommended');
 
+// see https://github.com/eslint/eslint/issues/12592
+_basic = _.cloneDeep(_basic);
+_babel = _.cloneDeep(_babel);
+
+
 module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended'

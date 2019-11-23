@@ -1,10 +1,13 @@
 /* eslint-disable lodash/prefer-lodash-method */
 
+let _ = require('lodash');
 let _basic = require('./basic');
 let _recommended = require('@typescript-eslint/eslint-plugin/dist/configs/recommended.json');
 
-// poor man's _.cloneDeep
-let _restoreBasicOverrides = JSON.parse(JSON.stringify(_recommended));
+// see https://github.com/eslint/eslint/issues/12592
+_basic = _.cloneDeep(_basic);
+
+let _restoreBasicOverrides = _.cloneDeep(_recommended);
 
 let filterObject = function(obj, predicate) {
   // eslint-disable-next-line fp/no-mutating-assign
