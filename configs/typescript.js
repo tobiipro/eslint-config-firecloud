@@ -19,6 +19,8 @@ _basic = _.cloneDeep(_basic);
 _babel = _.cloneDeep(_babel);
 
 
+let isIde = process.env.VSCODE_PID !== undefined;
+
 module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended'
@@ -86,7 +88,8 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'error', // requiresTypeInfo
     '@typescript-eslint/typedef': 'off',
     '@typescript-eslint/type-annotation-spacing': ['error'], // tslint:typedef-whitespace
-    '@typescript-eslint/unbound-method': 'off', // tslint:no-unbound-method
+    // @typescript-eslint/unbound-method is buggy, otherwise it should be set to 'error'
+    '@typescript-eslint/unbound-method': isIde ? 'warn' : 'off', // tslint:no-unbound-method
     '@typescript-eslint/no-unnecessary-type-arguments': 'error', // tslint:use-default-type-parameter
     '@typescript-eslint/unified-signatures': 'error',
 

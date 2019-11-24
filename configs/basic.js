@@ -1,6 +1,8 @@
 // NOTE: we start with all rules enabled (error) for a strict baseline (eslint:all)
 // NOTE: all rules not following "<rule>: error" thus imply preference over the baseline
 
+let isIde = process.env.VSCODE_PID !== undefined;
+
 module.exports = {
   plugins: [],
 
@@ -134,7 +136,7 @@ module.exports = {
     }],
     'no-continue': 'off',
     'no-control-regex': 'error',
-    'no-debugger': 'off', // FIXME set to warn after https://github.com/eslint/eslint/issues/7549
+    'no-debugger': isIde ? 'warn' : 'off',
     'no-delete-var': 'error',
     'no-div-regex': 'off',
     'no-dupe-args': 'error',
