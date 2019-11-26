@@ -191,6 +191,12 @@ module.exports = {
 
     // -------------------------------------------------------------------------
 
+    // NOTE we assume eslint-plugin-import is still loaded
+
+    'import/prefer-default-export': 'off',
+
+    // -------------------------------------------------------------------------
+
     // NOTE we assume eslint-plugin-lodash is still loaded
 
     'lodash/prefer-noop': 'off',
