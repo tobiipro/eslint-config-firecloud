@@ -81,7 +81,7 @@ module.exports = {
     '@typescript-eslint/prefer-for-of': 'error',
     '@typescript-eslint/prefer-function-type': 'off', // tslint:callable-types
     '@typescript-eslint/prefer-namespace-keyword': 'error', // tslint:no-internal-module
-    '@typescript-eslint/prefer-readonly': 'error',
+    '@typescript-eslint/prefer-readonly': 'off',
     '@typescript-eslint/promise-function-async': 'error', // requiresTypeInfo
     '@typescript-eslint/restrict-plus-operands': 'error', // requiresTypeInfo
     '@typescript-eslint/strict-boolean-expressions': 'error', // requiresTypeInfo
