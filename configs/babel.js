@@ -1,4 +1,8 @@
+let _ = require('lodash');
 let _basic = require('./basic');
+
+// see https://github.com/eslint/eslint/issues/12592
+_basic = _.cloneDeep(_basic);
 
 module.exports = {
   parser: 'babel-eslint',

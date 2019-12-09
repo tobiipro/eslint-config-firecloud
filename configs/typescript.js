@@ -9,7 +9,11 @@ if (!_semver.satisfies(_pluginActualVsn, _pluginVsn)) {
   throw new Error(`Expected ${_pluginName}@${_pluginVsn} but found version ${_pluginActualVsn} installed.`);
 }
 
+let _ = require('lodash');
 let _basic = require('./basic');
+
+// see https://github.com/eslint/eslint/issues/12592
+_basic = _.cloneDeep(_basic);
 
 module.exports = {
   extends: [
