@@ -11,9 +11,11 @@ if (!_semver.satisfies(_pluginActualVsn, _pluginVsn)) {
 
 let _ = require('lodash');
 let _basic = require('./basic');
+let _import = require('./import');
 
 // see https://github.com/eslint/eslint/issues/12592
 _basic = _.cloneDeep(_basic);
+_import = _.cloneDeep(_import);
 
 module.exports = {
   extends: [
@@ -28,11 +30,7 @@ module.exports = {
     'import/resolver': {
       node: {
         extensions: [
-          // default + react
-          '.js',
-          '.json',
-          '.jsx',
-          '.mjs',
+          ..._import.settings['import/resolver'].node.extensions,
           // typescript + react
           '.ts',
           '.tsx'
@@ -142,6 +140,19 @@ module.exports = {
     '@typescript-eslint/no-useless-constructor': _basic.rules['no-useless-constructor'],
 
     // @typescript-eslint/prefer-for-of
+
+    // -------------------------------------------------------------------------
+
+    // NOTE we assume eslint-plugin-import is still loaded
+
+    'import/extensions': [
+      _import.rules['import/extensions'][0],
+      _import.rules['import/extensions'][1],
+      {
+        ..._import.rules['import/extensions'][2],
+        ts: 'never'
+      }
+    ],
 
     // -------------------------------------------------------------------------
 

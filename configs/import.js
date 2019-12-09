@@ -7,7 +7,19 @@ module.exports = {
     'import/ignore': [
       '\\.json$',
       'node_modules'
-    ]
+    ],
+
+    'import/resolver': {
+      node: {
+        extensions: [
+          // default + react
+          '.js',
+          '.json',
+          '.jsx',
+          '.mjs'
+        ]
+      }
+    }
   },
 
   rules: {
