@@ -16,11 +16,7 @@ module.exports = {
           '.js',
           '.json',
           '.jsx',
-          '.mjs',
-          // typescript + react
-          '.d.ts',
-          '.ts',
-          '.tsx'
+          '.mjs'
         ]
       }
     }
