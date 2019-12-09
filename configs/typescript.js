@@ -18,7 +18,6 @@ let _restoreBasicOverrides = require('./typescript-eslint-recommended');
 _basic = _.cloneDeep(_basic);
 _babel = _.cloneDeep(_babel);
 
-
 let isIde = process.env.VSCODE_PID !== undefined;
 
 module.exports = {
