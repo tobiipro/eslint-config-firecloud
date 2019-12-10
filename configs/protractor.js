@@ -1,6 +1,6 @@
 // NOTE that this is an addon config. An eslint plugin needs to be installed manually.
 
-let _pluginVsn = '^1.41.1';
+let _pluginVsn = '^2.1.1';
 let _pluginName = 'eslint-plugin-protractor';
 let _pluginActualVsn = require(`${_pluginName}/package.json`).version;
 let _semver = require('semver');
@@ -15,6 +15,7 @@ module.exports = {
   ],
 
   rules: {
+    'protractor/empty-script': 'error',
     'protractor/no-describe-selectors': 2,
     'protractor/missing-perform': 'error',
     'protractor/no-browser-pause': 'error',
