@@ -59,7 +59,9 @@ module.exports = {
     'import/no-restricted-paths': 'off',
     'import/no-self-import': 'error',
     'import/no-unassigned-import': 'error',
-    'import/no-unresolved': 'error',
+    // revert warn to error after https://github.com/benmosher/eslint-plugin-import/pull/1563 is released
+    // 'import/no-unresolved': 'error',
+    'import/no-unresolved': 'warn',
     'import/no-webpack-loader-syntax': 'error',
     'import/no-unused-modules': 'off',
     'import/no-useless-path-segments': 'error',
