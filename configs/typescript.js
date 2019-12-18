@@ -12,13 +12,11 @@ if (!_semver.satisfies(_pluginActualVsn, _pluginVsn)) {
 let _ = require('lodash');
 let _basic = require('./basic');
 let _babel = require('./babel');
-let _import = require('./import');
 let _restoreBasicOverrides = require('./typescript-eslint-recommended');
 
 // see https://github.com/eslint/eslint/issues/12592
 _basic = _.cloneDeep(_basic);
 _babel = _.cloneDeep(_babel);
-_import = _.cloneDeep(_import);
 
 let isIde = process.env.VSCODE_PID !== undefined;
 
@@ -32,17 +30,6 @@ module.exports = {
   },
 
   settings: {
-    'import/resolver': {
-      node: {
-        extensions: [
-          ..._import.settings['import/resolver'].node.extensions,
-          // typescript + react
-          '.ts',
-          '.tsx'
-        ]
-      }
-    },
-
     jsdoc: {
       mode: 'typescript'
     }
@@ -200,19 +187,6 @@ module.exports = {
 
     semi: 'off',
     '@typescript-eslint/semi': _basic.rules.semi,
-
-    // -------------------------------------------------------------------------
-
-    // NOTE we assume eslint-plugin-import is still loaded
-
-    'import/extensions': [
-      _import.rules['import/extensions'][0],
-      _import.rules['import/extensions'][1],
-      {
-        ..._import.rules['import/extensions'][2],
-        ts: 'never'
-      }
-    ],
 
     // -------------------------------------------------------------------------
 

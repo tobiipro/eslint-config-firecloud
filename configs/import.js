@@ -16,7 +16,10 @@ module.exports = {
           '.js',
           '.json',
           '.jsx',
-          '.mjs'
+          '.mjs',
+          // typescript + react
+          '.ts',
+          '.tsx'
         ]
       }
     }
@@ -29,7 +32,8 @@ module.exports = {
     // revert warn to error after https://github.com/benmosher/eslint-plugin-import/pull/1563 is released
     // 'import/extensions': ['error', 'ignorePackages', {
     'import/extensions': ['warn', 'ignorePackages', {
-      js: 'never'
+      js: 'never',
+      ts: 'never'
     }],
     'import/first': 'error',
     'import/group-exports': 'off',
