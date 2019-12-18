@@ -19,7 +19,8 @@ module.exports = {
           '.mjs',
           // typescript + react
           '.ts',
-          '.tsx'
+          '.tsx',
+          '.d.ts'
         ]
       }
     }
