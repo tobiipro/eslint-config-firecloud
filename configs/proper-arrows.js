@@ -26,11 +26,11 @@ module.exports = {
       ternatry: true,
       chained: true,
       sequence: true,
-      trivial: true
+      trivial: false
     }],
     '@getify/proper-arrows/this': ['error', 'nested', {
       'no-global': true,
-      trivial: true
+      trivial: false
     }]
   }
 };
