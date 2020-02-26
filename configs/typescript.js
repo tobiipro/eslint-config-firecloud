@@ -171,9 +171,6 @@ module.exports = {
     'no-magic-numbers': 'off',
     '@typescript-eslint/no-magic-numbers': _basic.rules['no-magic-numbers'],
 
-    // use _.asyncCb from lodash-firecloud@^0.5.23 for async callbacks with sync receivers
-    // see https://github.com/tobiipro/lodash-firecloud/commit/0f8945b78fb26aa066fc529ba89f1e5e55b63ab2
-    // see https://github.com/typescript-eslint/typescript-eslint/issues/1637
     '@typescript-eslint/no-misused-promises': 'error',
 
     '@typescript-eslint/no-var-requires': 'error',
