@@ -171,7 +171,12 @@ module.exports = {
     'no-magic-numbers': 'off',
     '@typescript-eslint/no-magic-numbers': _basic.rules['no-magic-numbers'],
 
-    '@typescript-eslint/no-misused-promises': 'error',
+    '@typescript-eslint/no-misused-promises': ['error', {
+      // NOTE this may hide serious problem if NodeJS will terminate the process on unhandled rejections.
+      // See https://github.com/typescript-eslint/typescript-eslint/issues/1637
+      // See https://github.com/nodejs/node/issues/20392
+      checksVoidReturn: false
+    }],
 
     '@typescript-eslint/no-var-requires': 'error',
 
