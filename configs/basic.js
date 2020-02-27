@@ -37,7 +37,7 @@ module.exports = {
       multiline: true,
       minItems: 1
     }],
-    'arrow-body-style': ['error', 'always'],
+    'arrow-body-style': 'error',
     'arrow-parens': 'error',
     'arrow-spacing': 'error',
     'block-scoped-var': 'error',
