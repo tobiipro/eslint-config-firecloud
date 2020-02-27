@@ -99,21 +99,23 @@ Newer versions of TypeScript have opened up the possibility for so-called utilit
 
 * `Partial<T>` would be a type for a partial object of type T
 * `ReturnType<T>` would be the type of the return value of a function of type T
+* see more types at
+  * official list but not comprehensive: https://www.typescriptlang.org/docs/handbook/utility-types.html
+  * https://codewithstyle.info/Comprehensive-list-of-useful-built-in-types-in-TypeScript/
 
 Similarly to the built-in types, more utility-types exist as external packages:
-  * our own collection: https://github.com/tobiipro/lodash-firecloud/blob/master/src/types.ts
-  * built-in utility types: https://codewithstyle.info/Comprehensive-list-of-useful-built-in-types-in-TypeScript/
-  * extension of utility types: https://github.com/piotrwitek/utility-types
-  * **comprehensive** but can easily throw TypeScript errors because of high complexity: https://github.com/pirix-gh/ts-toolbelt
+
+* our own collection: https://github.com/tobiipro/lodash-firecloud/blob/master/src/types.ts
+* https://github.com/piotrwitek/utility-types
+* https://github.com/pirix-gh/ts-toolbelt
+  * **comprehensive** but can easily throw TypeScript errors because of high complexity
 
 [Read more about utility types here.](https://www.typescriptlang.org/docs/handbook/utility-types.html).
 
 
 ## Amend modules and interfaces (and classes)
 
-Sometimes external modules have incorrect types, and you need to amend their interfaces
-
-or to amend classes e.g.
+Sometimes external modules have missing/incorrect types, and you need to amend their interfaces/classes e.g.
 
 ```typescript
 interface ClockInterface {
@@ -180,7 +182,7 @@ let c = new Clock(10, 10);
 
 ## `interface` vs `type`
 
-Historically `type` was inferior to `interface`, but that is not the case today, although differences still exist.
+Historically `type` was inferior to `interface`, but that is not the case today. Differences still exist though.
 
 **The simple recommendation is to use `interface`, unless you cannot and you need `type`.**
 
@@ -206,7 +208,9 @@ Advanced types will be a mix of:
 
 [Read more about advanced types.](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
 
-Both types and interfaces can be for object types .e.g.
+Both types and interfaces can be
+
+for object types .e.g.
 
 ``` typescript
 interface SomeObject {
@@ -214,7 +218,16 @@ interface SomeObject {
 }
 ```
 
-of function types e.g.
+or tuple types .e.g.
+
+``` typescript
+interface SomeTuple {
+  0: string;
+  1: boolean;
+}
+```
+
+or function types e.g.
 
 ```typescript
 interface SearchFunc {
@@ -281,8 +294,57 @@ interface SearchFunc {
 [Read more about interfaces.](https://www.typescriptlang.org/docs/handbook/interfaces.html)
 
 
+## Nominal types
+
+See https://michalzalecki.com/nominal-typing-in-typescript/ .
+
+**NOTE** Built-in nominal types might come under the `unique` keyword.
+See https://github.com/microsoft/TypeScript/pull/33038 .
+
+
+## Style
+
+When you need multiple lines to define an intersection or a union type,
+consider a leading `&` or `|`, instead of a trailing one e.g.
+
+```typescript
+// better
+type FooBar =
+  & Foo
+  & Bar;
+
+// instead of
+type FooBar = Foo
+  & Bar;
+// or
+type FooBar =
+  Foo
+  & Bar;
+```
+
+**NOTE** Multiline generics should be indented,
+but [an eslint bug](https://github.com/typescript-eslint/typescript-eslint/issues/455) prevents this.
+
+```typescript
+// intended
+type SomeFunction =
+  Fn<
+    Result,
+    Args
+  >;
+
+// but due to the bug
+type SomeFunction =
+  Fn<
+  Result,
+  Args
+  >;
+```
+
+
 ## References
 
 * https://mariusschulz.com/blog/series/typescript-evolution
 * https://www.typescriptlang.org/docs/handbook/basic-types.html
 * https://microsoft.github.io/TypeScript-New-Handbook/outline/
+* https://basarat.gitbook.io/typescript/
