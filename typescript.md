@@ -34,6 +34,7 @@ Similarly, you may use:
 * `if ((a as any).match) { a = a as unknown as string; ...` (in extreme cases)
 
 [Read more about this.](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-differentiating-types)
+[Read event more about this.](https://medium.com/javascript-in-plain-english/even-more-typescript-types-you-need-to-know-d86439f13a8)
 
 
 ## Use type assertions to `unknown` when the going gets tough
@@ -348,3 +349,5 @@ type SomeFunction =
 * https://www.typescriptlang.org/docs/handbook/basic-types.html
 * https://microsoft.github.io/TypeScript-New-Handbook/outline/
 * https://basarat.gitbook.io/typescript/
+* https://github.com/David-Else/modern-typescript-with-examples-cheat-sheet
+* https://2ality.com/2020/02/types-for-classes-typescript.html
