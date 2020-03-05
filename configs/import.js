@@ -30,9 +30,7 @@ module.exports = {
     'import/dynamic-import-chunkname': 'off',
     'import/export': 'error',
     'import/exports-last': 'off',
-    // revert warn to error after https://github.com/benmosher/eslint-plugin-import/pull/1563 is released
-    // 'import/extensions': ['error', 'ignorePackages', {
-    'import/extensions': ['warn', 'ignorePackages', {
+    'import/extensions': ['error', 'ignorePackages', {
       js: 'never',
       ts: 'never'
     }],
