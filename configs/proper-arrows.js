@@ -5,6 +5,15 @@
 // * https://twitter.com/getify/status/1111257781607301125
 // * https://twitter.com/getify/status/1101521219243966466
 
+let _pluginName = '@getify/eslint-plugin-proper-arrows';
+let _pluginVsn = require('../package.json').peerDependencies[_pluginName];
+let _pluginActualVsn = require(`${_pluginName}/package.json`).version;
+let _semver = require('semver');
+
+if (!_semver.satisfies(_pluginActualVsn, _pluginVsn)) {
+  throw new Error(`Expected ${_pluginName}@${_pluginVsn} but found version ${_pluginActualVsn} installed.`);
+}
+
 module.exports = {
   plugins: [
     '@getify/proper-arrows'
