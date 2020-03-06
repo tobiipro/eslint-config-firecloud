@@ -40,6 +40,12 @@
 
 // E. from https://softwareengineering.stackexchange.com/questions/278652#answer-278691
 
+// F. from https://jamie.build/const
+// > const doesn't do shit and we all know it
+
+// G. from https://twitter.com/dan_abramov/status/1208369896880558080
+// > TC39 members: const was a mistake.
+
 module.exports = {
   meta: {
     docs: {
