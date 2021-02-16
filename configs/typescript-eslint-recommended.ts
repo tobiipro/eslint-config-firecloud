@@ -2,7 +2,7 @@
 
 let _ = require('lodash');
 let _basic = require('./basic');
-let _recommended = require('@typescript-eslint/eslint-plugin/dist/configs/recommended.json');
+let _recommended = require('@typescript-eslint/eslint-plugin/dist/configs/recommended.ts');
 
 // see https://github.com/eslint/eslint/issues/12592
 _basic = _.cloneDeep(_basic);
@@ -10,8 +10,7 @@ _basic = _.cloneDeep(_basic);
 let _restoreBasicOverrides = _.cloneDeep(_recommended);
 
 let filterObject = function(obj, predicate) {
-  // eslint-disable-next-line fp/no-mutating-assign
-  return Object.assign(...Object.keys(obj).filter(function(key) {
+  return Object.assign({}, ...Object.keys(obj).filter(function(key) {
     return predicate(obj[key], key);
   }).map(function(key) {
     return {
@@ -21,8 +20,7 @@ let filterObject = function(obj, predicate) {
 };
 
 let mapObjectValues = function(obj, predicate) {
-  // eslint-disable-next-line fp/no-mutating-assign
-  return Object.assign(...Object.keys(obj).map(function(key) {
+  return Object.assign({}, ...Object.keys(obj).map(function(key) {
     return {
       [key]: predicate(obj[key], key)
     };
