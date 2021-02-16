@@ -1,4 +1,6 @@
-
+/* eslint-disable no-undef */
+/* eslint-disable @getify/proper-arrows/this */
+/* eslint-disable @getify/proper-arrows/return */
 let _restoreBasicOverrides = require('./typescript-eslint-recommended');
 
 jest.mock('@typescript-eslint/eslint-plugin/dist/configs/recommended.json', () => ({
