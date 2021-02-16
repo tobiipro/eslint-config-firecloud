@@ -13,7 +13,7 @@ if (!_semver.satisfies(_pluginActualVsn.replace(/.*#semver:/, ''), _pluginVsn.re
 let _ = require('lodash');
 let _basic = require('./basic');
 let _babel = require('./babel');
-let _restoreBasicOverrides = require('./typescript-eslint-recommended');
+let _restoreBasicOverrides = require('./typescript-eslint-recommended.ts');
 
 // see https://github.com/eslint/eslint/issues/12592
 _basic = _.cloneDeep(_basic);
