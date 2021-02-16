@@ -1,7 +1,7 @@
 // NOTE that this is an addon config. An eslint plugin needs to be installed manually.
 
 let _pluginName = '@typescript-eslint/eslint-plugin';
-let _pluginVsn = '^2.6.0';
+let _pluginVsn = '^4.15.0';
 let _pluginActualVsn = require(`${_pluginName}/package.json`).version;
 let _semver = require('semver');
 
