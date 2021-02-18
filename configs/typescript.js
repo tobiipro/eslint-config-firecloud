@@ -50,16 +50,39 @@ module.exports = {
       default: 'array'
     }],
     '@typescript-eslint/await-thenable': 'off', // tslint:await-promise
-    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/ban-types': 'off',
 
     '@typescript-eslint/no-type-alias': 'off', // tslint:interface-over-type-literal
     '@typescript-eslint/consistent-type-definitions': 'off', // tslint:interface-over-type-literal
 
-    '@typescript-eslint/class-name-casing': 'error', // tslint:class-name
+    '@typescript-eslint/naming-convention': [
+      'error',
+      {
+        selector: 'enumMember',
+        // eslint-disable-next-line no-null/no-null
+        format: null // Allow enum members to have names formatted in any way.
+      },
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+        custom: {
+          regex: '^I[A-Z]',
+          match: false
+        }
+      },
+      {
+        selector: 'class',
+        format: ['PascalCase']
+      },
+      {
+        selector: 'typeParameter',
+        format: ['PascalCase'],
+        prefix: ['T']
+      }
+    ],
+
     '@typescript-eslint/explicit-member-accessibility': 'off', // tslint:member-access
-    '@typescript-eslint/generic-type-naming': 'error',
-    '@typescript-eslint/interface-name-prefix': 'error', // tslint:interface-name
     '@typescript-eslint/member-ordering': ['error'],
 
     // tslint:no-angle-bracket-type-assertion, tslint: no-object-literal-type-assertion
