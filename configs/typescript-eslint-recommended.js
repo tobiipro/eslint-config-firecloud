@@ -2,7 +2,7 @@
 
 let _ = require('lodash');
 let _basic = require('./basic');
-let _recommended = require('@typescript-eslint/eslint-plugin/dist/configs/recommended.js');
+let _recommended = require('@typescript-eslint/eslint-plugin/dist/configs/recommended');
 
 // see https://github.com/eslint/eslint/issues/12592
 _basic = _.cloneDeep(_basic);
